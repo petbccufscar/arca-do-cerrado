@@ -1,0 +1,10 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding: 1em;
+    background-color: white;
+    align-items: flex-start;
+    border-radius: 10px;
+    gap: 1em;
+}

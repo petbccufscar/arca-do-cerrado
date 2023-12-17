@@ -1,0 +1,50 @@
+.sidebar{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 240px;
+    background-color: #fff;
+    padding: 1em;
+}
+.sidebar .sidebar-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.sidebar .sidebar-menu li{
+    white-space: nowrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar .sidebar-menu .active{
+    color: var(--text-color) ;
+    border: 0;
+}
+
+.sidebar .xmark svg{
+    font-size: 1.5em;
+}
+
+.sidebar .sidebar-menu .row svg{
+    margin-right: 0.5em;
+}
+
+.sidebar .side-dropdown{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em; 
+}
+
+.sidebar .side-dropdown li{
+    margin-left: 1.5em;
+}
