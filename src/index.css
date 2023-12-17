@@ -42,6 +42,12 @@ a {
 button {
     outline: none;
     border: none;
+    background-color: var(--primary-color);
+    padding: 0.5em 2em;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
 }
 
 .row{
