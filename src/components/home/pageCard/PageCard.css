@@ -22,15 +22,5 @@
 }
 
 .page-card button{
-    background-color: var(--primary-color);
-    padding: 0.5em 2em;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 1em;
     margin-top: 1em;
-    cursor: pointer;
-}
-
-.page-card button:hover{
-    color: rgba(255,255,255,0.8);
 }

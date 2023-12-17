@@ -48,6 +48,11 @@ button {
     color: #fff;
     font-size: 1em;
     cursor: pointer;
+    white-space: nowrap;
+}
+
+button:hover{
+    color: rgba(255,255,255,0.8);
 }
 
 .row{
@@ -60,4 +65,22 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    *{
+        font-size: 0.98em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    *{
+        font-size: 0.95em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    *{
+        font-size: 0.9em;
+    }
 }
