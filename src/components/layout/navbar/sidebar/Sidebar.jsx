@@ -42,7 +42,7 @@ const Sidebar = ({ links, handleToggle }) => {
                 </div>
                 {links.map(link => (
                     (link.drop ? (
-                        <>
+                        <div key={link.path}>
                             <div className='row'>
                                 <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path}>
                                     <li>{link.icon} {link.name} <FaCaretDown onClick={() => handleIsOpen(link.path)} /></li>
@@ -57,7 +57,7 @@ const Sidebar = ({ links, handleToggle }) => {
                                     ))}
                                 </div>
                             )}
-                        </>
+                        </div>
                     )
                         :
                         (

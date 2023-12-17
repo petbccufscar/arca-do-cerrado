@@ -43,7 +43,7 @@ const Home = () => {
                         <input type="text" placeholder='Email' />
                     </div>
                     <div className='textarea'>
-                        <label for="mensagem">Mensagem</label>
+                        <label htmlFor="mensagem">Mensagem</label>
                         <textarea id="mensagem" name="mensagem" rows="4" cols="50">
                         </textarea>
                     </div>
