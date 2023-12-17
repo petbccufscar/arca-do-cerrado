@@ -1,0 +1,32 @@
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2em;
+    width: 100%;
+    height: 120px;
+    padding: 2em;
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.footer .ufscar img{
+    height: 56px;
+}
+
+.footer .contact{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer .icons svg{
+    font-size: 1.5em;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.footer .icons svg:hover{
+    color: rgba(255, 255, 255, 0.8);
+}
