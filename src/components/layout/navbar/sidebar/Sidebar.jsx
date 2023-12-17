@@ -37,8 +37,8 @@ const Sidebar = ({ links, handleToggle }) => {
         <div className="sidebar" ref={sidebarRef}>
             <div className='sidebar-menu'>
                 <div className='logo' onClick={redirectToHome}>
-                    <img src="./src/assets/logos/arca.png" alt="Logo Arca" />
-                    <img src="./src/assets/logos/arcaText.png" alt="Logo Arca Texto" />
+                    <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
+                    <img src="../src/assets/logos/arcaText.png" alt="Logo Arca Texto" />
                 </div>
                 {links.map(link => (
                     (link.drop ? (

@@ -1,9 +1,9 @@
-.facaParte {
+.contribute {
     display: flex;
     flex-direction: column;
 }
 
-.facaParte .main {
+.contribute .main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,28 +12,27 @@
     min-height: 300px;
     color: #fff;
 
-    background-image: url(../../assets/facaparte/facaparte.png);
-    background-color: red;
+    background-image: url(../../assets/contribute/contribute.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     overflow: hidden;
 }
 
-.facaParte .main h1{
+.contribute .main h1{
     font-size: 4em;
 }
 
-.facaParte.main h2{
+.contribute.main h2{
     font-size: 1.5em;
 }
 
-.facaParte .main p{
+.contribute .main p{
     font-size: 0.2em;
     align-items: end;
 }
 
-.facaParte .pages{
+.contribute .pages{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -41,7 +40,7 @@
     margin-top: 4em;
 }
 
-.facaParte .content{
+.contribute .content{
     margin-top: 5em;
     display: flex;
     flex-direction: column;
@@ -52,29 +51,29 @@
     overflow: hidden;
 }
 
-.facaParte .content h2{
+.contribute .content h2{
     font-size: 3em;
 }
 
-.facaParte .content p{
+.contribute .content p{
     margin-top: 1em;
     text-align: center;
     max-width: 60%;
 }
 
-.facaParte .content .form{
+.contribute .content .form{
     margin-top: 4em;
     margin-bottom: 2em;
 }
 
 
-.facaParte .content .form .inputs{
+.contribute .content .form .inputs{
     display: flex;
     flex-direction: row;
     gap: 1em;
 }
 
-.facaParte .content .form input{
+.contribute .content .form input{
     background-color: transparent;
     font-size: 1em;
     border: 0;
@@ -82,13 +81,13 @@
     padding-bottom: 0.5em;
 }
 
-.facaParte .content .form .textarea{
+.contribute .content .form .textarea{
     display: flex;
     flex-direction: column;
     margin-top: 3em;
 }
 
-.facaParte .content .form textarea {
+.contribute .content .form textarea {
     background-color: transparent;
     font-size: 1em;
     border: 0;

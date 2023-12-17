@@ -1,0 +1,40 @@
+.species .main {
+    padding: 2em 4em;
+}
+
+.species h1 {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+.species .main h2 {
+    color: var(--text-high);
+    margin-bottom: 1em;
+    border-bottom: 2px solid var(--primary-color);
+    max-width: min-content;
+    white-space: nowrap;
+    padding-bottom: 0.5em;
+}
+
+.species .main .content .species-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-bottom: 4em;
+}
+
+.species .main .content ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.species .main .content li{
+    margin-bottom: 1em;
+}
+
+.species .main .content li:hover{
+    color: var(--primary-color);
+}

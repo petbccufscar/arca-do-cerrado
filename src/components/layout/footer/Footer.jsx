@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <div className='ufscar'>
-                <img src="./src/assets/logos/ufscar.png" alt="UfSCar" />
+                <img src="../src/assets/logos/ufscar.png" alt="UfSCar" />
             </div>
             <div className='contact'>
                 <h4>Contato:</h4>
