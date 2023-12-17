@@ -48,13 +48,12 @@ const Navbar = () => {
             path: '/sobre',
             icon: <FaQuestion/>,
             drop: [
-                { name: "Apresentação do site", path: "/sobre/section-0" },
-                { name: "Descrição da área", path: "/sobre/section-1" },
-                { name: "Histórico", path: "/sobre/section-2" },
-                { name: "Atividades", path: "/sobre/section-3" },
-                { name: "Expectativas", path: "/sobre/section-4" },
-                { name: "Participantes", path: "/sobre/section-5" },
-                { name: "Contatos", path: "/sobre/section-6" },
+                { name: "Apresentação do site", path: "/sobre/#1" },
+                { name: "Descrição da área", path: "/sobre/#2" },
+                { name: "Histórico", path: "/sobre/#3" },
+                { name: "Atividades", path: "/sobre/#4" },
+                { name: "Expectativas", path: "/sobre/#5" },
+                { name: "Participantes", path: "/sobre/#6" }
               ],
         },
         {

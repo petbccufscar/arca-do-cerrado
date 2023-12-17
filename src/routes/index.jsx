@@ -25,7 +25,6 @@ export const AppRoutes = ( ) => {
             <Route path="/faca-parte" element={<FacaParte />}/>
             <Route path="/agenda" element={<Agenda />}/>
             <Route path="/especies" element={<Especies />}/>
-
             
             <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
