@@ -10,7 +10,7 @@ const Cards = ({ nickname, scientificName, summary, image }) => {
         <h4>Nome Científico: {scientificName}</h4>
         <p>{summary}</p>
       </div>
-      <a href="/pagina-alvo" className="redirect-button">Ler Mais</a>
+      <button href="/pagina-alvo" className="redirect-button">Ler Mais</button>
     </div>
   );
 };

@@ -29,19 +29,19 @@
 
 .species-details h2 {
   margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 1em;
+  font-size: 1.2em;
 }
 
 .species-details h4 {
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.7em;
   color: #555;
 }
 
 .species-details p {
   margin-top: 10px;
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: #333;
 }
 
@@ -55,14 +55,8 @@
   position: absolute;
   bottom: 10px;
   right: 10px; /* Ajuste a posição do botão para o canto inferior direito */
-  background-color: #00a496;
-  color: white;
-  padding: 2px 10px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  text-decoration: none;
   z-index: 1;
+  font-size: 0.9em;
 }
 
 .redirect-button:hover {
