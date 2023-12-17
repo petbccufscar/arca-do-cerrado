@@ -1,31 +1,28 @@
-.sobre .main {
-    padding: 2em;
+.about .main {
+    padding: 2em 4em;
 }
-.sobre .main .content{
-    display: flex;
-    flex-direction: column;
-}
-.sobre h1 {
+
+.about h1 {
     background-color: var(--primary-color);
     color: #fff;
     padding: 1em;
     text-align: center;
 }
 
-.sobre h2 {
+.about .main .content .text{
+    margin-bottom: 4em;
+}
+
+.about .main .content h2 {
     color: var(--text-high);
-    margin-top: 2em;
     margin-bottom: 1em;
     border-bottom: 2px solid var(--primary-color);
     max-width: min-content;
     white-space: nowrap;
     padding-bottom: 0.5em;
-
 }
 
-
-
-.sobre p {
+.about .main .content p {
     color: var(--text-high);
-    margin-bottom: 2em;
+    margin-bottom: 1em;
 }

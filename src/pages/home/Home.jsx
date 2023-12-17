@@ -3,6 +3,7 @@ import './Home.css'
 import PageCard from '../../components/home/pageCard/PageCard'
 
 import { FaRegCalendar, FaEarthAmericas, FaPagelines } from 'react-icons/fa6'
+import ContributeForm from '../../components/layout/form/ContributeForm'
 
 
 const Home = () => {
@@ -37,20 +38,7 @@ const Home = () => {
                     que as cidades precisam aprender a conviver melhor com a vegetação e os animais
                     e que cada um de nós pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
                 </p>
-                <div className='form'>
-                    <div className='inputs'>
-                        <input type="text" placeholder='Nome' />
-                        <input type="text" placeholder='Email' />
-                    </div>
-                    <div className='textarea'>
-                        <label htmlFor="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" rows="4" cols="50">
-                        </textarea>
-                    </div>
-                </div>
-                <button>
-                    Enviar mensagem
-                </button>
+                <ContributeForm/>
             </section>
         </div>
 

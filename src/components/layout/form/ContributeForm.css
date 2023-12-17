@@ -1,0 +1,34 @@
+.contribute-form .form{
+    margin-top: 4em;
+    margin-bottom: 2em;
+}
+
+
+.contribute-form .form .inputs{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.contribute-form .form input{
+    background-color: transparent;
+    font-size: 1em;
+    border: 0;
+    border-bottom: 1px solid var(--text-low);
+    padding-bottom: 0.5em;
+}
+
+.contribute-form .form .textarea{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+}
+
+.contribute-form .form textarea {
+    background-color: transparent;
+    font-size: 1em;
+    border: 0;
+    border-bottom: 1px solid var(--text-low);
+    padding-bottom: 0.5em;
+    resize: none; 
+}
