@@ -1,9 +1,14 @@
+import { BrowserRouter as Router } from "react-router-dom"
+import { AppRoutes } from "./routes"
+
 function App() {
 
     return (
-        <div>
-            <h1>Arca do Cerrado</h1>
-        </div>
+        <>
+            <Router>
+                <AppRoutes/>
+            </Router>
+        </>
     )
 }
 
