@@ -1,0 +1,93 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    height: 100vw;
+}
+
+.home .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    min-height: 300px;
+    color: #fff;
+
+    background-image: url(../../assets/carousel/planta1.png);
+    background-color: red;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.home .main h1{
+    font-size: 4em;
+}
+
+.home .main p{
+    font-size: 1.5em;
+}
+
+.home .pages{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4em;
+}
+
+.home .content{
+    margin-top: 5em;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-medium);
+}
+
+.home .content h2{
+    font-size: 3em;
+}
+
+.home .content p{
+    margin-top: 1em;
+    text-align: center;
+    max-width: 40%;
+}
+
+.home .content .form{
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+
+.home .content .form .inputs{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.home .content .form input{
+    background-color: transparent;
+    font-size: 1em;
+    border: 0;
+    border-bottom: 1px solid var(--text-low);
+    padding-bottom: 0.5em;
+}
+
+.home .content .form .textarea{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+}
+
+.home .content .form textarea {
+    background-color: transparent;
+    font-size: 1em;
+    border: 0;
+    border-bottom: 1px solid var(--text-low);
+    padding-bottom: 0.5em;
+    resize: none; 
+}
