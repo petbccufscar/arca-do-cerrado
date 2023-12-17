@@ -16,7 +16,7 @@
     color: #fff;
 }
 .mapaInterativo .mapaDescricao{
-    margin-top: 2em;
+    padding: 4em;
 }
 
 .leaflet-container {
