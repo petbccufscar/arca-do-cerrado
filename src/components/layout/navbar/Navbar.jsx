@@ -45,15 +45,15 @@ const Navbar = () => {
         },
         {
             name: 'Sobre',
-            path: '/sobre',
+            path: '/about',
             icon: <FaQuestion/>,
             drop: [
-                { name: "Apresentação do site", path: "/sobre/#1" },
-                { name: "Descrição da área", path: "/sobre/#2" },
-                { name: "Histórico", path: "/sobre/#3" },
-                { name: "Atividades", path: "/sobre/#4" },
-                { name: "Expectativas", path: "/sobre/#5" },
-                { name: "Participantes", path: "/sobre/#6" }
+                { name: "Apresentação do site", path: "/about/#1" },
+                { name: "Descrição da área", path: "/about/#2" },
+                { name: "Histórico", path: "/about/#3" },
+                { name: "Atividades", path: "/about/#4" },
+                { name: "Expectativas", path: "/about/#5" },
+                { name: "Participantes", path: "/about/#6" }
               ],
         },
         {
@@ -73,7 +73,7 @@ const Navbar = () => {
         },
         {
             name: 'Espécies',
-            path: '/especies',
+            path: '/species',
             icon: <FaSeedling/>
         },
         {
@@ -83,7 +83,7 @@ const Navbar = () => {
         },
         {
             name: 'Faça Parte',
-            path: '/faca-parte',
+            path: '/contribute',
             icon: <FaHandshakeSimple/>
         }
     ]
@@ -104,7 +104,7 @@ const Navbar = () => {
                         <Sidebar links={links} handleToggle={handleToggle} isOpen={isOpen} />
                     )}
                     <div className='logo' onClick={redirectToHome}>
-                        <img src="./src/assets/logos/arca.png" alt="Logo Arca"/>
+                        <img src="../src/assets/logos/arca.png" alt="Logo Arca"/>
                     </div>
                     <div className='search'>
                         {search && (
@@ -120,7 +120,7 @@ const Navbar = () => {
             ) : (
                 <div className='menu'>
                     <div className='logo' onClick={redirectToHome}>
-                        <img src="./src/assets/logos/arca.png" alt="Logo Arca" />
+                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
                     </div>
                     <div className='row'>
                         <ul>

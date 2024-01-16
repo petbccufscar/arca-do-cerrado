@@ -1,12 +1,10 @@
 import React from 'react'
-import './FacaParte.css'
+import './Contribute.css'
+import ContributeForm from '../../components/layout/form/ContributeForm'
 
-import { FaRegCalendar, FaEarthAmericas, FaPagelines } from 'react-icons/fa6'
-
-
-const FacaParte = () => {
+const Contribute = () => {
     return (
-        <div className='facaParte'>
+        <div className='contribute'>
             <section className='main'>
                 <h1>Ajude a Arca</h1>
                 <h2>Participe do projeto!</h2>
@@ -29,24 +27,11 @@ const FacaParte = () => {
                     que as cidades precisam aprender a conviver melhor com a vegetação e os animais
                     e que cada um de nós pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
                 </p>
-                <div className='form'>
-                    <div className='inputs'>
-                        <input type="text" placeholder='Nome' />
-                        <input type="text" placeholder='Email' />
-                    </div>
-                    <div className='textarea'>
-                        <label htmlFor="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" rows="4" cols="50">
-                        </textarea>
-                    </div>
-                </div>
-                <button>
-                    Enviar mensagem
-                </button>
+                <ContributeForm/>
             </section>
         </div>
 
     )
 }
 
-export default FacaParte
+export default Contribute
