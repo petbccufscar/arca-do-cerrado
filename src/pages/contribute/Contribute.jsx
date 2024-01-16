@@ -17,7 +17,7 @@ const Contribute = () => {
                 </p>
             </section>
             <section className='content'>
-                <h2>Faça sua Parte</h2>
+                <h2>Faça Parte</h2>
                 <p>
                     Se você já conhece o fragmento de Cerrado na Ufscar - ou não…
                     Se você já tem alguma experiência com formação de mudas - ou não...
