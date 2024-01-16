@@ -1,55 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import SpecieCard from '../../components/species/specieCard/SpecieCard';
 import './Species.css';
 
 const Species = () => {
-    const speciesData = [
-        {
-            id: 1,
-            nickname: 'Planta 1',
-            scientificName: 'Nome científico 1',
-            summary: 'Resumo da planta 1...',
-        },
-        {
-            id: 2,
-            nickname: 'Planta 2',
-            scientificName: 'Nome científico 2',
-            summary: 'Resumo da planta 2...',
-        },
-        {
-            id: 3,
-            nickname: 'Planta 1',
-            scientificName: 'Nome científico 1',
-            summary: 'Resumo da planta 1...',
-        },
-        {
-            id: 4,
-            nickname: 'Planta 2',
-            scientificName: 'Nome científico 2',
-            summary: 'Resumo da planta 2...',
-        },
-        {
-            id: 5,
-            nickname: 'Planta 1',
-            scientificName: 'Nome científico 1',
-            summary: 'Resumo da planta 1...',
-        },
-        {
-            id: 6,
-            nickname: 'Planta 2',
-            scientificName: 'Nome científico 2',
-            summary: 'Resumo da planta 2...',
-        },
-    ];
+    const [speciesData, setSpeciesData] = useState([]);
 
-    const sortedPlantNames = speciesData.map(species => species.nickname).sort((a, b) => a.localeCompare(b));
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/Planta/')
+            .then(response => {
+                const speciesWithImage = response.data.map(species => ({
+                    ...species,
+                    imagens: species.imagens || '',
+                }));
 
+                // Ordenar os dados pelo apelido antes de atualizar o estado
+                const sortedSpeciesData = speciesWithImage.sort((a, b) => a.apelido.localeCompare(b.apelido));
+
+                setSpeciesData(sortedSpeciesData);
+            })
+            .catch(error => {
+                console.error('Error fetching species data:', error);
+            });
+    }, []);
+    
     return (
         <div className="species">
             <h1>Espécies</h1>
             <section className='main'>
-
                 <section className='content'>
                     <h2>Catálogo</h2>
                     <div className="species-cards">
@@ -58,14 +38,13 @@ const Species = () => {
                         ))}
                     </div>
                 </section>
-
                 <section className='content'>
                     <h2>Lista das Plantas</h2>
                     <ul>
-                        {sortedPlantNames.map((plantName, index) => (
+                        {speciesData.map((specie, index) => (
                             <li key={index}>
-                                <Link to={`/plantas/${speciesData.find(species => species.nickname === plantName).id}`}>
-                                    {plantName}
+                                <Link to={`/species/${specie.id}`}>
+                                    {specie.apelido}
                                 </Link>
                             </li>
                         ))}
@@ -73,7 +52,6 @@ const Species = () => {
                 </section>
             </section>
         </div>
-
     );
 };
 
