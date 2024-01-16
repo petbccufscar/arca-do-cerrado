@@ -55,6 +55,7 @@
     flex-direction: row;
     align-items: center;
     margin-left: 2em;
+    cursor: pointer;
 }
 
 .navbar .search input{
