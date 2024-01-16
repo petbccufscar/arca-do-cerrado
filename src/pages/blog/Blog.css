@@ -1,0 +1,35 @@
+.blog {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.blog h1 {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+.blog .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 4em;
+}
+
+.blog .main h2 {
+    text-align: start;
+    color: var(--text-high);
+    margin-bottom: 3em;
+    border-bottom: 2px solid var(--primary-color);
+    max-width: min-content;
+    white-space: nowrap;
+    padding-bottom: 0.5em;
+}
+
+.blog .main .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
