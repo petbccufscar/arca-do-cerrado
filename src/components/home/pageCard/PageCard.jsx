@@ -2,7 +2,7 @@ import React from 'react'
 
 const PageCard = ({ icon, name, desc, path }) => {
     return (
-        <div classNameName=''>
+        <div className=''>
             <div className="flex justify-center items-center mb-4 text-7xl text-primary-color">
                 {icon}
             </div>

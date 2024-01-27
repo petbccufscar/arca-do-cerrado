@@ -19,8 +19,8 @@ const Home = () => {
             </header>
 
             <main>
-                <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                    <div class="space-y-12 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+                <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+                    <div className="space-y-12 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
                         <PageCard icon={<FaRegCalendar />} name={"Agenda"} desc={"Visualize os próximos compromissos marcados para visitar o pomar."} path={"/agenda"} />
                         <PageCard icon={<FaEarthAmericas />} name={"Mapa"} desc={"Visualize as espécies plantadas no cerrado de São Carlos através do mapa interativo."} path={"/mapa"} />
                         <PageCard icon={<FaPagelines />} name={"Especies"} desc={"Visualize as informações das espécies do mapa interativo."} path={"/especies"} />
