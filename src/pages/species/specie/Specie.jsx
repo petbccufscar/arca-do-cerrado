@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
 
 import './Specie.css';
 import { FaSeedling } from 'react-icons/fa6';
@@ -42,13 +39,11 @@ const Specie = () => {
                     <p>{specie.resumo}</p>
                 </section>
                 <section className='content'>
-                    <Slider>
                         {specie.imagens.map((imagem, index) => (
                             <div key={index}>
                                 <img src={imagem} alt={`Imagem ${index + 1}`} />
                             </div>
                         ))}
-                    </Slider>
                     <div className='text'>
                         <h3>Description</h3>
                         <p>{specie.texto}</p>
