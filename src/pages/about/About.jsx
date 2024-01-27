@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import './About.css'
 
 const About = () => {
 
@@ -54,13 +53,13 @@ const About = () => {
 
 
     return (
-        <div className='about'>
-            <h1>Sobre</h1>
-            <section className='main'>
+        <div>
+            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Sobre</h1>
+            <section>
                 {sections.map(section => (
-                    <section id={section.id} className='content'>
-                        <div className='text'>
-                            <h2>{section.title}</h2>
+                    <section id={section.id}>
+                        <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8'>
+                            <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>{section.title}</h2>
                             {section.content.map(content => (
                                 <p>{content}</p>
                             ))}
