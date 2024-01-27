@@ -18,14 +18,13 @@ Para iniciar o projeto, siga as instruções abaixo:
 
 ### Backend
 
-1. Abra o terminal.
-2. Navegue até a pasta "Backend/Arca" do projeto.
+1. Navegue até a pasta do projeto.
    ```bash
-   cd Backend/Arca
+   cd path/to/Arca-do-Cerrado
    ```
-3. Inicialize o servidor usando o seguinte comando:
+2. Inicialize o servidor usando o seguinte comando:
    ```bash
-   python manage.py runserver
+   npm run backend
    ```
 
 Agora, o backend estará em execução e pronto para ser utilizado pelo frontend.
