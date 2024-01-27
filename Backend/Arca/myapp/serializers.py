@@ -32,3 +32,8 @@ class EquipeSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Equipe
         fields = '__all__'
+
+class ConfiguracaoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.Configuracao
+        fields = '__all__'

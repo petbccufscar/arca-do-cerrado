@@ -1,5 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
@@ -29,15 +31,6 @@ class Mensagem(models.Model):
 
     def __str__(self):
         return self.nome
-
-class Atividade(models.Model):
-    titulo = models.CharField(max_length=100)
-    descricao = RichTextField()
-    participantes = models.IntegerField()
-    data = models.DateField()
-
-    def __str__(self):
-        return self.titulo
     
 class Equipe(models.Model):
     nome = models.CharField(max_length=200)
@@ -48,6 +41,15 @@ class Equipe(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class Atividade(models.Model):
+    titulo = models.CharField(max_length=100)
+    descricao = RichTextField()
+    autores_equipe = models.ManyToManyField(Equipe, blank=True)
+    data = models.DateField()
+
+    def __str__(self):
+        return self.titulo
 
 class Postagem(models.Model):
     titulo = models.CharField(max_length=200)
@@ -59,3 +61,15 @@ class Postagem(models.Model):
 
     def __str__(self):
         return self.titulo
+
+class Configuracao(models.Model):
+    mostrar_agenda = models.BooleanField(default=True)
+
+@receiver(pre_save, sender=Configuracao)
+def valida_apenas_uma_configuracao(sender, instance, **kwargs):
+    # Verifica se já existe uma instância de Configuracao
+    existe_configuracao = Configuracao.objects.exists()
+
+    # Se existir, impede a criação de uma nova instância
+    if existe_configuracao and not instance.pk:
+        raise ValueError('Já existe uma configuração. Atualize a instância existente em vez de criar uma nova.')
