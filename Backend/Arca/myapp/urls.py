@@ -8,6 +8,7 @@ router.register('Mensagem', views.MensagemViewSet, basename='Mensagem')
 router.register('Postagem', views.PostagemViewSet, basename='Postagem')
 router.register('Atividade', views.AtividadeViewSet, basename='Atividade')
 router.register('Equipe', views.EquipeViewSet, basename='Equipe')
+router.register('Configuracao', views.ConfiguracaoViewSet, basename='Configuracao')
 
 urlpatterns = [
     
