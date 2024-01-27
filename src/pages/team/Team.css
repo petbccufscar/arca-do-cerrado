@@ -1,0 +1,65 @@
+.team .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em 4em;
+    gap: 2em;
+}
+
+.team h1 {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+.team .main h2 {
+    text-align: start;
+    color: var(--text-high);
+    margin-bottom: 1em;
+    border-bottom: 2px solid var(--primary-color);
+    max-width: min-content;
+    white-space: nowrap;
+    padding-bottom: 0.5em;
+}
+
+.team .main .person{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team .main .person h3{
+    margin-top: 0.5em;
+    color: var(--primary-color);
+}
+
+.team .main .person p{
+    font-size: 0.9em;
+}
+
+.team .main .person .person-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.team .main .person .person-image:hover {
+    opacity: 0.8;
+}
+
+.team .main .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.team .main .content .participants {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}
