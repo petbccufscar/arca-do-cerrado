@@ -38,6 +38,15 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# CKEditor
+CKEDITOR_JQUERY_URL = 'https://cdn.jsdelivr.net/jquery/3.6.0/jquery.min.js'  # Ou use o URL local do jQuery
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+# CKEditor Uploader
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'ckeditor',
+    'ckeditor_uploader',
     "myapp",
 ]
 

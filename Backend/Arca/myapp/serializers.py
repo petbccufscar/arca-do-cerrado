@@ -27,3 +27,8 @@ class PostagemSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Postagem
         fields = '__all__'
+
+class EquipeSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.Equipe
+        fields = '__all__'
