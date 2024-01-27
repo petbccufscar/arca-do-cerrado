@@ -59,11 +59,11 @@ const Specie = () => {
                 <section>
                     <h2 className='text-2xl font-semibold'>{specie.apelido}</h2>
                     <p className='flex items-center gap-2 text-neutral-500'><FaSeedling/> {specie.nome_cientifico}</p>
-                    <div className='flex flex-col mt-4 gap-2'>
+                    <div className='flex flex-col py-4 gap-2 '>
                         <h3 className='text-xl'>Descrição</h3>
                         <p>{specie.texto}</p>
                     </div>
-
+                    <a href={"/mapa"} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
                 </section>
             </main>
         </div>
