@@ -10,6 +10,7 @@ import Specie from '../pages/species/specie/Specie'
 import Species from '../pages/species/Species'
 import Team from '../pages/team/Team'
 import Subscribe from '../pages/subscribe/Subscribe'    
+import Member from '../pages/team/member/Member'
 
 
 export const AppRoutes = ( ) => {
@@ -26,6 +27,7 @@ export const AppRoutes = ( ) => {
             <Route path="/especies" element={<Species />}/>
             <Route path="/especies/:id" element={<Specie />}/>
             <Route path="/equipe" element={<Team />}/>
+            <Route path="/equipe/:id" element={<Member />}/>
             <Route path="*" element={<Navigate to="/"/>}/>
             <Route path = "/inscrever" element = {<Subscribe/>}/>
         </Routes>
