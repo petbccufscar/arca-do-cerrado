@@ -28,3 +28,7 @@ class AtividadeViewSet(viewsets.ModelViewSet):
 class EquipeViewSet(viewsets.ModelViewSet):
     queryset = models.Equipe.objects.all()
     serializer_class = serializers.EquipeSerializers
+
+class ConfiguracaoViewSet(viewsets.ModelViewSet):
+    queryset = models.Configuracao.objects.all()
+    serializer_class = serializers.ConfiguracaoSerializers
