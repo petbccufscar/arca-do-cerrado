@@ -5,10 +5,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaMagnifyingGlass, FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown, FaUsers } from 'react-icons/fa6'
 import Sidebar from './sidebar/Sidebar'
 import Dropdown from './dropdown/Dropdown'
+import Search from './search'
 
 
-const Navbar = () => {
-    const [search, setSearch] = useState(false);
+const Navbar = ({search, setSearch}) => {
+    const [searchOn, setSearchOn] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
@@ -29,7 +30,7 @@ const Navbar = () => {
 
 
     const handleSearch = () => {
-        setSearch(!search);
+        setSearchOn(!searchOn);
     }
 
     const handleToggle = () => {
@@ -110,7 +111,7 @@ const Navbar = () => {
                         <img src="../src/assets/logos/arca.png" alt="Logo Arca"/>
                     </div>
                     <div className='search'>
-                        {search && (
+                        {searchOn && (
                             <div>
                                 <input type="text" name='search' placeholder='Buscar...' />
                             </div>
@@ -144,12 +145,15 @@ const Navbar = () => {
                             ))}
                         </ul>
                         <div className='search'>
-                            {search && (
+                            {searchOn ? (
                                 <div>
-                                    <input type="text" name='search' placeholder='Buscar...' />
+                                    <Search search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+                                </div>
+                            ) : (
+                                <div>
+                                    <FaMagnifyingGlass onClick={handleSearch} />
                                 </div>
                             )}
-                            <FaMagnifyingGlass onClick={handleSearch} />
                         </div>
                     </div>
 

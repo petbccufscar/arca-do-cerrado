@@ -32,7 +32,7 @@ const Team = () => {
 
 	return (
 		<div>
-			<h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Quem somos</h1>
+			<h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Quem somos</h1>
 			<section>
 				<div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8  items-center'>
 					<h2 className='text-2xl font-semibold mb-8 border-b-2 border-primary-color max-w-fit px-4 text-center'>Equipe</h2>
