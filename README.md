@@ -12,21 +12,6 @@ O Arca do Cerrado é um site que visa alcançar o maior número de pessoas inter
 - **Informações Detalhadas:** Obtenha informações detalhadas sobre cada espécie ao clicar nos pontos do mapa.
 - **Blog:** Mantenha-se atualizado com as últimas notícias, informações sobre espécies e dados interessantes na seção de blog.
 
-## # Arca do Cerrado
-
-Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos.
-
-## Sobre o Projeto
-
-O Arca do Cerrado é um site que visa alcançar o maior número de pessoas interessadas na preservação e conhecimento da biodiversidade do Cerrado. Oferecemos um mapa interativo em escala que representa a localização de cada uma de nossas mudas. Para facilitar a navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, os usuários serão direcionados para a versão ampliada, onde ao passar o mouse sobre um ponto, será exibida uma pequena caixa com o nome da planta. Ao clicar sobre um ponto, terão acesso a fotos e informações básicas da espécie. Essas informações também estão disponíveis na seção “espécies” do blog.
-
-## Recursos Principais
-
-- **Mapa Interativo:** Explore a localização das mudas em um mapa interativo em escala.
-- **Informações Detalhadas:** Obtenha informações detalhadas sobre cada espécie ao clicar nos pontos do mapa.
-- **Blog:** Mantenha-se atualizado com as últimas notícias, informações sobre espécies e dados interessantes na seção de blog.
-- **Agenda:** Descubra as datas dos próximos encontros e atividades relacionadas ao projeto.
-
 ## Como Rodar
 
 Para iniciar o projeto, siga as instruções abaixo:
