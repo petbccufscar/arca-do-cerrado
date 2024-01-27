@@ -7,7 +7,8 @@ const Search = ({ search, setSearch, handleSearch }) => {
 
     const handleSubmit = (e) => {
         handleSearch()
-        navigate('/search')
+        if (search != "")
+            navigate('/search')
         e.preventDefault();
     };
 
