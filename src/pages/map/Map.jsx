@@ -41,7 +41,6 @@ const Map = () => {
                     <InteractiveMap species={species}/>
                 </section>
             </section>
-
         </div>
     );
 };

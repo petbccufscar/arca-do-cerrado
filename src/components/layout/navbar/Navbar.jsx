@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import './Navbar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { FaMagnifyingGlass, FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown } from 'react-icons/fa6'
+import { FaMagnifyingGlass, FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown, FaUsers } from 'react-icons/fa6'
 import Sidebar from './sidebar/Sidebar'
 import Dropdown from './dropdown/Dropdown'
 
@@ -45,46 +45,49 @@ const Navbar = () => {
         },
         {
             name: 'Sobre',
-            path: '/about',
+            path: '/sobre',
             icon: <FaQuestion/>,
             drop: [
-                { name: "Apresentação do site", path: "/about/#1" },
-                { name: "Descrição da área", path: "/about/#2" },
-                { name: "Histórico", path: "/about/#3" },
-                { name: "Atividades", path: "/about/#4" },
-                { name: "Expectativas", path: "/about/#5" },
-                { name: "Participantes", path: "/about/#6" }
+                { name: "Apresentação do site", path: "/sobre/#1" },
+                { name: "Descrição da área", path: "/sobre/#2" },
+                { name: "Histórico", path: "/sobre/#3" },
+                { name: "Atividades", path: "/sobre/#4" },
+                { name: "Expectativas", path: "/sobre/#5" },
+                { name: "Participantes", path: "/sobre/#6" }
               ],
         },
         {
             name: 'Mapa',
-            path: '/map',
+            path: '/mapa',
             icon: <FaMapLocationDot/>
         },
         {
             name: 'Blog',
             path: '/blog',
-            icon:<FaBloggerB/>,
-            drop: [
-                { name: "Informações extras", path: "/blog/info-extras" },
-                { name: "Notícias", path: "/blog/noticias" },
-              ],
+            icon:<FaBloggerB/>
             
         },
         {
             name: 'Espécies',
-            path: '/species',
+            path: '/especies',
             icon: <FaSeedling/>
         },
+        /*
         {
             name: 'Agenda',
             path: '/agenda',
             icon: <FaCalendarDays/>
         },
+        */
         {
             name: 'Faça Parte',
-            path: '/contribute',
+            path: '/facaparte',
             icon: <FaHandshakeSimple/>
+        },
+        {
+            name: 'Quem somos',
+            path: '/equipe',
+            icon: <FaUsers/>
         }
     ]
 
