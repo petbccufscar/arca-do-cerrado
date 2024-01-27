@@ -26,7 +26,7 @@ const Species = () => {
 
     return (
         <div className='flex flex-col min-h-screen w-full'>
-            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold w-full'>Espécies</h1>
+            <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold w-full'>Espécies</h1>
             <section className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-16'>
                 <section>
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Catálogo</h2>

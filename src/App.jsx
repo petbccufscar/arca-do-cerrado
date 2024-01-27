@@ -9,14 +9,15 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import { useState } from "react"
 
 function App() {
-
+    const [search, setSearch] = useState("")
     return (
         <>
             <Router>
-                <Navbar/>
-                <AppRoutes/>
+                <Navbar search={search} setSearch={setSearch}/>
+                <AppRoutes search={search}/>
                 <Footer/>
             </Router>
         </>

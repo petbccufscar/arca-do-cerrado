@@ -11,10 +11,10 @@ import Species from '../pages/species/Species'
 import Team from '../pages/team/Team'
 import Subscribe from '../pages/subscribe/Subscribe'    
 import Member from '../pages/team/member/Member'
+import Search from '../pages/search/Search'
 
 
-export const AppRoutes = ( ) => {
-
+export const AppRoutes = ({search}) => {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/home"/>}/>
@@ -28,8 +28,9 @@ export const AppRoutes = ( ) => {
             <Route path="/especies/:id" element={<Specie />}/>
             <Route path="/equipe" element={<Team />}/>
             <Route path="/equipe/:id" element={<Member />}/>
-            <Route path="*" element={<Navigate to="/"/>}/>
             <Route path = "/inscrever" element = {<Subscribe/>}/>
+            <Route path = "/search" element={<Search search={search} />}/>
+            <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
     )
 }

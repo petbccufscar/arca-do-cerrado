@@ -54,7 +54,7 @@ const About = () => {
 
     return (
         <div>
-            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Sobre</h1>
+            <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Sobre</h1>
             <section>
                 {sections.map(section => (
                     <section id={section.id}>
