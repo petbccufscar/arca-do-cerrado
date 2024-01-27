@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Post from '../../components/blog/Post'
 
 const Blog = () => {
@@ -23,6 +24,9 @@ const Blog = () => {
         }
     ]
 
+    const navigate = useNavigate();
+    const goToSubscribe = () => navigate ('/inscrever')
+
     return (
         <div className='flex flex-col min-h-screen w-full items-center'>
             <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold w-full'>Blog</h1>
@@ -35,6 +39,10 @@ const Blog = () => {
                             <Post key={post.id} post={post} />
                         ))}
                 </section>
+                <section className='flex flex-col justify-center items-center pt-20'>
+                    <h2>Inscreva-se para receber mais notificações</h2>
+                    <button className='mt-6' onClick = {goToSubscribe}>Registre-se</button>
+                </section>  
             </section>
         </div>
 
