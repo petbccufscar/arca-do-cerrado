@@ -24,7 +24,12 @@ Para iniciar o projeto, siga as instruções abaixo:
    ```
 2. Inicialize o servidor usando o seguinte comando:
    ```bash
+   //windows
    npm run backend
+   ```
+   ```bash
+   //linux
+   npm run start-server
    ```
 
 Agora, o backend estará em execução e pronto para ser utilizado pelo frontend.
