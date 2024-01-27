@@ -39,9 +39,9 @@ const Blog = () => {
                             <Post key={post.id} post={post} />
                         ))}
                 </section>
-                <section className='flex flex-col justify-center items-center pt-20'>
+                <section className='flex flex-col justify-center items-center mt-20'>
                     <h2>Inscreva-se para receber mais notificações</h2>
-                    <button className='mt-6' onClick = {goToSubscribe}>Registre-se</button>
+                    <button className='mt-4 text-sm' onClick={goToSubscribe}>Registre-se</button>
                 </section>  
             </section>
         </div>
