@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 import './Navbar.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -8,11 +9,23 @@ import Dropdown from './dropdown/Dropdown'
 import Search from './search'
 
 
-const Navbar = ({search, setSearch}) => {
+const Navbar = ({ search, setSearch }) => {
     const [searchOn, setSearchOn] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [hoveredItem, setHoveredItem] = useState(null);
+    const [mostrarAgenda, setMostrarAgenda] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/api/Configuracao/4')
+            .then((response) => {
+                setMostrarAgenda(response.data.mostrar_agenda);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar configuração:', error);
+            });
+    }, []);
 
     useEffect(() => {
         const checkWindowSize = () => {
@@ -42,12 +55,12 @@ const Navbar = ({search, setSearch}) => {
         {
             name: 'Início',
             path: '/home',
-            icon: <FaHouse/>,
+            icon: <FaHouse />,
         },
         {
             name: 'Sobre',
             path: '/sobre',
-            icon: <FaQuestion/>,
+            icon: <FaQuestion />,
             drop: [
                 { name: "Apresentação do site", path: "/sobre/#1" },
                 { name: "Descrição da área", path: "/sobre/#2" },
@@ -55,60 +68,58 @@ const Navbar = ({search, setSearch}) => {
                 { name: "Atividades", path: "/sobre/#4" },
                 { name: "Expectativas", path: "/sobre/#5" },
                 { name: "Participantes", path: "/sobre/#6" }
-              ],
+            ],
         },
         {
             name: 'Mapa',
             path: '/mapa',
-            icon: <FaMapLocationDot/>
+            icon: <FaMapLocationDot />
         },
         {
             name: 'Blog',
             path: '/blog',
-            icon:<FaBloggerB/>
-            
+            icon: <FaBloggerB />
+
         },
         {
             name: 'Espécies',
             path: '/especies',
-            icon: <FaSeedling/>
+            icon: <FaSeedling />
         },
-        /*
         {
             name: 'Agenda',
             path: '/agenda',
-            icon: <FaCalendarDays/>
+            icon: <FaCalendarDays />
         },
-        */
         {
             name: 'Faça parte',
             path: '/facaparte',
-            icon: <FaHandshakeSimple/>
+            icon: <FaHandshakeSimple />
         },
         {
             name: 'Quem somos',
             path: '/equipe',
-            icon: <FaUsers/>
+            icon: <FaUsers />
         }
     ]
 
     const location = useLocation();
 
     const navigate = useNavigate();
-	const redirectToHome= () => navigate(`/home`);
+    const redirectToHome = () => navigate(`/home`);
 
     return (
         <div className='navbar'>
             {isMobile ? (
                 <div className='menu'>
                     {!isOpen && (
-                        <FaBars onClick={handleToggle}/>
+                        <FaBars onClick={handleToggle} />
                     )}
                     {isOpen && (
                         <Sidebar links={links} handleToggle={handleToggle} isOpen={isOpen} />
                     )}
                     <div className='logo' onClick={redirectToHome}>
-                        <img src="../src/assets/logos/arca.png" alt="Logo Arca"/>
+                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
                     </div>
                     <div className='search'>
                         {searchOn && (
@@ -128,26 +139,38 @@ const Navbar = ({search, setSearch}) => {
                     </div>
                     <div className='row'>
                         <ul>
-                            {links.map(link => (
-                                (link.drop ? (
-                                    <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path} onMouseEnter={() => setHoveredItem(link.path)} onMouseLeave={() => setHoveredItem(null)}>
-                                    <li>{link.name} <FaCaretDown/></li>
-                                    {hoveredItem === link.path && (
-                                        <Dropdown linksDrop={link.drop}/>
-                                    )}
-                                </Link>
-                                ): (
-                                    <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path} onMouseEnter={() => setHoveredItem(link.path)} onMouseLeave={() => setHoveredItem(null)}>
-                                        <li>{link.name}</li>
-                                    </Link>
-                                ))
-
-                            ))}
+                            {links.map(
+                                (link) =>
+                                    (link.name === 'Agenda' && !mostrarAgenda) ? null : link.drop ? (
+                                        <Link
+                                            to={link.path}
+                                            className={location.pathname === link.path ? 'active' : ''}
+                                            key={link.path}
+                                            onMouseEnter={() => setHoveredItem(link.path)}
+                                            onMouseLeave={() => setHoveredItem(null)}
+                                        >
+                                            <li>
+                                                {link.name} <FaCaretDown />
+                                            </li>
+                                            {hoveredItem === link.path && <Dropdown linksDrop={link.drop} />}
+                                        </Link>
+                                    ) : (
+                                        <Link
+                                            to={link.path}
+                                            className={location.pathname === link.path ? 'active' : ''}
+                                            key={link.path}
+                                            onMouseEnter={() => setHoveredItem(link.path)}
+                                            onMouseLeave={() => setHoveredItem(null)}
+                                        >
+                                            <li>{link.name}</li>
+                                        </Link>
+                                    )
+                            )}
                         </ul>
                         <div className='search'>
                             {searchOn ? (
                                 <div>
-                                    <Search search={search} setSearch={setSearch} handleSearch={handleSearch}/>
+                                    <Search search={search} setSearch={setSearch} handleSearch={handleSearch} />
                                 </div>
                             ) : (
                                 <div>
@@ -158,8 +181,6 @@ const Navbar = ({search, setSearch}) => {
                     </div>
 
                 </div>
-
-
             )}
         </div>
     )
