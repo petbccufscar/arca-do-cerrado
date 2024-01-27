@@ -1,5 +1,4 @@
 import React from 'react'
-import './Team.css'
 
 const Person = ({ personName, personLink, personImage, personRole }) => {
     return (
