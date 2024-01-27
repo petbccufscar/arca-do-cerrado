@@ -8,6 +8,16 @@ import React from 'react';
 
 import { MapContainer, Marker, Popup, ImageOverlay } from 'react-leaflet';
 
+const posix = (ponto) => {
+    const coord = 1.095 * ponto - 162.8;
+    return coord;
+}
+
+const posiy = (ponto) => {
+    const coord = -0.23 * (ponto + 0.9) + 83.7;
+    return coord;
+}
+
 const customIcon = new L.Icon({
     iconUrl: markerIcon,
     iconSize: [16, 25],
@@ -31,12 +41,17 @@ const InteractiveMap = ({ species }) => {
         >
 
             <ImageOverlay
-                url="./src/assets/map/mapa2.png"
+                url="./src/assets/map/mapa_mesclado.png"
                 bounds={imageBounds}
             />
 
+
+
+
+            
+
             {species.map(specie => (
-                <Marker key={specie.id} position={specie.position} icon={customIcon}>
+                <Marker key={specie.id} position={[posiy(specie.position[0]),posix(specie.position[1])]} icon={customIcon}>
                     <Popup>
                         <div className='popup'>
                             <img src={`./src/assets/species/${specie.id}.png`} alt={specie.name} style={{ maxWidth: '100%' }} />
