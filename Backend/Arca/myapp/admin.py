@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Planta, ImagemPlanta, Mensagem, Postagem, Atividade, Equipe, Configuracao
+from .models import Planta, ImagemPlanta, Mensagem, Postagem, Atividade, Equipe, Configuracao, Inscrito
 from .forms import PostagemForm, PlantaForm, AtividadeForm, EquipeForm
 
 class PostagemAdmin(admin.ModelAdmin):
@@ -20,6 +20,7 @@ admin.site.register(ImagemPlanta)
 admin.site.register(Atividade)
 admin.site.register(Mensagem)
 admin.site.register(Configuracao)
+admin.site.register(Inscrito)
 
 # Registrar o modelo Postagem usando o novo admin
 admin.site.register(Postagem, PostagemAdmin)
