@@ -10,15 +10,28 @@ const Map = () => {
     const species = [
         {
             id: 1,
-            name: 'Planta 1',
-            scientificName: 'Plantus planta',
-            position: [80, -126.633],
+            name: 'Planta 0',
+            scientificName:'Plantus planta',
+            position: [0, 0],
+        },
+        {
+            id: 3,
+            name: 'Planta y',
+            scientificName:'Plantus planta',
+            position: [40, 0],
+        },
+        {
+            id: 4,
+            name: 'Planta x',
+            scientificName:'Plantus planta',
+            position: [0, 66],
+
         },
         {
             id: 2,
             name: 'Planta 2',
             scientificName: 'Plantis plantu',
-            position: [82, -126.633],
+            position: [15, 24],
         }
     ]
 
