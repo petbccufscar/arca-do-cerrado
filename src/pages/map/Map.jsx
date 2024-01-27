@@ -1,5 +1,4 @@
 import React from 'react';
-import './Map.css';
 import InteractiveMap from '../../components/map/InteractiveMap';
 
 const Map = () => {
@@ -26,6 +25,7 @@ const Map = () => {
             name: 'Planta x',
             scientificName:'Plantus planta',
             position: [0, 66],
+
         },
         {
             id: 2,
@@ -36,22 +36,21 @@ const Map = () => {
     ]
 
     return (
-        <div className='map'>
-            <h1>Mapa</h1>
-            <section className='main'>
-                <section className='header'>
-                    <h2>Sobre o Mapa Interativo</h2>
-                    <p>Este mapa tem como o intuito te permitir conhecer o projeto Arca do Cerrado de maneira mais próxima, o utilize para explorar
-                        cada uma das espécies presentes.
-                    </p>
-                    <p>
-                        Utilize o zoom e pings para analisar a Arca do Cerrado detalhadamente e obter mais informações sobre as espécies nelas.
-                    </p>
+        <div>
+            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Mapa</h1>
+            <section className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 justify-center items-center'>
+                <section>
+                    <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>Sobre o Mapa Interativo</h2>
+                    <div className='flex flex-col gap-2'>
+                        <p className='text-center'>Este mapa tem como o intuito te permitir conhecer o projeto Arca do Cerrado de maneira mais próxima, o utilize para explorar
+                            cada uma das espécies presentes.
+                        </p>
+                        <p className='mb-8 text-center'>
+                            Utilize o zoom e pings para analisar a Arca do Cerrado detalhadamente e obter mais informações sobre as espécies nelas.
+                        </p>
+                    </div>
                 </section>
-
-                <section className='content'>
-                    <InteractiveMap species={species}/>
-                </section>
+                <InteractiveMap species={species} />
             </section>
         </div>
     );

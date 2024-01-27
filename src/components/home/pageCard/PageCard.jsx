@@ -1,21 +1,18 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import './PageCard.css'
 
-const PageCard = ({icon, name, desc, path}) => {
-
-    const navigate = useNavigate();
-	const redirectToPage= () => navigate(`${path}`);
-
-
+const PageCard = ({ icon, name, desc, path }) => {
     return (
-        <div className='page-card'>
-            {icon}
-            <h3>{name}</h3>
-            <p>{desc}</p>
-            <button onClick={redirectToPage}>
-                Acesse a {name.toLowerCase()}
-            </button>
+        <div className=''>
+            <div className="flex justify-center items-center mb-4 text-7xl text-primary-color">
+                {icon}
+            </div>
+            <h3 className="mb-2 text-2xl font-bold text-neutral-700 text-center">{name}</h3>
+            <p className="text-neutral-500 mb-4 text-center text-sm">{desc}</p>
+            <div className='flex justify-center text-sm'>
+                <a href={path} className='bg-primary-color px-4 py-2 rounded-full text-white'>
+                    Acesse {name}
+                </a>
+            </div>
         </div>
     )
 }

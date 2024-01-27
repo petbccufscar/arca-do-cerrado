@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import SpecieCard from '../../components/species/specieCard/SpecieCard';
-import './Species.css';
 
 const Species = () => {
     const [speciesData, setSpeciesData] = useState([]);
@@ -25,27 +23,28 @@ const Species = () => {
                 console.error('Error fetching species data:', error);
             });
     }, []);
-    
+
     return (
-        <div className="species">
-            <h1>Espécies</h1>
-            <section className='main'>
-                <section className='content'>
-                    <h2>Catálogo</h2>
-                    <div className="species-cards">
+        <div className='flex flex-col min-h-screen w-full'>
+            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold w-full'>Espécies</h1>
+            <section className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-16'>
+                <section>
+                    <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Catálogo</h2>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16'>
                         {speciesData.map((specie, index) => (
                             <SpecieCard key={index} specie={specie} />
                         ))}
                     </div>
                 </section>
-                <section className='content'>
-                    <h2>Lista das Plantas</h2>
+
+                <section>
+                    <h2 className='text-xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Lista de Plantas</h2>
                     <ul>
                         {speciesData.map((specie, index) => (
                             <li key={index}>
-                                <Link to={`/species/${specie.id}`}>
+                                <a to={`/especies/${specie.id}`} className='cursor-pointer hover:underline'>
                                     {specie.apelido}
-                                </Link>
+                                </a>
                             </li>
                         ))}
                     </ul>

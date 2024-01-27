@@ -37,7 +37,7 @@ const InteractiveMap = ({ species }) => {
         <MapContainer
             center={[80.2, -126.633]}
             zoom={3.5}
-            style={{ height: '800px', width: '80%' }}
+            style={{ height: '400px', width: '80%' }}
         >
 
             <ImageOverlay

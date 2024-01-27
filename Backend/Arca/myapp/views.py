@@ -24,3 +24,7 @@ class PostagemViewSet(viewsets.ModelViewSet):
 class AtividadeViewSet(viewsets.ModelViewSet):
     queryset = models.Atividade.objects.all()
     serializer_class = serializers.AtividadeSerializers
+
+class EquipeViewSet(viewsets.ModelViewSet):
+    queryset = models.Equipe.objects.all()
+    serializer_class = serializers.EquipeSerializers

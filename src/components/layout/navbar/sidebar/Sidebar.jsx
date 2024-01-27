@@ -45,7 +45,7 @@ const Sidebar = ({ links, handleToggle }) => {
                         <div key={link.path}>
                             <div className='row'>
                                 <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path}>
-                                    <li>{link.icon} {link.name} <FaCaretDown onClick={() => handleIsOpen(link.path)} /></li>
+                                    <li className='teste'>{link.icon} {link.name} <FaCaretDown className='ml-2' onClick={() => handleIsOpen(link.path)} /></li>
                                 </Link>
                             </div>
                             {openDropdowns[link.path] && (
