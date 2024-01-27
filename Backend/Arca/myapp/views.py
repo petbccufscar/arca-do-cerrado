@@ -32,3 +32,7 @@ class EquipeViewSet(viewsets.ModelViewSet):
 class ConfiguracaoViewSet(viewsets.ModelViewSet):
     queryset = models.Configuracao.objects.all()
     serializer_class = serializers.ConfiguracaoSerializers
+
+class InscritoViewSet(viewsets.ModelViewSet):
+    queryset = models.Inscrito.objects.all()
+    serializer_class = serializers.InscritoSerializers

@@ -37,3 +37,8 @@ class ConfiguracaoSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Configuracao
         fields = '__all__'
+
+class InscritoSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.Inscrito
+        fields = '__all__'

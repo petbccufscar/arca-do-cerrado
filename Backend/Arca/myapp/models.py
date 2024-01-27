@@ -2,6 +2,8 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.core.validators import validate_email
+
 
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
@@ -73,3 +75,11 @@ def valida_apenas_uma_configuracao(sender, instance, **kwargs):
     # Se existir, impede a criação de uma nova instância
     if existe_configuracao and not instance.pk:
         raise ValueError('Já existe uma configuração. Atualize a instância existente em vez de criar uma nova.')
+    
+class Inscrito(models.Model):
+    nome = models.CharField(max_length=200)
+    email = models.EmailField((""), max_length=254, unique=True, validators=[validate_email])
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nome
