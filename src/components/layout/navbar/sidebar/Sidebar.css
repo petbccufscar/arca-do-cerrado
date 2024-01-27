@@ -10,6 +10,7 @@
     width: 12em;
     background-color: #fff;
     padding: 1em;
+    z-index: 1;
 }
 .sidebar .sidebar-menu{
     display: flex;
@@ -19,7 +20,7 @@
 }
 
 .sidebar .sidebar-menu li{
-    white-space: nowrap;
+    text-align: start;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -47,4 +48,9 @@
 
 .sidebar .side-dropdown li{
     margin-left: 1.5em;
+}
+
+.teste {
+    display: flex;
+    align-items: center;
 }
