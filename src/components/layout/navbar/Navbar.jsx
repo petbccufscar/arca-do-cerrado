@@ -81,7 +81,7 @@ const Navbar = ({search, setSearch}) => {
         },
         */
         {
-            name: 'Faça Parte',
+            name: 'Faça parte',
             path: '/facaparte',
             icon: <FaHandshakeSimple/>
         },
