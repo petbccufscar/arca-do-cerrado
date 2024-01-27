@@ -9,6 +9,7 @@ import Agenda from '../pages/agenda/Agenda'
 import Specie from '../pages/species/specie/Specie'
 import Species from '../pages/species/Species'
 import Team from '../pages/team/Team'
+import Subscribe from '../pages/subscribe/Subscribe'    
 
 
 export const AppRoutes = ( ) => {
@@ -26,6 +27,7 @@ export const AppRoutes = ( ) => {
             <Route path="/especies/:id" element={<Specie />}/>
             <Route path="/equipe" element={<Team />}/>
             <Route path="*" element={<Navigate to="/"/>}/>
+            <Route path = "/inscrever" element = {<Subscribe/>}/>
         </Routes>
     )
 }
