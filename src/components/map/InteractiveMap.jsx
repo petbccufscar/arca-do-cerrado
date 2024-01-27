@@ -43,12 +43,7 @@ const InteractiveMap = ({ species }) => {
             <ImageOverlay
                 url="./src/assets/map/mapa_mesclado.png"
                 bounds={imageBounds}
-            />
-
-
-
-
-            
+            />            
 
             {species.map(specie => (
                 <Marker key={specie.id} position={[posiy(specie.position[0]),posix(specie.position[1])]} icon={customIcon}>
@@ -57,7 +52,7 @@ const InteractiveMap = ({ species }) => {
                             <img src={`./src/assets/species/${specie.id}.png`} alt={specie.name} style={{ maxWidth: '100%' }} />
                             <h3>{specie.name}</h3>
                             <p>{specie.scientificName}</p>
-                            <a href={`/species/${specie.id}`}>Leia mais</a>
+                            <a href={`/especies/${specie.id}`}>Leia mais</a>
                         </div>
                     </Popup>
                 </Marker>
