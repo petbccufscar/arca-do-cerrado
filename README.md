@@ -1,3 +1,5 @@
+<img src="https://raw.githubusercontent.com/petbccufscar/.github/main/profile/icon.png" align="right" />
+
 # Arca do Cerrado
 
 Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos.
