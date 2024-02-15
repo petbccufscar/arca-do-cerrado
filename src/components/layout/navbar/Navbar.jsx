@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaMagnifyingGlass, FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown, FaUsers } from 'react-icons/fa6'
 import Sidebar from './sidebar/Sidebar'
 import Dropdown from './dropdown/Dropdown'
-import Search from './search'
+import Search from './Search'
 
 
 const Navbar = ({ search, setSearch }) => {

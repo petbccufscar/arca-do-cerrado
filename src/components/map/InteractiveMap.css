@@ -11,3 +11,9 @@
     padding: 0;
     margin-bottom: 0.5em;
 }
+
+.map-container {
+    height: 400px; /* ou a altura desejada */
+    width: 80%; /* ou a largura desejada */
+    margin: 0 auto; /* centraliza horizontalmente */
+}

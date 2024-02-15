@@ -1,17 +1,37 @@
-import React from 'react'
-import PageCard from '../../components/home/pageCard/PageCard'
+import React from 'react';
+import PageCard from '../../components/home/pageCard/PageCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-import { FaRegCalendar, FaEarthAmericas, FaPagelines } from 'react-icons/fa6'
-import ContributeForm from '../../components/layout/form/ContributeForm'
-
+import { FaRegCalendar, FaEarthAmericas, FaPagelines } from 'react-icons/fa6';
+import ContributeForm from '../../components/layout/form/ContributeForm';
 
 const Home = () => {
+    const fixedImages = [
+        'src/assets/home/Foto1.jpg',
+        'src/assets/home/Foto2.jpg',
+        'src/assets/home/Foto3.jpg',
+        'src/assets/home/Foto4.jpg',
+        'src/assets/home/Foto5.jpg',
+        'src/assets/home/Foto6.jpg',
+        'src/assets/home/Foto7.jpg',
+    ];
+
     return (
         <div className='home'>
             <header className='relative mb-8'>
-                <img src="../src/assets/carousel/planta1.jpeg"
-                    className='w-full h-1/4 max-h-[300px] object-cover filter brightness-75'
-                    alt="Imagem Principal" />
+                <Swiper
+                    slidesPerView={1}
+                    pagination={{ clickable: true }}
+                    navigation
+                >
+                    {fixedImages.map((imageUrl, index) => (
+                        <SwiperSlide key={index}>
+                            <img src={imageUrl} alt={`slide-${index}`} className='w-full h-1/4 max-h-[300px] object-cover filter brightness-75' />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
                     <h1 className="text-2xl md:text-3xl xl:text-5xl font-bold">A Arca do Cerrado</h1>
                     <p className='text-sm sm:text-xl'>Uma visita pelo cerrado!</p>
@@ -41,7 +61,7 @@ const Home = () => {
                 <ContributeForm />
             </article>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;
