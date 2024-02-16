@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import InteractiveMap from '../../components/map/InteractiveMap';
+import axios from 'axios';
 
 const Map = () => {
     const imageBounds = [
@@ -7,13 +8,20 @@ const Map = () => {
         [165.65, -81.637]
     ];
 
+    const [showMap, setShowMap] = useState(false);
+
+    const toggleMap = () => {
+        setShowMap(true);
+    }
+
     const species = [
         {
             id: 1,
             name: 'Planta 0',
-            scientificName:'Plantus planta',
+            scientificName: 'Plantus planta',
             position: [0, 0],
         },
+        /*
         {
             id: 3,
             name: 'Planta y',
@@ -27,6 +35,7 @@ const Map = () => {
             position: [0, 66],
 
         },
+        */
         {
             id: 2,
             name: 'Planta 2',
@@ -35,10 +44,26 @@ const Map = () => {
         }
     ]
 
+    const [speciesData, setSpeciesData] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/api/Planta/')
+            .then(response => {
+                const speciesWithImage = response.data.map(species => ({
+                    ...species,
+                    imagens: species.imagens || '',
+                }));
+                setSpeciesData(speciesWithImage);
+            })
+            .catch(error => {
+                console.error('Error fetching species data:', error);
+            });
+    }, []);
+
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Mapa</h1>
-            <section className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 justify-center items-center'>
+            <section className='flex flex-col py-8 px-6 mx-auto  lg:px-8 justify-center items-center'>
                 <section>
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>Sobre o Mapa Interativo</h2>
                     <div className='flex flex-col gap-2'>
@@ -50,7 +75,16 @@ const Map = () => {
                         </p>
                     </div>
                 </section>
-                <InteractiveMap species={species} />
+                {!showMap ? (
+                    <img
+                        src="./src/assets/map/map.png"
+                        alt="Imagem do mapa"
+                        style={{ width: '100%', height: 'auto', maxWidth: '800px' }}
+                        onClick={toggleMap}
+                    />
+                ) : (
+                    <InteractiveMap species={speciesData} />
+                )}
             </section>
         </div>
     );
