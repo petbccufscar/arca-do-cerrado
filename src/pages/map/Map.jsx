@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InteractiveMap from '../../components/map/InteractiveMap';
 import axios from 'axios';
+import FixedMap from '../../components/map/FixedMap';
 
 const Map = () => {
     const imageBounds = [
@@ -21,12 +22,11 @@ const Map = () => {
             scientificName: 'Plantus planta',
             position: [0, 0],
         },
-        /*
         {
             id: 3,
             name: 'Planta y',
             scientificName:'Plantus planta',
-            position: [40, 0],
+            position: [20, 0],
         },
         {
             id: 4,
@@ -35,7 +35,6 @@ const Map = () => {
             position: [0, 66],
 
         },
-        */
         {
             id: 2,
             name: 'Planta 2',
@@ -75,16 +74,7 @@ const Map = () => {
                         </p>
                     </div>
                 </section>
-                {!showMap ? (
-                    <img
-                        src="./src/assets/map/map.png"
-                        alt="Imagem do mapa"
-                        style={{ width: '100%', height: 'auto', maxWidth: '800px' }}
-                        onClick={toggleMap}
-                    />
-                ) : (
-                    <InteractiveMap species={speciesData} />
-                )}
+                <FixedMap species={species}/>
             </section>
         </div>
     );
