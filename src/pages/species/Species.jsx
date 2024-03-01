@@ -27,7 +27,7 @@ const Species = () => {
     return (
         <div className='flex flex-col min-h-screen w-full'>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold w-full'>Espécies</h1>
-            <section className='flex py-8 px-6 max-w-screen-xl lg:px-8 gap-16'>
+            <section className='flex flex-col lg:flex-row py-8 px-6 max-w-screen-xl lg:px-8 gap-8'>
                 <div className='w-1/8 pr-8'> 
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Lista de Plantas</h2>
                     <ul>
@@ -42,7 +42,7 @@ const Species = () => {
                 </div>
                 <div className='flex-1'> 
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Catálogo</h2>
-                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16 gap-x-40'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {speciesData.map((specie, index) => (
                             <SpecieCard key={index} specie={specie} />
                         ))}
