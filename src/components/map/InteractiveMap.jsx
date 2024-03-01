@@ -3,6 +3,7 @@ import './InteractiveMap.css';
 import L from 'leaflet';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import MapCard from './mapCard/MapCard';
 
 import React from 'react';
 
@@ -37,23 +38,22 @@ const InteractiveMap = ({ species }) => {
         <MapContainer
             center={[80.2, -126.633]}
             zoom={3.5}
+            //maxBounds={[[71.2831, -172.6875], [165.65, -81.637]]}
+            zoomSnap={0.5}
+            maxZoom={6}
+            minZoom={3}
             style={{ height: '400px', width: '80%' }}
         >
 
             <ImageOverlay
                 url="./src/assets/map/mapa_mesclado.png"
                 bounds={imageBounds}
-            />            
+            />
 
             {species.map(specie => (
-                <Marker key={specie.id} position={[posiy(specie.position[0]),posix(specie.position[1])]} icon={customIcon}>
+                <Marker key={specie.id} position={[posiy(specie.posicao_y), posix(specie.posicao_x)]} icon={customIcon}>
                     <Popup>
-                        <div className='popup'>
-                            <img src={`./src/assets/species/${specie.id}.png`} alt={specie.name} style={{ maxWidth: '100%' }} />
-                            <h3>{specie.name}</h3>
-                            <p>{specie.scientificName}</p>
-                            <a href={`/especies/${specie.id}`}>Leia mais</a>
-                        </div>
+                        <MapCard specie={specie} />
                     </Popup>
                 </Marker>
             ))}
@@ -61,4 +61,4 @@ const InteractiveMap = ({ species }) => {
     );
 };
 
-export default InteractiveMap
+export default InteractiveMap;

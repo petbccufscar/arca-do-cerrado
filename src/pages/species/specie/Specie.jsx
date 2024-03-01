@@ -61,7 +61,7 @@ const Specie = () => {
                     <p className='flex items-center gap-2 text-neutral-500'><FaSeedling/> {specie.nome_cientifico}</p>
                     <div className='flex flex-col py-4 gap-2 '>
                         <h3 className='text-xl'>Descrição</h3>
-                        <p>{specie.texto}</p>
+                        <div dangerouslySetInnerHTML={{ __html: specie.texto }} />
                     </div>
                     <a href={"/mapa"} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
                 </section>
