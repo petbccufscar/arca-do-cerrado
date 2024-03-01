@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FaChevronLeft, FaChevronRight, FaLocationDot } from 'react-icons/fa6'
+import { getIndex, getPosition } from '../../utils/MarkerUtils';
 
 const Pin = ({ x, y }) => {
     return (
@@ -11,48 +12,15 @@ const Pin = ({ x, y }) => {
 
 
 const Pins = ({ imageIndex, species }) => {
-
-    function filterSpecies(species, index) {
-        switch (Number(index)) {
-            case 1:
-                return species.filter(specie => specie.position[0] < 15 && specie.position[1] < 20)
-            case 2:
-                return species.filter(specie => specie.position[0] > 14 && specie.position[0] < 32 && specie.position[1] < 20)
-            default:
-                console.log("Entrou no default")
-                return species;
-        }
-    }
-
-    function getPosition(specie, index) {
-        const multiplicador = 15;
-        const positions = {
-            1: { x: 152, y: 9 }, // 0, 0
-            2: { x: 0, y: 2 }, // 20, 0
-            3: { x: 0, y: 53 }, // 
-            4: { x: 1, y: 23 },
-            5: { x: 170, y: 151 },
-            6: { x: 0, y: 170 } 
-        };
-
-        const position = positions[index];
-
-        if (!position) {
-            return { x: 0, y: 0 };  
-        }
-    
-        const { x, y } = position;
-        return { x: specie.position[0] * multiplicador + x, y: specie.position[1] * multiplicador + y };
-    }
-    
     return (
         <>
             {imageIndex != 'map' &&
-                filterSpecies(species, imageIndex)
-                    .map((specie, index) => {
-                        const { x, y } = getPosition(specie, imageIndex);
-                        return <Pin x={x} y={y} key={index} />;
-                    })}
+                species
+                .filter((specie) => (getIndex(specie.position[0], specie.position[1])) == imageIndex)
+                .map((specie, index) => {
+                    var pos = getPosition(specie.position[0], specie.position[1], imageIndex);
+                    return <Pin x={pos.x} y={pos.y} key={index} />;
+                })}
         </>
     )
 }

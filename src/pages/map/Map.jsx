@@ -18,29 +18,40 @@ const Map = () => {
     const species = [
         {
             id: 1,
-            name: 'Planta 0',
+            name: 'Planta 1',
             scientificName: 'Plantus planta',
-            position: [0, 0],
-        },
-        {
-            id: 3,
-            name: 'Planta y',
-            scientificName:'Plantus planta',
-            position: [20, 0],
-        },
-        {
-            id: 4,
-            name: 'Planta x',
-            scientificName:'Plantus planta',
-            position: [0, 66],
-
+            position: [0, 38],
         },
         {
             id: 2,
             name: 'Planta 2',
-            scientificName: 'Plantis plantu',
-            position: [15, 24],
-        }
+            scientificName: 'Plantus planta',
+            position: [15, 38],
+        },
+        {
+            id: 3,
+            name: 'Planta 3',
+            scientificName: 'Plantus planta',
+            position: [32, 38],
+        },
+        {
+            id: 4,
+            name: 'Planta 4',
+            scientificName: 'Plantus planta',
+            position: [49, 38],
+        },
+        {
+            id: 5,
+            name: 'Planta 5',
+            scientificName: 'Plantus planta',
+            position: [0, 0],
+        },
+        {
+            id: 6,
+            name: 'Planta 6',
+            scientificName: 'Plantus planta',
+            position: [15, 1],
+        },
     ]
 
     const [speciesData, setSpeciesData] = useState([]);
