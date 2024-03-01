@@ -1,9 +1,18 @@
 from django.db import models
-from ckeditor.fields import RichTextField
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.core.validators import validate_email
+from ckeditor.fields import RichTextField
 
+from django.template.loader import render_to_string
+from django.db.models.signals import pre_save
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
+import logging
+from django.core.mail import send_mail, EmailMultiAlternatives
+from django.utils.html import strip_tags
+from django.http import JsonResponse
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
@@ -27,12 +36,12 @@ class ImagemPlanta(models.Model):
         return f"Imagem da Planta: {self.planta.apelido}"
 
 class Mensagem(models.Model):
-    nome = models.CharField(max_length=100)
     email = models.EmailField()
+    assunto = models.CharField(max_length=100)
     mensagem = models.TextField()
 
     def __str__(self):
-        return self.nome
+        return self.email
     
 class Equipe(models.Model):
     nome = models.CharField(max_length=200)
@@ -83,3 +92,25 @@ class Inscrito(models.Model):
 
     def __str__(self):
         return self.nome
+
+def adicionar_postagem(request, postagem):
+    # Recuperar todos os inscritos no blog
+    inscritos = Inscrito.objects.all()
+    
+    # Renderizar o conteúdo HTML do e-mail
+    html_content = render_to_string('emails/mensagemBlog.html', {'postagem': postagem})
+
+    # Enviar e-mail para cada inscrito
+    for inscrito in inscritos:
+        subject = 'Nova Postagem no Blog'
+        # Criar o e-mail com uma versão HTML e uma versão de texto simples
+        msg = EmailMultiAlternatives(subject, strip_tags(html_content), 'testearca092@gmail.com', [inscrito.email])
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
+    
+    return JsonResponse({'status': 'success'})
+
+@receiver(post_save, sender=Postagem)
+def enviar_email_nova_postagem(sender, instance, created, **kwargs):
+    if created:  # Verifique se a postagem foi recém-criada
+        adicionar_postagem(None, instance)

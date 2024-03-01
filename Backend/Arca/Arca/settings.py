@@ -38,6 +38,13 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'testearca092@gmail.com'
+EMAIL_HOST_PASSWORD = 'bwuaohkzkhinzdai'
+
 # CKEditor
 CKEDITOR_JQUERY_URL = 'https://cdn.jsdelivr.net/jquery/3.6.0/jquery.min.js'  # Ou use o URL local do jQuery
 
