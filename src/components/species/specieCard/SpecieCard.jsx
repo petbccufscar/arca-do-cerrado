@@ -4,9 +4,9 @@ import { FaArrowRight, FaLocationDot, FaSeedling } from 'react-icons/fa6';
 const SpecieCard = ({ specie }) => {
     const firstImage = specie.imagens.length > 0 ? specie.imagens[0].imagem : null;
     return (
-        <div className="w-80 bg-white border border-gray-200 rounded-lg shadow">
+        <div className="w-72 bg-white border border-gray-200 rounded-lg shadow">
             <a href={`/especies/${specie.id}`}>
-                <img className="rounded-t-lg h-56 w-80 object-cover" src={firstImage} alt="" />
+                <img className="rounded-t-lg h-56 w-72 object-cover" src={firstImage} alt="" />
             </a>
             <div className="p-5">
                 <a href={`/especies/${specie.id}`}>

@@ -12,9 +12,23 @@ import Team from '../pages/team/Team'
 import Subscribe from '../pages/subscribe/Subscribe'    
 import Member from '../pages/team/member/Member'
 import Search from '../pages/search/Search'
-
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 export const AppRoutes = ({search}) => {
+    const [mostrarAgenda, setMostrarAgenda] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/api/Configuracao/4')
+            .then((response) => {
+                setMostrarAgenda(response.data.mostrar_agenda);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar configuração:', error);
+            });
+    }, []);
+
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/home"/>}/>
@@ -23,7 +37,9 @@ export const AppRoutes = ({search}) => {
             <Route path="/blog" element={<Blog />}/>
             <Route path="/mapa" element={<Map />}/>
             <Route path="/facaparte" element={<Contribute />}/>
-            <Route path="/agenda" element={<Agenda />}/>
+            {mostrarAgenda && (
+                <Route path="/agenda" element={<Agenda />}/>
+            )}
             <Route path="/especies" element={<Species />}/>
             <Route path="/especies/:id" element={<Specie />}/>
             <Route path="/equipe" element={<Team />}/>

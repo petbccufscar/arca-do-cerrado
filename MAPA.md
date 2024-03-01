@@ -42,7 +42,6 @@
 
 **Pontos:** 17 x 19
 
-
 ## Mapeamento completo
 
 ![alt text](src/assets/map/mapaeamento.png)
