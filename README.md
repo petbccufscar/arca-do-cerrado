@@ -1,8 +1,7 @@
 # Arca do Cerrado
-
 <img src="https://raw.githubusercontent.com/petbccufscar/.github/main/profile/icon.png" align="right" />
 
-Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React e Tailwind CSS, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos.
+Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React e Tailwind CSS, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos. O projeto consiste em um website responsivo com diversas funcionalidades e que conta com um mapa interativo do arca.
 
 ## Sobre o Projeto
 
