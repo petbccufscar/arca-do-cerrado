@@ -1,4 +1,8 @@
-# Arca do Cerrado
+# Arca do Cerrado • ![Ativo](https://img.shields.io/badge/Ativo-green)
+[![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
+[![Django](https://img.shields.io/badge/Django-092E20.svg?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![npm](https://img.shields.io/badge/npm-CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 <img src="https://raw.githubusercontent.com/petbccufscar/.github/main/profile/icon.png" align="right" />
 
 Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React e Tailwind CSS, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos. O projeto consiste em um website responsivo com diversas funcionalidades e que conta com um mapa interativo do arca.
