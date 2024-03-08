@@ -19,7 +19,6 @@ class Planta(models.Model):
     nome_cientifico = models.CharField(max_length=100, blank=True)
     resumo = RichTextField()
     texto = RichTextField()
-    link = models.URLField()
     posicao_x = models.FloatField(blank=True, null=True) 
     posicao_y = models.FloatField(blank=True, null=True)
 
@@ -30,7 +29,7 @@ class ImagemPlanta(models.Model):
     planta = models.ForeignKey(Planta, related_name='imagens', on_delete=models.CASCADE)
     imagem = models.ImageField(upload_to='imagens_plantas/')
     descricao = models.CharField(max_length=100, blank=True, null=True)
-    tags = models.JSONField(blank=True, null=True) 
+    tags = models.CharField(max_length=300, blank=True, null=True)
 
     def __str__(self):
         return f"Imagem da Planta: {self.planta.apelido}"

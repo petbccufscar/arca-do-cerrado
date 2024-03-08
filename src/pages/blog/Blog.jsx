@@ -17,26 +17,6 @@ const Blog = () => {
             });
     }, []);
 
-    const posts = [
-        {
-            id: 1,
-            title: "Lorem Ipsum and others Lore Lorem Ipsum and",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim corrupti id esse repellat repellendus provident ut quod, alias harum modi nulla consequuntur dolorem dolor quo velit consectetur voluptatum ullam. Ea!",
-            link: "/home",
-            date: "Mar 8, 2020",
-
-            image: "../src/assets/species/1.png"
-        },
-        {
-            id: 2,
-            title: "Lorem Ipsum and others Lore Lorem Ipsum and",
-            content: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim corrupti id esse repellat repellendus provident ut quod, alias harum modi nulla consequuntur dolorem dolor quo velit consectetur voluptatum ullam. Ea!",
-            link: "/home",
-            date: "Mar 16, 2020",
-            image: "../src/assets/species/2.png"
-        }
-    ]
-
     const navigate = useNavigate();
     const goToSubscribe = () => navigate('/inscrever')
 

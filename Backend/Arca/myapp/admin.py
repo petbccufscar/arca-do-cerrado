@@ -2,11 +2,16 @@ from django.contrib import admin
 from .models import Planta, ImagemPlanta, Mensagem, Postagem, Atividade, Equipe, Configuracao, Inscrito
 from .forms import PostagemForm, PlantaForm, AtividadeForm, EquipeForm
 
-class PostagemAdmin(admin.ModelAdmin):
-    form = PostagemForm
+class ImagemPlantaInline(admin.TabularInline):
+    model = ImagemPlanta
+    extra = 1
 
 class PlantaAdmin(admin.ModelAdmin):
     form = PlantaForm
+    inlines = [ImagemPlantaInline]
+
+class PostagemAdmin(admin.ModelAdmin):
+    form = PostagemForm
 
 class AtividadeAdmin(admin.ModelAdmin):
     form = AtividadeForm
@@ -14,14 +19,10 @@ class AtividadeAdmin(admin.ModelAdmin):
 class EquipeAdmin(admin.ModelAdmin):
     form = EquipeForm
 
-# Registrar outros modelos como antes
-admin.site.register(Planta)
-admin.site.register(ImagemPlanta)
-admin.site.register(Atividade)
+admin.site.register(Planta, PlantaAdmin)
+admin.site.register(Postagem, PostagemAdmin)
+admin.site.register(Equipe, EquipeAdmin)
+admin.site.register(Atividade, AtividadeAdmin)
 admin.site.register(Mensagem)
 admin.site.register(Configuracao)
 admin.site.register(Inscrito)
-
-# Registrar o modelo Postagem usando o novo admin
-admin.site.register(Postagem, PostagemAdmin)
-admin.site.register(Equipe, EquipeAdmin)

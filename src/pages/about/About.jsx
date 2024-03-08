@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 const About = () => {
 
     const location = useLocation();
@@ -51,23 +55,43 @@ const About = () => {
         }
     ]
 
+    const fixedImages = [
+        'src/assets/about/Foto1.jpg',
+        'src/assets/about/Foto2.jpg',
+        'src/assets/about/Foto3.jpg',
+        'src/assets/about/Foto4.jpg',
+        'src/assets/about/Foto5.jpg',
+        'src/assets/about/Foto6.jpg',
+    ];
+
 
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Sobre</h1>
+            <Swiper
+                slidesPerView={1}
+                pagination={{ clickable: true }}
+                navigation
+                style={{ zIndex: 0}}
+            >
+                {fixedImages.map((imageUrl, index) => (
+                    <SwiperSlide key={index}>
+                        <img src={imageUrl} alt={`slide-${index}`} className='w-full h-1/4 max-h-[300px] object-cover filter brightness-75' />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
             <section>
                 {sections.map(section => (
-                    <section id={section.id}>
+                    <section key={section.id} id={section.id}>
                         <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8'>
                             <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>{section.title}</h2>
-                            {section.content.map(content => (
-                                <p>{content}</p>
+                            {section.content.map((content, index) => (
+                                <p key={index}>{content}</p>
                             ))}
                         </div>
                     </section>
                 ))}
             </section>
-
         </div>
 
     )

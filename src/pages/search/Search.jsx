@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Search = ({ search }) => {
@@ -6,6 +6,7 @@ const Search = ({ search }) => {
     const [equipeData, setEquipeData] = useState([]);
     const [atividadeData, setAtividadeData] = useState([]);
     const [postagemData, setPostagemData] = useState([]);
+    const [selectedSource, setSelectedSource] = useState('Todos');
 
     const fetchData = async (url, filterFunction, setDataFunction) => {
         try {
@@ -23,7 +24,8 @@ const Search = ({ search }) => {
             species.apelido.toLowerCase().includes(search.toLowerCase()) ||
             species.resumo.toLowerCase().includes(search.toLowerCase()) ||
             species.nome_cientifico.toLowerCase().includes(search.toLowerCase()) ||
-            species.texto.toLowerCase().includes(search.toLowerCase())
+            species.texto.toLowerCase().includes(search.toLowerCase()) ||
+            species.imagens.tags.toLowerCase().includes(search.toLowerCase()) 
             , setSpeciesData);
     }, [search]);
 
@@ -49,66 +51,71 @@ const Search = ({ search }) => {
             , setPostagemData);
     }, [search]);
 
+    const handleSourceChange = (event) => {
+        setSelectedSource(event.target.value);
+    };
+
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Resultados de pesquisa</h1>
+            <div className='flex justify-center gap-4 mt-4'>
+                <label htmlFor="sourceSelect">Selecionar fonte:</label>
+                <select id="sourceSelect" value={selectedSource} onChange={handleSourceChange}>
+                    <option value="Todos">Todos</option>
+                    <option value="Especies">Especies</option>
+                    <option value="Equipe">Equipe</option>
+                    <option value="Atividade">Atividade</option>
+                    <option value="Postagem">Postagem</option>
+                </select>
+            </div>
             <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
-                {speciesData.length > 0 && (
+                {(selectedSource === 'Todos' || selectedSource === 'Especies') && speciesData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Especies</h2>
                         <div className='flex flex-col gap-1'>
-                            {speciesData
-                                .map(specie => (
-                                    <a className='hover:underline' href={`/especies/${specie.id}`}>{specie.apelido}</a>
-                                ))
-                            }
+                            {speciesData.map(specie => (
+                                <a className='hover:underline' href={`/especies/${specie.id}`}>{specie.apelido}</a>
+                            ))}
                         </div>
                     </div>
                 )}
 
-                {equipeData.length > 0 && (
+                {(selectedSource === 'Todos' || selectedSource === 'Equipe') && equipeData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
                         <div className='flex flex-col gap-1'>
-                            {equipeData
-                                .map(membro => (
-                                    <a className='hover:underline' href={`/equipe/${membro.id}`}>{membro.nome}</a>
-                                ))
-                            }
+                            {equipeData.map(membro => (
+                                <a className='hover:underline' href={`/equipe/${membro.id}`}>{membro.nome}</a>
+                            ))}
                         </div>
                     </div>
                 )}
 
-                {atividadeData.length > 0 && (
+                {(selectedSource === 'Todos' || selectedSource === 'Atividade') && atividadeData.length > 0 && (
                     <div>
-                        <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
+                        <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Atividade</h2>
                         <div className='flex flex-col gap-1'>
-                            {atividadeData
-                                .map(atividade => (
-                                    <a className='hover:underline' href={"#"}>{atividade.titulo}</a>
-                                ))
-                            }
+                            {atividadeData.map(atividade => (
+                                <a className='hover:underline' href={"#"}>{atividade.titulo}</a>
+                            ))}
                         </div>
                     </div>
                 )}
 
-                {postagemData.length > 0 && (
+                {(selectedSource === 'Todos' || selectedSource === 'Postagem') && postagemData.length > 0 && (
                     <div>
-                        <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
+                        <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Postagem</h2>
                         <div className='flex flex-col gap-1'>
-                            {postagemData
-                                .map(postagem => (
-                                    <a className='hover:underline' href={`/blog/${postagem.id}`}>{postagem.titulo}</a>
-                                ))
-                            }
+                            {postagemData.map(postagem => (
+                                <a className='hover:underline' href={`/blog/${postagem.id}`}>{postagem.titulo}</a>
+                            ))}
                         </div>
                     </div>
                 )}
 
             </div>
-
         </div>
     )
 }
 
-export default Search
+export default Search;

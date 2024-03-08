@@ -7,6 +7,8 @@
     padding: 0.5em 1em;
     justify-content: space-between;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative; 
+    z-index: 1000;
 }
 
 .navbar .logo{

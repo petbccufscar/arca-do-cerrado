@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Person = ({ personName, personImage, personId }) => {
+    const firstName = personName.split(' ')[0];
+
     return (
         <div className="text-center text-gray-500">
             <a href={`/equipe/${personId}`} className='cursor-pointer'>
-                <img className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:opacity-85" src={personImage} alt="Person photo" />
+                <img className="mx-auto mb-4 w-36 h-36 rounded-full object-cover hover:opacity-85" src={personImage} alt="Foto da Pessoa" />
             </a>
 
             <h3 className="mb-1 text-lg font-semibold tracking-tight text-gray-900">
-                <a href={`/equipe/${personId}`}>{personName}</a>
+                <a href={`/equipe/${personId}`}>{firstName}</a>
             </h3>
         </div>
     );
