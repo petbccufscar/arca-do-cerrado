@@ -58,9 +58,7 @@ const About = () => {
     const fixedImages = [
         'src/assets/about/Foto1.jpg',
         'src/assets/about/Foto2.jpg',
-        'src/assets/about/Foto3.jpg',
         'src/assets/about/Foto4.jpg',
-        'src/assets/about/Foto5.jpg',
         'src/assets/about/Foto6.jpg',
     ];
 

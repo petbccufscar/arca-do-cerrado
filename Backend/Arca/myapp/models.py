@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import validate_email
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField 
 
 from django.template.loader import render_to_string
 from django.db.models.signals import pre_save
@@ -17,8 +17,8 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
     nome_cientifico = models.CharField(max_length=100, blank=True)
-    resumo = RichTextField()
-    texto = RichTextField()
+    resumo = RichTextUploadingField()
+    texto = RichTextUploadingField() 
     posicao_x = models.FloatField(blank=True, null=True) 
     posicao_y = models.FloatField(blank=True, null=True)
 
@@ -46,7 +46,7 @@ class Equipe(models.Model):
     nome = models.CharField(max_length=200)
     imagem = models.ImageField(upload_to='imagens_equipe/', blank=True, null=True)
     cargo = models.CharField(max_length=200)
-    bibliografia = RichTextField()
+    biografia = RichTextUploadingField()
     link = models.URLField(blank=True, null=True)
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Equipe(models.Model):
     
 class Atividade(models.Model):
     titulo = models.CharField(max_length=100)
-    descricao = RichTextField()
+    descricao = RichTextUploadingField()
     autores_equipe = models.ManyToManyField(Equipe, blank=True)
     data = models.DateField()
 
@@ -64,7 +64,7 @@ class Atividade(models.Model):
 class Postagem(models.Model):
     titulo = models.CharField(max_length=200)
     imagem = models.ImageField(upload_to='imagens_postagens/', blank=True, null=True)
-    conteudo = RichTextField()
+    conteudo = RichTextUploadingField()
     autor_equipe = models.ForeignKey(Equipe, on_delete=models.SET_NULL, null=True, blank=True)
     data = models.DateField()
     link = models.URLField()

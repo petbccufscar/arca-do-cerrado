@@ -25,7 +25,7 @@ class AtividadeForm(forms.ModelForm):
         fields = '__all__'
 
 class EquipeForm(forms.ModelForm):
-    bibliografia = forms.CharField(widget=CKEditorWidget())
+    biografia = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Equipe

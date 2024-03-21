@@ -50,6 +50,8 @@ CKEDITOR_JQUERY_URL = 'https://cdn.jsdelivr.net/jquery/3.6.0/jquery.min.js'  # O
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_VERSION = '5'
+
 
 # CKEditor Uploader
 CKEDITOR_ALLOW_NONIMAGE_FILES = False

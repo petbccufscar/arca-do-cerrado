@@ -7,6 +7,18 @@ const Search = ({ search }) => {
     const [atividadeData, setAtividadeData] = useState([]);
     const [postagemData, setPostagemData] = useState([]);
     const [selectedSource, setSelectedSource] = useState('Todos');
+    const [mostrarAgenda, setMostrarAgenda] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8000/api/Configuracao/4')
+            .then((response) => {
+                setMostrarAgenda(response.data.mostrar_agenda);
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar configuração:', error);
+            });
+    }, []);
 
     const fetchData = async (url, filterFunction, setDataFunction) => {
         try {
@@ -25,14 +37,13 @@ const Search = ({ search }) => {
             species.resumo.toLowerCase().includes(search.toLowerCase()) ||
             species.nome_cientifico.toLowerCase().includes(search.toLowerCase()) ||
             species.texto.toLowerCase().includes(search.toLowerCase()) ||
-            species.imagens.tags.toLowerCase().includes(search.toLowerCase()) 
-            , setSpeciesData);
+            species.imagens && species.imagens.tags && species.imagens.tags.toLowerCase().includes(search.toLowerCase()), setSpeciesData);
     }, [search]);
 
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Equipe/', membro =>
             membro.nome.toLowerCase().includes(search.toLowerCase()) ||
-            membro.bibliografia.toLowerCase().includes(search.toLowerCase()) ||
+            membro.biografia.toLowerCase().includes(search.toLowerCase()) ||
             membro.cargo.toLowerCase().includes(search.toLowerCase())
             , setEquipeData);
     }, [search]);
@@ -65,7 +76,9 @@ const Search = ({ search }) => {
                     <option value="Especies">Especies</option>
                     <option value="Equipe">Equipe</option>
                     <option value="Atividade">Atividade</option>
-                    <option value="Postagem">Postagem</option>
+                    {mostrarAgenda && (
+                        <option value="Postagem">Postagem</option>
+                    )}
                 </select>
             </div>
             <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
@@ -74,7 +87,7 @@ const Search = ({ search }) => {
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Especies</h2>
                         <div className='flex flex-col gap-1'>
                             {speciesData.map(specie => (
-                                <a className='hover:underline' href={`/especies/${specie.id}`}>{specie.apelido}</a>
+                                <a key={specie.id} className='hover:underline' href={`/especies/${specie.id}`}>{specie.apelido}</a>
                             ))}
                         </div>
                     </div>
@@ -85,7 +98,7 @@ const Search = ({ search }) => {
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
                         <div className='flex flex-col gap-1'>
                             {equipeData.map(membro => (
-                                <a className='hover:underline' href={`/equipe/${membro.id}`}>{membro.nome}</a>
+                                <a key={membro.id} className='hover:underline' href={`/equipe/${membro.id}`}>{membro.nome}</a>
                             ))}
                         </div>
                     </div>
@@ -96,18 +109,17 @@ const Search = ({ search }) => {
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Atividade</h2>
                         <div className='flex flex-col gap-1'>
                             {atividadeData.map(atividade => (
-                                <a className='hover:underline' href={"#"}>{atividade.titulo}</a>
+                                <a key={atividade.id} className='hover:underline' href={"#"}>{atividade.titulo}</a>
                             ))}
                         </div>
                     </div>
                 )}
-
-                {(selectedSource === 'Todos' || selectedSource === 'Postagem') && postagemData.length > 0 && (
+                {mostrarAgenda && (selectedSource === 'Todos' || selectedSource === 'Postagem') && postagemData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Postagem</h2>
                         <div className='flex flex-col gap-1'>
                             {postagemData.map(postagem => (
-                                <a className='hover:underline' href={`/blog/${postagem.id}`}>{postagem.titulo}</a>
+                                <a key={postagem.id} className='hover:underline' href={`/blog/${postagem.id}`}>{postagem.titulo}</a>
                             ))}
                         </div>
                     </div>
