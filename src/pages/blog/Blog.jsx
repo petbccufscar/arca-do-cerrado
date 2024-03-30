@@ -7,6 +7,7 @@ const Blog = () => {
 
     const [postsData, setPostsData] = useState([]);
 
+    {/*Pega as postagens do banco*/}
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/Postagem`)
             .then(response => {

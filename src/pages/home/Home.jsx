@@ -8,6 +8,8 @@ import { FaRegCalendar, FaEarthAmericas, FaPagelines } from 'react-icons/fa6';
 import ContributeForm from '../../components/layout/form/ContributeForm';
 
 const Home = () => {
+    
+    {/*Imagens para o carrossel*/}
     const fixedImages = [
         'src/assets/home/Foto1.jpg',
         'src/assets/home/Foto2.jpg',

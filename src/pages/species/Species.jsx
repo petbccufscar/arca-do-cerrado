@@ -6,9 +6,11 @@ import SpecieCard from '../../components/species/specieCard/SpecieCard';
 const Species = () => {
     const [speciesData, setSpeciesData] = useState([]);
 
+    {/*Pega as plantas do banco*/}
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/api/Planta/')
             .then(response => {
+                // Pega apenas a primeira imagem de cada planta
                 const speciesWithImage = response.data.map(species => ({
                     ...species,
                     imagens: species.imagens || '',

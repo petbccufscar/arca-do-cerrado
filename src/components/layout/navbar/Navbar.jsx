@@ -16,6 +16,7 @@ const Navbar = ({ search, setSearch }) => {
     const [hoveredItem, setHoveredItem] = useState(null);
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
 
+    // Busca a configuração para mostrar a agenda
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/Configuracao/4')
@@ -27,6 +28,7 @@ const Navbar = ({ search, setSearch }) => {
             });
     }, []);
 
+    // Verifica o tamanho da janela para determinar se é móvel
     useEffect(() => {
         const checkWindowSize = () => {
             setIsMobile(window.innerWidth <= 1200);
@@ -41,16 +43,17 @@ const Navbar = ({ search, setSearch }) => {
         };
     }, []);
 
-
-    const handleSearch = () => {
-        setSearchOn(!searchOn);
-    }
-
+    // Função para lidar com a abertura/fechamento do menu
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
+    // Função para lidar com a abertura/fechamento da barra de pesquisa
+    const handleSearch = () => {
+        setSearchOn(!searchOn);
+    }
 
+    // Definição dos links do menu
     const links = [
         {
             name: 'Início',
@@ -62,7 +65,7 @@ const Navbar = ({ search, setSearch }) => {
             path: '/sobre',
             icon: <FaQuestion />,
             drop: [
-                { name: "Apresentação do site", path: "/sobre/#1" },
+                { name: "Apresentação do site", path: "/sobre/1" },
                 { name: "Descrição da área", path: "/sobre/#2" },
                 { name: "Histórico", path: "/sobre/#3" },
                 { name: "Atividades", path: "/sobre/#4" },
@@ -79,7 +82,6 @@ const Navbar = ({ search, setSearch }) => {
             name: 'Blog',
             path: '/blog',
             icon: <FaBloggerB />
-
         },
         {
             name: 'Espécies',
@@ -110,13 +112,18 @@ const Navbar = ({ search, setSearch }) => {
 
     return (
         <div className='navbar'>
+            {/* Renderização do menu para dispositivos móveis */}
             {isMobile ? (
                 <div className='menu'>
                     {!isOpen && (
                         <FaBars onClick={handleToggle} />
                     )}
                     {isOpen && (
-                        <Sidebar links={links} handleToggle={handleToggle} isOpen={isOpen} />
+                        <Sidebar
+                            links={links.filter(link => link.name !== 'Agenda' || mostrarAgenda)}
+                            handleToggle={handleToggle}
+                            isOpen={isOpen}
+                        />
                     )}
                     <div className='logo' onClick={redirectToHome}>
                         <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
@@ -129,10 +136,9 @@ const Navbar = ({ search, setSearch }) => {
                         )}
                         <FaMagnifyingGlass onClick={handleSearch} />
                     </div>
-
                 </div>
-
             ) : (
+                // Renderização do menu para telas maiores
                 <div className='menu'>
                     <div className='logo' onClick={redirectToHome}>
                         <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
@@ -179,7 +185,6 @@ const Navbar = ({ search, setSearch }) => {
                             )}
                         </div>
                     </div>
-
                 </div>
             )}
         </div>

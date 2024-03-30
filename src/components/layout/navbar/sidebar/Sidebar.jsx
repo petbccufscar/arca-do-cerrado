@@ -1,14 +1,14 @@
 import './Sidebar.css'
 import React, { useEffect, useRef, useState } from 'react'
-
 import { FaCaretDown, FaXmark } from 'react-icons/fa6'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ links, handleToggle }) => {
     const sidebarRef = useRef(null);
-
     const [openDropdowns, setOpenDropdowns] = useState({});
+    const location = useLocation();
 
+    // Função para alternar o estado de abertura do dropdown
     const handleIsOpen = (linkPath) => {
         setOpenDropdowns((prevOpenDropdowns) => ({
             ...prevOpenDropdowns,
@@ -17,6 +17,7 @@ const Sidebar = ({ links, handleToggle }) => {
     };
 
     useEffect(() => {
+        // Função para fechar a barra lateral quando clicar fora dela
         const handleClickOutside = (event) => {
             if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
                 handleToggle();
@@ -30,38 +31,57 @@ const Sidebar = ({ links, handleToggle }) => {
         };
     }, [handleToggle]);
 
+    // Hook de navegação do React Router DOM
     const navigate = useNavigate();
+
+    // Função para redirecionar para a página inicial
     const redirectToHome = () => navigate(`/home`);
 
     return (
         <div className="sidebar" ref={sidebarRef}>
             <div className='sidebar-menu'>
-                <div className='logo' onClick={redirectToHome}>
-                    <img src="../src/assets/logos/arca.png" alt="Logo Arca" />
-                    <img src="../src/assets/logos/arcaText.png" alt="Logo Arca Texto" />
-                </div>
+                {/* Renderiza os links da barra lateral */}
                 {links.map(link => (
                     (link.drop ? (
                         <div key={link.path}>
                             <div className='row'>
-                                <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path}>
-                                    <li className='teste'>{link.icon} {link.name} <FaCaretDown className='ml-2' onClick={() => handleIsOpen(link.path)} /></li>
+                                {/* Renderiza o link principal */}
+                                <Link
+                                    to={link.path}
+                                    className={location.pathname === link.path ? 'active' : ""}
+                                    key={link.path}
+                                    onClick={handleToggle}
+                                >
+                                    <li className='teste'>{link.icon} {link.name} </li>
                                 </Link>
+                                {/* Renderiza a seta de dropdown e vincula ao estado de abertura do dropdown */}
+                                <Link><FaCaretDown className='ml-2' onClick={() => handleIsOpen(link.path)} /></Link>
                             </div>
+                            {/* Renderiza o dropdown se estiver aberto */}
                             {openDropdowns[link.path] && (
                                 <div className='side-dropdown'>
                                     {link.drop.map(drop => (
-                                        <Link to={drop.path} className={location.pathname === drop.path ? 'active' : ""} key={drop.path}>
+                                        <Link
+                                            to={drop.path}
+                                            className={location.pathname === drop.path ? 'active' : ""}
+                                            key={drop.path}
+                                            onClick={handleToggle}
+                                        >
                                             <li>{drop.name}</li>
                                         </Link>
                                     ))}
                                 </div>
                             )}
                         </div>
-                    )
+                        )
                         :
                         (
-                            <Link to={link.path} className={location.pathname === link.path ? 'active' : ""} key={link.path}>
+                            <Link
+                                to={link.path}
+                                className={location.pathname === link.path ? 'active' : ""}
+                                key={link.path}
+                                onClick={handleToggle}
+                            >
                                 <div className='row'>
                                     {link.icon}
                                     <li>{link.name}</li>
@@ -73,6 +93,7 @@ const Sidebar = ({ links, handleToggle }) => {
                 ))}
 
             </div>
+            {/* Botão para fechar a barra lateral */}
             <div className='xmark'>
                 <FaXmark onClick={handleToggle} />
             </div>
@@ -81,17 +102,3 @@ const Sidebar = ({ links, handleToggle }) => {
 }
 
 export default Sidebar
-
-/*
-  const handleIsOpen = (linkPath) => {
-    setOpenStates((prevOpenStates) => ({
-      ...prevOpenStates,
-      [linkPath]: !prevOpenStates[linkPath],
-    }));
-  };
-*/
-/*
-<FaCaretDown
-                        onClick={() => handleIsOpen(link.path)}
-                        className={openStates[link.path] ? 'caret-open' : ''}
-                      />*/

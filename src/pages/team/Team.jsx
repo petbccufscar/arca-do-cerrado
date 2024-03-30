@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Person = ({ personName, personImage, personId }) => {
+    // Pega apenas o primeiro nome da pessoa 
     const firstName = personName.split(' ')[0];
 
     return (
@@ -20,6 +21,7 @@ const Person = ({ personName, personImage, personId }) => {
 const Team = () => {
     const [teamData, setTeamData] = useState([]);
 
+    // Pega os dados da quipe do banco 
     useEffect(() => {
         axios.get(`http://127.0.0.1:8000/api/Equipe`)
             .then(response => {
@@ -30,7 +32,10 @@ const Team = () => {
             });
     }, []);
 
+    // Busca o coordenador
     const coordenador = teamData.find(person => person.cargo === 'Coordenador');
+
+    // Retira o coordenador do resto dos membros
     const equipe = teamData.filter(person => person.cargo !== 'Coordenador');
 
     return (

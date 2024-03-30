@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+// Importa a função de envio de email e o componente de aviso de mensagem
 import sendEmail from '../../subscribe/email/EmailJS.jsx'
 import AvisoMensagem from '../../subscribe/email/folder/avisoMensagem.jsx'
 
@@ -10,36 +11,40 @@ const ContributeForm = () => {
     const [mensagem, setMensagem] = useState('');
     const [showPopup, setShowPopup] = useState(false);
 
+    // Função para atualizar o estado do email
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
 
+    // Função para atualizar o estado do assunto
     const handleAssuntoChange = (event) => {
         setAssunto(event.target.value);
     };
 
+    // Função para atualizar o estado da mensagem
     const handleMensagemChange = (event) => {
         setMensagem(event.target.value);
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Enviar e-mail
+        // Envia o email
         sendEmail({
             to_email: 'joao.moraes@estudante.ufscar.br',
             subject: assunto,
             message: AvisoMensagem({email: email, mensagem: mensagem}),
         }, 'template_eyao4vt');
 
-        // Salvar mensagem no backend
+        // Salva a mensagem no backend
         try {
             await axios.post('http://127.0.0.1:8000/api/Mensagem/', {
                 assunto: assunto, 
                 email: email,
                 mensagem: mensagem
             });
-            setShowPopup(true); // Exibir o popup de confirmação após o envio bem-sucedido
+            setShowPopup(true); // Exibe o popup de confirmação após o envio bem-sucedido
             setEmail('');
             setAssunto('');
             setMensagem('');
@@ -103,6 +108,7 @@ const ContributeForm = () => {
                     </button>
                 </form>
             </div>
+            {/* Popup de confirmação */}
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg">

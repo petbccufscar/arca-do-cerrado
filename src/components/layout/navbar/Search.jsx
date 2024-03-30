@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom';
 const Search = ({ search, setSearch, handleSearch }) => {
     const navigate = useNavigate();
 
+    // Função para lidar com o envio do formulário de pesquisa
     const handleSubmit = (e) => {
         handleSearch()
-        if (search != "")
+        if (search !== "")
             navigate('/search')
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão de envio do formulário
     };
 
+    // Função para lidar com a mudança no campo de entrada da pesquisa
     const handleInputChange = (e) => {
         setSearch(e.target.value);
     };

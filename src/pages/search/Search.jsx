@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Search = ({ search }) => {
-    const [speciesData, setSpeciesData] = useState([]);
-    const [equipeData, setEquipeData] = useState([]);
-    const [atividadeData, setAtividadeData] = useState([]);
-    const [postagemData, setPostagemData] = useState([]);
-    const [selectedSource, setSelectedSource] = useState('Todos');
-    const [mostrarAgenda, setMostrarAgenda] = useState(true);
+    const [speciesData, setSpeciesData] = useState([]); 
+    const [equipeData, setEquipeData] = useState([]); 
+    const [atividadeData, setAtividadeData] = useState([]); 
+    const [postagemData, setPostagemData] = useState([]); 
+    const [selectedSource, setSelectedSource] = useState('Todos'); 
+    const [mostrarAgenda, setMostrarAgenda] = useState(true); 
 
+    // Efeito para buscar a configuração de exibição da agenda
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/Configuracao/4')
@@ -20,6 +21,7 @@ const Search = ({ search }) => {
             });
     }, []);
 
+    // Função para buscar dados com base na URL, aplicar filtro e definir o estado correspondente
     const fetchData = async (url, filterFunction, setDataFunction) => {
         try {
             const response = await axios.get(url);
@@ -31,37 +33,39 @@ const Search = ({ search }) => {
         }
     };
 
+    // Efeito para buscar dados das espécies e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Planta/', species =>
             species.apelido.toLowerCase().includes(search.toLowerCase()) ||
             species.resumo.toLowerCase().includes(search.toLowerCase()) ||
             species.nome_cientifico.toLowerCase().includes(search.toLowerCase()) ||
             species.texto.toLowerCase().includes(search.toLowerCase()) ||
-            species.imagens && species.imagens.tags && species.imagens.tags.toLowerCase().includes(search.toLowerCase()), setSpeciesData);
+            (species.imagens && species.imagens.tags && species.imagens.tags.toLowerCase().includes(search.toLowerCase())), setSpeciesData);
     }, [search]);
 
+    // Efeito para buscar dados da equipe e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Equipe/', membro =>
             membro.nome.toLowerCase().includes(search.toLowerCase()) ||
             membro.biografia.toLowerCase().includes(search.toLowerCase()) ||
-            membro.cargo.toLowerCase().includes(search.toLowerCase())
-            , setEquipeData);
+            membro.cargo.toLowerCase().includes(search.toLowerCase()), setEquipeData);
     }, [search]);
 
+    // Efeito para buscar dados das atividades e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Atividade/', atividade =>
             atividade.titulo.toLowerCase().includes(search.toLowerCase()) ||
-            atividade.descricao.toLowerCase().includes(search.toLowerCase())
-            , setAtividadeData);
+            atividade.descricao.toLowerCase().includes(search.toLowerCase()), setAtividadeData);
     }, [search]);
 
+    // Efeito para buscar dados das postagens e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Postagem/', postagem =>
             postagem.titulo.toLowerCase().includes(search.toLowerCase()) ||
-            postagem.conteudo.toLowerCase().includes(search.toLowerCase())
-            , setPostagemData);
+            postagem.conteudo.toLowerCase().includes(search.toLowerCase()), setPostagemData);
     }, [search]);
 
+    // Função para lidar com a mudança da fonte selecionada
     const handleSourceChange = (event) => {
         setSelectedSource(event.target.value);
     };
@@ -69,6 +73,7 @@ const Search = ({ search }) => {
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Resultados de pesquisa</h1>
+            {/* Selecionador de fonte para filtrar os resultados */}
             <div className='flex justify-center gap-4 mt-4'>
                 <label htmlFor="sourceSelect">Selecionar fonte:</label>
                 <select id="sourceSelect" value={selectedSource} onChange={handleSourceChange}>
@@ -76,12 +81,15 @@ const Search = ({ search }) => {
                     <option value="Especies">Especies</option>
                     <option value="Equipe">Equipe</option>
                     <option value="Atividade">Atividade</option>
+                    {/* Renderiza a opção de postagem apenas se mostrarAgenda for verdadeiro */}
                     {mostrarAgenda && (
                         <option value="Postagem">Postagem</option>
                     )}
                 </select>
             </div>
+            {/* Seção de resultados de pesquisa */}
             <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
+                {/* Renderiza os resultados das espécies se a fonte selecionada for 'Todos' ou 'Especies' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Especies') && speciesData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Especies</h2>
@@ -92,7 +100,7 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-
+                {/* Renderiza os resultados da equipe se a fonte selecionada for 'Todos' ou 'Equipe' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Equipe') && equipeData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
@@ -103,7 +111,7 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-
+                {/* Renderiza os resultados das atividades se a fonte selecionada for 'Todos' ou 'Atividade' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Atividade') && atividadeData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Atividade</h2>
@@ -114,6 +122,7 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
+                {/* Renderiza os resultados das postagens se a fonte selecionada for 'Todos', 'Postagem' e mostrarAgenda for verdadeiro */}
                 {mostrarAgenda && (selectedSource === 'Todos' || selectedSource === 'Postagem') && postagemData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Postagem</h2>
@@ -124,7 +133,6 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-
             </div>
         </div>
     )
