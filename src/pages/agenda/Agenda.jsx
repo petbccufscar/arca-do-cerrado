@@ -4,6 +4,7 @@ import axios from 'axios';
 const Agenda = () => {
 	const [activities, setActivities] = useState([]);
 
+	{/*Pega as atividades do banco*/}
 	useEffect(() => {
 		axios.get('http://127.0.0.1:8000/api/Atividade/')
 			.then(response => {

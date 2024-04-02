@@ -6,15 +6,18 @@ import { FaSeedling } from 'react-icons/fa6';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 
+// Componente Header, responsável por renderizar o cabeçalho da espécie com um slider de imagens
 const Header = ({ specie }) => {
     return (
         <header>
             <div className='h-[300px] w-[300px]'>
+                {/* Componente Swiper para renderizar o slider de imagens */}
                 <Swiper
                     slidesPerView={1}
                     pagination={{ clickable: true }}
                     navigation
                 >
+                    {/* Mapeia as imagens da espécie e renderiza cada imagem como um slide */}
                     {specie.imagens.map((imagem, index) => (
                         <SwiperSlide key={index}>
                             <img src={imagem.imagem} alt="slide-item" className='h-[300px] w-[300px] object-cover' />
@@ -26,31 +29,35 @@ const Header = ({ specie }) => {
     )
 }
 
+// Componente Specie, responsável por renderizar os detalhes de uma espécie
 const Specie = () => {
-    const { id } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [specie, setSpecie] = useState(null);
+    const { id } = useParams(); 
+    const [isLoading, setIsLoading] = useState(true); 
+    const [specie, setSpecie] = useState(null); 
 
     useEffect(() => {
+        // Função assíncrona para buscar os dados da espécie com base no 'id'
         const fetchData = async () => {
             try {
-                setIsLoading(true);
-                const response = await axios.get(`http://127.0.0.1:8000/api/Planta/${id}`);
-                setSpecie(response.data);
+                setIsLoading(true); 
+                const response = await axios.get(`http://127.0.0.1:8000/api/Planta/${id}`); 
+                setSpecie(response.data); 
             } catch (error) {
-                console.error('Error fetching species data:', error);
+                console.error('Error fetching species data:', error); 
             } finally {
-                setIsLoading(false);
+                setIsLoading(false); // Define isLoading como false após o carregamento ser concluído
             }
         };
 
-        fetchData();
+        fetchData(); // Chama a função fetchData ao montar o componente ou sempre que 'id' mudar
     }, [id]);
 
+    // Renderiza uma mensagem de carregamento enquanto isLoading é true
     if (isLoading) {
         return <p>Loading...</p>;
     }
 
+    // Renderiza os detalhes da espécie após o carregamento
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>{specie.apelido}</h1>

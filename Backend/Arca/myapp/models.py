@@ -75,6 +75,10 @@ class Postagem(models.Model):
 class Configuracao(models.Model):
     mostrar_agenda = models.BooleanField(default=True)
 
+    def delete(self, *args, **kwargs):
+        # Impede a exclusão do objeto
+        raise ValueError('A exclusão de objetos Configuracao não é permitida, apenas altere seu estado conforme necessário.')
+
 @receiver(pre_save, sender=Configuracao)
 def valida_apenas_uma_configuracao(sender, instance, **kwargs):
     # Verifica se já existe uma instância de Configuracao

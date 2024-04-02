@@ -19,6 +19,7 @@ class AtividadeAdmin(admin.ModelAdmin):
 class EquipeAdmin(admin.ModelAdmin):
     form = EquipeForm
 
+# Registre os ModelAdmins personalizados
 admin.site.register(Planta, PlantaAdmin)
 admin.site.register(Postagem, PostagemAdmin)
 admin.site.register(Equipe, EquipeAdmin)

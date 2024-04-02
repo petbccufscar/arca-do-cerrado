@@ -5,6 +5,7 @@ import SubscribeForm from '../../components/subscribe/form/SubscribeForm';
 const Subscribe = () => {
 	const navigate = useNavigate();
 
+	// Redireciona para o blog ao clicar no X
 	const handleXButtonClick = () => navigate('/blog')
 
 	return (

@@ -17,6 +17,7 @@ const Member = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [member, setMember] = useState(null);
 
+    // Pega os dados do membro em específico da equipe
     useEffect(() => {
         const fetchData = async () => {
             try {
