@@ -1,58 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import InteractiveMap from '../../components/map/InteractiveMap';
 import axios from 'axios';
-import FixedMap from '../../components/map/FixedMap';
+import Mapa from '../../components/map/index'
 
 const Map = () => {
-    const imageBounds = [
-        [71.2831, -172.6875],
-        [165.65, -81.637]
-    ];
-
     const [showMap, setShowMap] = useState(false);
 
     const toggleMap = () => {
         setShowMap(true);
     }
-
-    const species = [
-        {
-            id: 1,
-            name: 'Planta 1',
-            scientificName: 'Plantus planta',
-            position: [0, 38],
-        },
-        {
-            id: 2,
-            name: 'Planta 2',
-            scientificName: 'Plantus planta',
-            position: [15, 38],
-        },
-        {
-            id: 3,
-            name: 'Planta 3',
-            scientificName: 'Plantus planta',
-            position: [32, 38],
-        },
-        {
-            id: 4,
-            name: 'Planta 4',
-            scientificName: 'Plantus planta',
-            position: [49, 38],
-        },
-        {
-            id: 5,
-            name: 'Planta 5',
-            scientificName: 'Plantus planta',
-            position: [0, 0],
-        },
-        {
-            id: 6,
-            name: 'Planta 6',
-            scientificName: 'Plantus planta',
-            position: [15, 1],
-        },
-    ]
 
     const [speciesData, setSpeciesData] = useState([]);
 
@@ -85,7 +40,16 @@ const Map = () => {
                         </p>
                     </div>
                 </section>
-                <FixedMap species={species}/>
+                {!showMap ? (
+                    <img
+                        src="./src/assets/map/map.png"
+                        alt="Imagem do mapa"
+                        className='w-full max-w-[800px] cursor-pointer'
+                        onClick={toggleMap}
+                    />
+                ) : (
+                    <Mapa species={speciesData}/>
+                )}
             </section>
         </div>
     );

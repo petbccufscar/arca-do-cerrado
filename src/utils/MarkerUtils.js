@@ -35,5 +35,3 @@ export function getPosition(x, y, index){
         return {x: (x - 15)*15 + 0 , y: y*15 + 170 }
     } 
 }
-
-console.log(getPosition(0, 0, 5))
