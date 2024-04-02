@@ -1,11 +1,14 @@
 import React from 'react'
 import ContributeForm from '../../components/layout/form/ContributeForm'
 
+import Imagem1 from '../../assets/carousel/planta1.jpeg';
+import ImagemCriancas from '../../assets/about/Foto1.jpg';
+
 const Contribute = () => {
     return (
         <div className='home'>
             <header className='relative mb-8'>
-                <img src="../src/assets/carousel/planta1.jpeg"
+                <img src={Imagem1}
                     className='w-full h-1/4 max-h-[300px] object-cover filter brightness-75'
                     alt="Imagem Principal" />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
@@ -23,6 +26,7 @@ const Contribute = () => {
                     de preservação destas belas espécies tão belas e importantes para nossa biodiversidade do 
                     país. Confira abaixo a aba onde pode se cadastrar e ajudar-nos a continuar.
                     </p>
+                    <img src={ImagemCriancas} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
                 </section>
                 <ContributeForm />
             </article>

@@ -6,8 +6,14 @@ class ImagemPlantaSerializers(serializers.ModelSerializer):
         model = models.ImagemPlanta
         fields = '__all__'
 
+class CoordenadaPlantaSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = models.CoordenadaPlanta
+        fields = '__all__'
+
 class PlantaSerializers(serializers.ModelSerializer):
     imagens = ImagemPlantaSerializers(many=True, read_only=True)
+    coordenadas = CoordenadaPlantaSerializers(many=True, read_only=True) 
 
     class Meta:
         model = models.Planta

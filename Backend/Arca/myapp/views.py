@@ -11,6 +11,10 @@ class PlantaViewSet(viewsets.ModelViewSet):
     queryset = models.Planta.objects.all()
     serializer_class = serializers.PlantaSerializers
 
+class CoordenadaPlantaViewSet(viewsets.ModelViewSet):
+    queryset = models.CoordenadaPlanta.objects.all()
+    serializer_class = serializers.CoordenadaPlantaSerializers
+
 class ImagemPlantaViewSet(viewsets.ModelViewSet):
     queryset = models.ImagemPlanta.objects.all()
     serializer_class = serializers.ImagemPlantaSerializers

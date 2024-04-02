@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Mapa from '../../components/map/index'
 
+import { useParams } from 'react-router-dom';
+
+import ImagemMapa from '../../assets/map/map.png'
+
 const Map = () => {
+    const { id } = useParams();
     const [showMap, setShowMap] = useState(false);
 
     const toggleMap = () => {
@@ -28,7 +33,7 @@ const Map = () => {
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>Mapa</h1>
-            <section className='flex flex-col py-8 px-6 mx-auto  lg:px-8 justify-center items-center'>
+            <section className='flex flex-col py-8 px-6 mx-auto lg:px-8 justify-center items-center'>
                 <section>
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>Sobre o Mapa Interativo</h2>
                     <div className='flex flex-col gap-2'>
@@ -42,13 +47,13 @@ const Map = () => {
                 </section>
                 {!showMap ? (
                     <img
-                        src="./src/assets/map/map.png"
+                        src={ImagemMapa}
                         alt="Imagem do mapa"
                         className='w-full max-w-[800px] cursor-pointer'
                         onClick={toggleMap}
                     />
                 ) : (
-                    <Mapa species={speciesData}/>
+                    <Mapa species={speciesData} filter={id}/>
                 )}
             </section>
         </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { FaSeedling } from 'react-icons/fa6';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Loading from '../../../components/layout/loading/Loading';
 
 
 // Componente Header, responsável por renderizar o cabeçalho da espécie com um slider de imagens
@@ -54,7 +55,7 @@ const Specie = () => {
 
     // Renderiza uma mensagem de carregamento enquanto isLoading é true
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <Loading/>;
     }
 
     // Renderiza os detalhes da espécie após o carregamento
@@ -70,7 +71,7 @@ const Specie = () => {
                         <h3 className='text-xl'>Descrição</h3>
                         <div dangerouslySetInnerHTML={{ __html: specie.texto }} />
                     </div>
-                    <a href={"/mapa"} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
+                    <a href={`/mapa/${specie.id}`} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
                 </section>
             </main>
         </div>

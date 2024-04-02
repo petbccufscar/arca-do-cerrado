@@ -62,7 +62,6 @@ const Home = () => {
                         entender a conviver melhor com a vegetação e os animais e que cada um de nós
                         pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
                     </p>
-
                     <img src={ImagemCriancas} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
                 </section>
             </article>

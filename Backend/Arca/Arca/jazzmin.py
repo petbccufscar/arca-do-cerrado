@@ -9,7 +9,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Arca",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "../static/logo/logo.jpg",
+    "site_logo": "../static/logo/logo.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -24,10 +24,10 @@ JAZZMIN_SETTINGS = {
     "site_icon": "../static/logo/favicon.png",
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the library",
+    "welcome_sign": "Bem vindo ao admin da Arca",
 
     # Copyright on the footer
-    "copyright": "Acme Library Ltd",
+    "copyright": "Arca do Cerrado",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 

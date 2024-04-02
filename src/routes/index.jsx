@@ -14,6 +14,7 @@ import Member from '../pages/team/member/Member'
 import Search from '../pages/search/Search'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import Page from '../pages/blog/blogPage/Page'
 
 export const AppRoutes = ({search}) => {
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
@@ -35,7 +36,9 @@ export const AppRoutes = ({search}) => {
             <Route path="/home" element={<Home />}/>
             <Route path="/sobre" element={<About />}/>
             <Route path="/blog" element={<Blog />}/>
+            <Route path="/blog/:id" element={<Page />}/>
             <Route path="/mapa" element={<Map />}/>
+            <Route path="/mapa/:id" element={<Map />}/>
             <Route path="/facaparte" element={<Contribute />}/>
             {mostrarAgenda && (
                 <Route path="/agenda" element={<Agenda />}/>

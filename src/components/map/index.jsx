@@ -8,7 +8,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'leaflet.markercluster';
 
-const Mapa = ({ species }) => {
+import ImagemMapa from '../../assets/map/mapa_mesclado.png';
+
+const Mapa = ({ species, filter }) => {
     const [map, setMap] = useState(null);
     const [cluster, setCluster] = useState(null);
 
@@ -32,7 +34,7 @@ const Mapa = ({ species }) => {
         ];
 
         // Cria a imagem overlay e adiciona ao mapa
-        const image = L.imageOverlay('./src/assets/map/mapa_mesclado.png', bounds);
+        const image = L.imageOverlay(ImagemMapa, bounds);
         image.addTo(leafletMap);
 
         // Cria um cluster de marcadores
@@ -56,25 +58,37 @@ const Mapa = ({ species }) => {
     useEffect(() => {
         // Adiciona marcadores ao cluster de marcadores quando o mapa e as espécies estiverem disponíveis
         if (map && species && cluster) {
+            let speciesWithId = species;
+            if(filter){
+                speciesWithId = species.filter(specie => 
+                    specie.id == filter
+                )
+            }
+
             // Filtra apenas as espécies que têm posições definidas e não são nulas
-            const speciesWithPositions = species.filter(specie =>
-                specie.posicao_x !== undefined && specie.posicao_y !== undefined &&
-                specie.posicao_x !== null && specie.posicao_y !== null
+            const speciesWithPositions = speciesWithId.filter(specieWithId =>
+                specieWithId.coordenadas.length > 0 
             );
 
+
             function adjustPosition(x, y) {
-                return [(y*15) + 170, (x*15) + 148];
+                return [(y*15.85) + 167, (x*15.85) + 148.5];
             }
 
             // Limpa o cluster de marcadores
             cluster.clearLayers();
 
+            
             speciesWithPositions.forEach(specie => {
                 const popupContent = ReactDOMServer.renderToString(<MapCard specie={specie} />);
-                console.log(adjustPosition(specie.posicao_x, specie.posicao_y));
-                const marker = L.marker(adjustPosition(specie.posicao_x, specie.posicao_y)); // Cria um marcador
-                marker.bindPopup(popupContent); // Define um popup para o marcador
-                cluster.addLayer(marker); // Adiciona o marcador ao cluster de marcadores
+
+
+                specie.coordenadas.forEach(coordenada => {
+                    let marker = L.marker(adjustPosition(coordenada.posicao_x, coordenada.posicao_y)); // Cria um marcador
+                    marker.bindPopup(popupContent); // Define um popup para o marcador
+                    cluster.addLayer(marker); // Adiciona o marcador ao cluster de marcadores
+                })
+                
             });
 
             // Adiciona o cluster de marcadores ao mapa
@@ -83,7 +97,7 @@ const Mapa = ({ species }) => {
     }, [map, species, cluster]); // Este efeito é executado sempre que os estados 'map', 'species' ou 'cluster' mudarem
 
     return (
-        <div id="map" style={{ width: '60%', height: '400px' }}></div>
+        <div id="map" style={{ width: '80%', height: '400px' }}></div>
     );
 };
 

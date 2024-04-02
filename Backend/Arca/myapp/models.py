@@ -14,16 +14,24 @@ from django.http import JsonResponse
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+from django.db import models
+
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
     nome_cientifico = models.CharField(max_length=100, blank=True)
-    resumo = RichTextUploadingField()
-    texto = RichTextUploadingField() 
-    posicao_x = models.FloatField(blank=True, null=True) 
-    posicao_y = models.FloatField(blank=True, null=True)
-
+    resumo = models.TextField()
+    texto = models.TextField()
+    
     def __str__(self):
         return self.apelido
+
+class CoordenadaPlanta(models.Model):
+    planta = models.ForeignKey(Planta, related_name='coordenadas', on_delete=models.CASCADE)
+    posicao_x = models.FloatField()
+    posicao_y = models.FloatField()
+
+    def __str__(self):
+        return f"({self.posicao_x}, {self.posicao_y})"
 
 class ImagemPlanta(models.Model):
     planta = models.ForeignKey(Planta, related_name='imagens', on_delete=models.CASCADE)

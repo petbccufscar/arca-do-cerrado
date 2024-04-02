@@ -44,4 +44,4 @@
 
 ## Mapeamento completo
 
-![alt text](src/assets/map/mapaeamento.png)
+![alt text](src/assets/map/mapeamento.png)

@@ -20,7 +20,7 @@ const SpecieCard = ({ specie }) => {
                     <a href={`/especies/${specie.id}`} className="text-sm inline-flex items-center px-3 py-2 font-medium text-white bg-primary-color rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 gap-2">
                         Saiba mais <FaArrowRight />
                     </a>
-                    <a href={`/mapa`} className="text-sm inline-flex items-center px-3 py-2 font-medium text-white bg-primary-color rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300">
+                    <a href={`/mapa/${specie.id}`} className="text-sm inline-flex items-center px-3 py-3 font-medium text-white bg-primary-color rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300">
                         <FaLocationDot/>
                     </a>
                 </div>

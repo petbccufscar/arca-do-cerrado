@@ -5,6 +5,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
+import Imagem1 from '../../assets/about/Foto1.jpg';
+import Imagem2 from '../../assets/about/Foto2.jpg';
+import Imagem3 from '../../assets/about/Foto3.jpg';
+import Imagem4 from '../../assets/about/Foto4.jpg';
+import Imagem5 from '../../assets/about/Foto5.jpg';
+import Imagem6 from '../../assets/about/Foto6.jpg';
+
 const About = () => {
 
     const location = useLocation();
@@ -31,9 +38,9 @@ const About = () => {
                 "A Arca do Cerrado começou como um projeto independente e desde 2017 é uma Atividade de Extensão [23112.005242/2023-22], coordenada pelo Prof. Mauricio Figueiredo, desenvolvida por um grupo com o principal objetivo de informar e sensibilizar as pessoas para a beleza e a importância do Cerrado - mais especificamente o fragmento onde o câmpus da Universidade Federal de São Carlos está localizado.",
                 <img
                     key="Foto1"
-                    src='src/assets/about/Foto6.jpg'
+                    src={Imagem6}
                     alt="FIGURA CERRADO"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Imagem no fragmento de Cerrado onde fica a Ufscar</p>,
                 <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo Arca do Cerrado</p>,
@@ -52,9 +59,9 @@ const About = () => {
                 "Infelizmente, o Cerrado no estado de São Paulo se encontra muito reduzido, o que torna este fragmento ainda mais importante.",
                 <img
                     key="Foto2"
-                    src='src/assets/about/Foto3.jpg'
+                    src={Imagem3}
                     alt="IMAGEM CAMALEÃO"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Polychrus acutirostris  - espécie de camaleão registrada em</p>,
                 <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
@@ -62,9 +69,9 @@ const About = () => {
                 "Segundo informações recentes, algumas espécies de aves indicadas como ameaçadas em diferentes níveis em âmbito estadual, entre elas, espécies endêmicas do Cerrado e espécies migratórias, além de outros 50 grupos de aves e 45 espécies de mamíferos e répteis ainda habitam e/ou podem ser vistas regularmente pela área.",
                 <img
                     key="Foto3"
-                    src='src/assets/about/Foto5.jpg'
+                    src={Imagem5}
                     alt="IMAGEM TEIÚ"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Salvator merianae. Espécie de teiú registrada em</p>,
                 <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
@@ -72,9 +79,9 @@ const About = () => {
                 "Originalmente, o espaço do jardim era coberto por vegetação de Cerrado, o que pode ser observado dada sua proximidade ao fragmento no câmpus e ao brotamento espontâneo de espécies endêmicas ali. Algumas das espécies têm troncos subterrâneos e pode ser que tenham resistido às  diversas  interferências ao longo dos anos, tais como podas de grama. Algumas das espécies presentes na área que surgiram espontaneamente são: gabiroba, araçá, cipó-de-são-joão, alecrim-do-campo, uma Aegiphila, a Adenocalymma peregrina e uma Ouratea floribunda (caju-bravo, que chamamos de pimenta-flamengo, devido à cor de seus frutos). Algum tempo antes do início do projeto, já havia ali três indivíduos de indaiá-do-cerrado que, a pedido do Mauricio, foram transplantados de uma área ao lado que seria utilizada para uma construção.",
                 <img
                     key="Foto4"
-                    src='src/assets/about/Foto2.jpg'
+                    src={Imagem2}
                     alt="FIGURA POMAR ANTIGA"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Imagem da área do jardim em seus primeiros anos de vida (2017)</p>,
                 <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo da Arca do Cerrado</p>,
@@ -86,12 +93,12 @@ const About = () => {
                 "Para comportar o volume de trabalho e também para favorecer a manutenção, o espaço recebeu benfeitorias. A prefeitura do câmpus instalou torneiras, com material doado pela tradicional loja de materiais de São Carlos, Gualtieri. Também delimitamos o espaço com separadores, evitando o avanço da grama de áreas de jardins limítrofes.",
                 <img
                     key="Foto5"
-                    src='src/assets/about/Foto4.jpg'
+                    src={Imagem4}
                     alt="IMAGEM PANORÂMICA ATUAL"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Imagem da área do jardim mais recente (2023)</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Créditos: Acervo Arca do Cerrado</p>,
+                <p className="text-center text-sm italic text-gray-500">Créditos: Acervo Arca do Cerrado</p>,
             ]
         },
         {
@@ -112,12 +119,12 @@ const About = () => {
                 "Em várias oportunidades, o trabalho associado à Atividade de Extensão A Arca do Cerrado tem sido divulgado para a comunidade externa e acadêmica, seja por meio de exibição de cartazes, seja por participação em palestras. Temos recebido visitas de pessoas interessadas nesse tipo de jardinagem, da comunidade acadêmica e externa: arquitetos, professores, alunos de graduação, alunos do ensino fundamental. Saiba mais no blog.",
                 <img
                     key="Foto6"
-                    src='src/assets/about/Foto1.jpg'
+                    src={Imagem1}
                     alt="IMAGEM VISITA CRIANÇAS"
-                    className="w-1/3 h-auto rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
                 />,
                 <p className="text-center text-sm italic text-gray-500">Visita de alunos da E. E. Prof. Adail Malmegrim Gonçalves</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Ana Paula Sannicolo</p>,
+                <p className="text-center text-sm italic text-gray-500">Crédito: Ana Paula Sannicolo</p>,
             ]
         },
         {
@@ -143,10 +150,10 @@ const About = () => {
 
     {/*Imagens para o carrossel*/}
     const fixedImages = [
-        './src/assets/about/Foto1.jpg',
-        './src/assets/about/Foto2.jpg',
-        './src/assets/about/Foto4.jpg',
-        './src/assets/about/Foto6.jpg',
+        Imagem1,
+        Imagem2,
+        Imagem4,
+        Imagem6,
     ];
 
 
@@ -161,7 +168,7 @@ const About = () => {
             >
                 {fixedImages.map((imageUrl, index) => (
                     <SwiperSlide key={index}>
-                        <img src={imageUrl} alt={`slide-${index}`} className='w-full h-1/4 max-h-[300px] object-cover filter brightness-75' />
+                        <img src={imageUrl} alt={`slide-${index}`} className='w-full h-[300px] object-cover filter brightness-75' />
                     </SwiperSlide>
                 ))}
             </Swiper>

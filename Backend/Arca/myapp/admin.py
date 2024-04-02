@@ -1,14 +1,18 @@
 from django.contrib import admin
-from .models import Planta, ImagemPlanta, Mensagem, Postagem, Atividade, Equipe, Configuracao, Inscrito
+from .models import Planta, ImagemPlanta, Mensagem, Postagem, Atividade, Equipe, Configuracao, Inscrito, CoordenadaPlanta
 from .forms import PostagemForm, PlantaForm, AtividadeForm, EquipeForm
 
 class ImagemPlantaInline(admin.TabularInline):
     model = ImagemPlanta
     extra = 1
 
+class CoordenadaPlantaInline(admin.TabularInline):
+    model = CoordenadaPlanta
+    extra = 1
+
 class PlantaAdmin(admin.ModelAdmin):
     form = PlantaForm
-    inlines = [ImagemPlantaInline]
+    inlines = [ImagemPlantaInline, CoordenadaPlantaInline]
 
 class PostagemAdmin(admin.ModelAdmin):
     form = PostagemForm
