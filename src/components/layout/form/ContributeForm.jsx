@@ -55,7 +55,7 @@ const ContributeForm = () => {
 
     return (
         <section>
-            <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-lg">
+            <div className="px-4 mx-auto max-w-screen-lg">
                 <h2 className="tracking-tight text-center text-4xl mb-4 text-neutral-700">Faça Parte</h2>
                 <p className="mb-8 lg:mb-16 text-center text-gray-500">
                     Este projeto é para você! Independente de conhecimento ou experiência,
