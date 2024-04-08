@@ -29,6 +29,7 @@ const ConfirmaInscricao = ({ name }) => {
             </head>
             <body>
                 <div class="container">
+                    <img src='cid:arca.png' alt='logo'/>
                     <h1>Olá ${name},</h1>
                     <p>Obrigado por se inscrever em nosso blog!</p>
                     <p>Se você deseja cancelar sua inscrição, clique <a href="${unsubscribeUrl}" class="unsubscribe-link">aqui</a>.</p>

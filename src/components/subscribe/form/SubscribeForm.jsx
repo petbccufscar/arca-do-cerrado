@@ -25,6 +25,19 @@ const SubscribeForm = () => {
 
 			// Lógica para tratar a resposta (redirecionar, exibir mensagem, etc.)
 			if (response.status >= 200 && response.status < 300) {
+
+				sendEmail({
+					to_email: 'joao.moraes@estudante.ufscar.br',
+					subject: 'Novo inscrito no blog!',
+					message: AvisoInscricao({ name: nome }),
+				  }, 'template_eyao4vt')
+				  // Email de notificação para o usuário
+				  sendEmail({
+					to_email: email,
+					subject: 'Obrigado por se inscrever',
+					message: ConfirmaInscricao({ name: nome }),
+				  }, 'template_eyao4vt')
+
 				setSuccess('Obrigado por se inscrever!');
 
 				const successTimer = setTimeout(() => {

@@ -30,6 +30,9 @@ class CoordenadaPlanta(models.Model):
     posicao_x = models.FloatField()
     posicao_y = models.FloatField()
 
+    class Meta: 
+        verbose_name_plural='Coordenadas Planta'
+
     def __str__(self):
         return f"({self.posicao_x}, {self.posicao_y})"
 
@@ -39,6 +42,9 @@ class ImagemPlanta(models.Model):
     descricao = models.CharField(max_length=100, blank=True, null=True)
     tags = models.CharField(max_length=300, blank=True, null=True)
 
+    class Meta: 
+        verbose_name_plural='Imagens Planta'
+
     def __str__(self):
         return f"Imagem da Planta: {self.planta.apelido}"
 
@@ -46,6 +52,9 @@ class Mensagem(models.Model):
     email = models.EmailField()
     assunto = models.CharField(max_length=100)
     mensagem = models.TextField()
+
+    class Meta: 
+        verbose_name_plural='Mensagens'
 
     def __str__(self):
         return self.email
@@ -77,11 +86,18 @@ class Postagem(models.Model):
     data = models.DateField()
     link = models.URLField()
 
+    class Meta: 
+        verbose_name_plural='Postagens'
+
     def __str__(self):
         return self.titulo
 
 class Configuracao(models.Model):
     mostrar_agenda = models.BooleanField(default=True)
+
+    class Meta: 
+        verbose_name='Configuração'
+        verbose_name_plural='Configurações'
 
     def delete(self, *args, **kwargs):
         # Impede a exclusão do objeto
