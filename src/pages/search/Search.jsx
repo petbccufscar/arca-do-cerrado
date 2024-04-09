@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Search = ({ search }) => {
-    const [speciesData, setSpeciesData] = useState([]); 
-    const [equipeData, setEquipeData] = useState([]); 
-    const [atividadeData, setAtividadeData] = useState([]); 
-    const [postagemData, setPostagemData] = useState([]); 
-    const [selectedSource, setSelectedSource] = useState('Todos'); 
-    const [mostrarAgenda, setMostrarAgenda] = useState(true); 
+    const [speciesData, setSpeciesData] = useState([]);
+    const [equipeData, setEquipeData] = useState([]);
+    const [atividadeData, setAtividadeData] = useState([]);
+    const [postagemData, setPostagemData] = useState([]);
+    const [selectedSource, setSelectedSource] = useState('Todos');
+    const [mostrarAgenda, setMostrarAgenda] = useState(true);
 
     // Efeito para buscar a configuração de exibição da agenda
     useEffect(() => {
@@ -33,36 +33,41 @@ const Search = ({ search }) => {
         }
     };
 
+    // Função para remover acentos de caracteres
+    const removeAccents = (text) => {
+        return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+
     // Efeito para buscar dados das espécies e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Planta/', species =>
-            species.apelido.toLowerCase().includes(search.toLowerCase()) ||
-            species.resumo.toLowerCase().includes(search.toLowerCase()) ||
-            species.nome_cientifico.toLowerCase().includes(search.toLowerCase()) ||
-            species.texto.toLowerCase().includes(search.toLowerCase()) ||
-            (species.imagens && species.imagens.tags && species.imagens.tags.toLowerCase().includes(search.toLowerCase())), setSpeciesData);
+            removeAccents(species.apelido).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(species.resumo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(species.nome_cientifico).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(species.texto).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            (species.imagens && species.imagens.tags && removeAccents(species.imagens.tags).toLowerCase().includes(removeAccents(search).toLowerCase())), setSpeciesData);
     }, [search]);
 
     // Efeito para buscar dados da equipe e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Equipe/', membro =>
-            membro.nome.toLowerCase().includes(search.toLowerCase()) ||
-            membro.biografia.toLowerCase().includes(search.toLowerCase()) ||
-            membro.cargo.toLowerCase().includes(search.toLowerCase()), setEquipeData);
+            removeAccents(membro.nome).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(membro.biografia).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(membro.cargo).toLowerCase().includes(removeAccents(search).toLowerCase()), setEquipeData);
     }, [search]);
 
     // Efeito para buscar dados das atividades e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Atividade/', atividade =>
-            atividade.titulo.toLowerCase().includes(search.toLowerCase()) ||
-            atividade.descricao.toLowerCase().includes(search.toLowerCase()), setAtividadeData);
+            removeAccents(atividade.titulo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(atividade.descricao).toLowerCase().includes(removeAccents(search).toLowerCase()), setAtividadeData);
     }, [search]);
 
     // Efeito para buscar dados das postagens e aplicar filtro com base na pesquisa
     useEffect(() => {
         fetchData('http://127.0.0.1:8000/api/Postagem/', postagem =>
-            postagem.titulo.toLowerCase().includes(search.toLowerCase()) ||
-            postagem.conteudo.toLowerCase().includes(search.toLowerCase()), setPostagemData);
+            removeAccents(postagem.titulo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
+            removeAccents(postagem.conteudo).toLowerCase().includes(removeAccents(search).toLowerCase()), setPostagemData);
     }, [search]);
 
     // Função para lidar com a mudança da fonte selecionada

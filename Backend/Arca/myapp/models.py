@@ -6,7 +6,6 @@ from django.template.loader import render_to_string
 from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.mail import send_mail
 import logging
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.utils.html import strip_tags
@@ -61,7 +60,7 @@ class Mensagem(models.Model):
     
 class Equipe(models.Model):
     nome = models.CharField(max_length=200)
-    imagem = models.ImageField(upload_to='imagens_equipe/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='imagens_equipe/')
     cargo = models.CharField(max_length=200)
     biografia = RichTextUploadingField()
     link = models.URLField(blank=True, null=True)
@@ -71,6 +70,7 @@ class Equipe(models.Model):
     
 class Atividade(models.Model):
     titulo = models.CharField(max_length=100)
+    imagem = models.ImageField(upload_to='imagens_atividade/')
     descricao = RichTextUploadingField()
     autores_equipe = models.ManyToManyField(Equipe, blank=True)
     data = models.DateField()
@@ -80,11 +80,11 @@ class Atividade(models.Model):
 
 class Postagem(models.Model):
     titulo = models.CharField(max_length=200)
-    imagem = models.ImageField(upload_to='imagens_postagens/', blank=True, null=True)
+    imagem = models.ImageField(upload_to='imagens_postagens/')
     conteudo = RichTextUploadingField()
     autor_equipe = models.ForeignKey(Equipe, on_delete=models.SET_NULL, null=True, blank=True)
     data = models.DateField()
-    link = models.URLField()
+    link = models.URLField(blank=True, null=True)
 
     class Meta: 
         verbose_name_plural='Postagens'

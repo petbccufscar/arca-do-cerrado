@@ -48,7 +48,6 @@ const Member = () => {
                     <h2 className='text-2xl font-semibold'>{member.nome}</h2>
                     <p className='flex items-center gap-2 text-neutral-500'>{member.cargo}</p>
                     <div className='flex flex-col py-4 gap-2'>
-                        <h3 className='text-xl'>Descrição</h3>
                         <div dangerouslySetInnerHTML={{ __html: member.biografia }} />
                     </div>
                     <a href={member.link} className='cursor-pointer text-primary-color hover:underline'>Entre em contato</a>

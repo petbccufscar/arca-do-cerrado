@@ -14,6 +14,7 @@ const Mapa = ({ species, filter }) => {
     const [map, setMap] = useState(null);
     const [cluster, setCluster] = useState(null);
 
+
     useEffect(() => {
         // Cria o mapa Leaflet com CRS.Simple quando o componente é montado
         const leafletMap = L.map('map', {
@@ -94,7 +95,7 @@ const Mapa = ({ species, filter }) => {
             // Adiciona o cluster de marcadores ao mapa
             map.addLayer(cluster);
         }
-    }, [map, species, cluster]); // Este efeito é executado sempre que os estados 'map', 'species' ou 'cluster' mudarem
+    }, [map, species, cluster, filter]); // Este efeito é executado sempre que os estados 'map', 'species', 'cluster' ou 'filter' mudarem
 
     return (
         <div id="map" style={{ width: '80%', height: '400px' }}></div>

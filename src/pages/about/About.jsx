@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -16,7 +16,7 @@ const About = () => {
 
     const location = useLocation();
 
-    {/*Função para movimentar o usuário de acordo com a seção da página escolhida*/}
+    {/*Função para movimentar o usuário de acordo com a seção da página escolhida*/ }
     useEffect(() => {
         if (location.hash) {
             const sectionId = location.hash.slice(1);
@@ -29,7 +29,7 @@ const About = () => {
         }
     }, [location.hash]);
 
-    {/*Conteúdo da página*/}
+    {/*Conteúdo da página*/ }
     const sections = [
         {
             id: 1,
@@ -40,10 +40,10 @@ const About = () => {
                     key="Foto1"
                     src={Imagem6}
                     alt="FIGURA CERRADO"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Imagem no fragmento de Cerrado onde fica a Ufscar</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo Arca do Cerrado</p>,
+                <p key='1' className="text-center text-sm italic text-gray-500">Imagem no fragmento de Cerrado onde fica a Ufscar</p>,
+                <p key='2' className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo Arca do Cerrado</p>,
                 "O Cerrado é um dos domínios naturais com maior biodiversidade do Brasil e do mundo, mas, infelizmente, tem sido negligenciado e está desprotegido. A partir deste espaço no câmpus, queremos trazer o Cerrado de volta para a vida das pessoas - já que ele fica em uma área onde o Cerrado é nativo. Tanto que ele brota em todos os cantos da universidade! A Arca do Cerrado abriga um espaço público e um convite para todos conhecermos, respeitarmos, admirarmos e preservarmos.",
                 "O espaço onde o projeto se desenvolve está em uma área urbanizada, na Área Norte, favorecendo a visitação e a contemplação de suas espécies. Há uma parte com plantas que dão frutos - todos comestíveis! - e uma parte com vegetação que tem lindas floradas! A ideia é que as pessoas percebam que as plantas do Cerrado também são ornamentais e poderiam enfeitar e enriquecer os jardins de suas casas, assim como outros espaços do câmpus. Além de sua beleza, por serem nativas, as espécies demandam menos cuidados, como regas e adubação.",
                 "Aqui, você vai encontrar um mapa interativo, em escala, que representa a localização de cada uma de nossas mudas. Para facilitar sua navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, você será direcionado para sua versão ampliada. Ali, se passar o mouse sobre um dos pontos, aparecerá uma pequena caixa com o nome da planta. Se clicar sobre um ponto, terá acesso a fotos e informações básicas da espécie. Essas informações estão disponíveis também na página espécies.",
@@ -61,30 +61,30 @@ const About = () => {
                     key="Foto2"
                     src={Imagem3}
                     alt="IMAGEM CAMALEÃO"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Polychrus acutirostris  - espécie de camaleão registrada em</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
+                <p key='3' className="text-center text-sm italic text-gray-500">Polychrus acutirostris  - espécie de camaleão registrada em</p>,
+                <p key='4' className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
                 "A área de Cerrado remanescente no câmpus tem cerca 124ha. Sua vegetação envolve as nascentes dos córregos do Fazzari e do Monjolinho, sendo que esta última é uma das fontes de abastecimento da cidade de São Carlos. A sua rica biodiversidade favorece a qualidade ambiental. Esta área faz parte de um corredor ecológico que é formado pelas matas ciliares dos córregos Espraiado e Martinha e as áreas de vegetação nativa da Embrapa e da Fazenda Lacerda, constituindo um dos maiores fragmentos de vegetação nativa da região de São Carlos.",
                 "Segundo informações recentes, algumas espécies de aves indicadas como ameaçadas em diferentes níveis em âmbito estadual, entre elas, espécies endêmicas do Cerrado e espécies migratórias, além de outros 50 grupos de aves e 45 espécies de mamíferos e répteis ainda habitam e/ou podem ser vistas regularmente pela área.",
                 <img
                     key="Foto3"
                     src={Imagem5}
                     alt="IMAGEM TEIÚ"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Salvator merianae. Espécie de teiú registrada em</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
+                <p key='5' className="text-center text-sm italic text-gray-500">Salvator merianae. Espécie de teiú registrada em</p>,
+                <p key='6' className="text-center text-sm italic text-gray-500 mb-4">Crédito: Márcia Martins</p>,
                 "A área cultivada no projeto Arca do Cerrado procura expressar um pouco dessa abundância e a beleza de suas espécies vegetais.",
                 "Originalmente, o espaço do jardim era coberto por vegetação de Cerrado, o que pode ser observado dada sua proximidade ao fragmento no câmpus e ao brotamento espontâneo de espécies endêmicas ali. Algumas das espécies têm troncos subterrâneos e pode ser que tenham resistido às  diversas  interferências ao longo dos anos, tais como podas de grama. Algumas das espécies presentes na área que surgiram espontaneamente são: gabiroba, araçá, cipó-de-são-joão, alecrim-do-campo, uma Aegiphila, a Adenocalymma peregrina e uma Ouratea floribunda (caju-bravo, que chamamos de pimenta-flamengo, devido à cor de seus frutos). Algum tempo antes do início do projeto, já havia ali três indivíduos de indaiá-do-cerrado que, a pedido do Mauricio, foram transplantados de uma área ao lado que seria utilizada para uma construção.",
                 <img
                     key="Foto4"
                     src={Imagem2}
                     alt="FIGURA POMAR ANTIGA"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Imagem da área do jardim em seus primeiros anos de vida (2017)</p>,
-                <p className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo da Arca do Cerrado</p>,
+                <p key='7' className="text-center text-sm italic text-gray-500">Imagem da área do jardim em seus primeiros anos de vida (2017)</p>,
+                <p key='8' className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo da Arca do Cerrado</p>,
                 "O espaço fica em frente ao Departamento de Computação e é ladeado por um passeio por onde transitam estudantes, funcionários e professores entre os prédios dos departamentos próximos (Matemática, Fisioterapia, Medicina entre outros).",
                 "Como não usamos elementos químicos para tratar as sementes nem outras técnicas artificiais de germinação e cultivo, e como não há muitos projetos que lidem com jardinagem envolvendo a vegetação de Cerrado na região, nosso conhecimento tem sido construído a partir da experiência prática.",
                 "São cerca de 100 mudas de 40 espécies, de plantas selecionadas por sua beleza paisagística ou pelo fato de produzirem frutos comestíveis. Por conta do espaço reduzido, somente espécies de porte arbustivo ou menores são escolhidas.",
@@ -95,10 +95,10 @@ const About = () => {
                     key="Foto5"
                     src={Imagem4}
                     alt="IMAGEM PANORÂMICA ATUAL"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Imagem da área do jardim mais recente (2023)</p>,
-                <p className="text-center text-sm italic text-gray-500">Créditos: Acervo Arca do Cerrado</p>,
+                <p key='9' className="text-center text-sm italic text-gray-500">Imagem da área do jardim mais recente (2023)</p>,
+                <p key='10' className="text-center text-sm italic text-gray-500">Créditos: Acervo Arca do Cerrado</p>,
             ]
         },
         {
@@ -121,10 +121,10 @@ const About = () => {
                     key="Foto6"
                     src={Imagem1}
                     alt="IMAGEM VISITA CRIANÇAS"
-                    className="w-full max-w-[400px] rounded-lg shadow-md my-4 mx-auto"
+                    className="w-full max-w-[500px] rounded-lg shadow-md my-4 mx-auto"
                 />,
-                <p className="text-center text-sm italic text-gray-500">Visita de alunos da E. E. Prof. Adail Malmegrim Gonçalves</p>,
-                <p className="text-center text-sm italic text-gray-500">Crédito: Ana Paula Sannicolo</p>,
+                <p key='11' className="text-center text-sm italic text-gray-500">Visita de alunos da E. E. Prof. Adail Malmegrim Gonçalves</p>,
+                <p key='12' className="text-center text-sm italic text-gray-500">Crédito: Ana Paula Sannicolo</p>,
             ]
         },
         {
@@ -148,7 +148,7 @@ const About = () => {
         }
     ]
 
-    {/*Imagens para o carrossel*/}
+    {/*Imagens para o carrossel*/ }
     const fixedImages = [
         Imagem1,
         Imagem2,
@@ -178,7 +178,7 @@ const About = () => {
                         <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8'>
                             <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>{section.title}</h2>
                             {section.content.map((content, index) => (
-                                <div key={index}>{content}</div>
+                                <div key={`${section.id}-${index}`} className="text-justify" >{content}</div>
                             ))}
                         </div>
                     </section>
