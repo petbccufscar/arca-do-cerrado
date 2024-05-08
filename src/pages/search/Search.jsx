@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Loading from '../../components/layout/loading';
 
 const Search = ({ search }) => {
     const [speciesData, setSpeciesData] = useState([]);
@@ -8,8 +9,9 @@ const Search = ({ search }) => {
     const [postagemData, setPostagemData] = useState([]);
     const [selectedSource, setSelectedSource] = useState('Todos');
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    // Efeito para buscar a configuração de exibição da agenda
     useEffect(() => {
         axios
             .get('http://localhost:8000/api/Configuracao/4')
@@ -18,10 +20,13 @@ const Search = ({ search }) => {
             })
             .catch((error) => {
                 console.error('Erro ao buscar configuração:', error);
+                setError('Erro ao buscar configuração.');
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }, []);
 
-    // Função para buscar dados com base na URL, aplicar filtro e definir o estado correspondente
     const fetchData = async (url, filterFunction, setDataFunction) => {
         try {
             const response = await axios.get(url);
@@ -29,56 +34,64 @@ const Search = ({ search }) => {
             const filteredData = data.filter(filterFunction);
             setDataFunction(filteredData);
         } catch (error) {
-            console.error(`Error fetching data from ${url}:`, error);
+            console.error(`Erro ao buscar dados de ${url}:`, error);
+            setError(`Erro ao buscar dados de ${url}.`);
         }
     };
 
-    // Função para remover acentos de caracteres
     const removeAccents = (text) => {
         return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
 
-    // Efeito para buscar dados das espécies e aplicar filtro com base na pesquisa
     useEffect(() => {
-        fetchData('http://127.0.0.1:8000/api/Planta/', species =>
+        const filterSpecies = species =>
             removeAccents(species.apelido).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
             removeAccents(species.resumo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
             removeAccents(species.nome_cientifico).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
             removeAccents(species.texto).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
-            (species.imagens && species.imagens.tags && removeAccents(species.imagens.tags).toLowerCase().includes(removeAccents(search).toLowerCase())), setSpeciesData);
-    }, [search]);
+            (species.imagens && species.imagens.tags && removeAccents(species.imagens.tags).toLowerCase().includes(removeAccents(search).toLowerCase()));
 
-    // Efeito para buscar dados da equipe e aplicar filtro com base na pesquisa
-    useEffect(() => {
-        fetchData('http://127.0.0.1:8000/api/Equipe/', membro =>
+        const filterEquipe = membro =>
             removeAccents(membro.nome).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
             removeAccents(membro.biografia).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
-            removeAccents(membro.cargo).toLowerCase().includes(removeAccents(search).toLowerCase()), setEquipeData);
-    }, [search]);
+            removeAccents(membro.cargo).toLowerCase().includes(removeAccents(search).toLowerCase());
 
-    // Efeito para buscar dados das atividades e aplicar filtro com base na pesquisa
-    useEffect(() => {
-        fetchData('http://127.0.0.1:8000/api/Atividade/', atividade =>
+        const filterAtividade = atividade =>
             removeAccents(atividade.titulo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
-            removeAccents(atividade.descricao).toLowerCase().includes(removeAccents(search).toLowerCase()), setAtividadeData);
-    }, [search]);
+            removeAccents(atividade.descricao).toLowerCase().includes(removeAccents(search).toLowerCase());
 
-    // Efeito para buscar dados das postagens e aplicar filtro com base na pesquisa
-    useEffect(() => {
-        fetchData('http://127.0.0.1:8000/api/Postagem/', postagem =>
+        const filterPostagem = postagem =>
             removeAccents(postagem.titulo).toLowerCase().includes(removeAccents(search).toLowerCase()) ||
-            removeAccents(postagem.conteudo).toLowerCase().includes(removeAccents(search).toLowerCase()), setPostagemData);
+            removeAccents(postagem.conteudo).toLowerCase().includes(removeAccents(search).toLowerCase());
+
+        setLoading(true);
+        setError(null);
+
+        Promise.all([
+            fetchData('http://127.0.0.1:8000/api/Planta/', filterSpecies, setSpeciesData),
+            fetchData('http://127.0.0.1:8000/api/Equipe/', filterEquipe, setEquipeData),
+            fetchData('http://127.0.0.1:8000/api/Atividade/', filterAtividade, setAtividadeData),
+            fetchData('http://127.0.0.1:8000/api/Postagem/', filterPostagem, setPostagemData)
+        ]).finally(() => {
+            setLoading(false);
+        });
     }, [search]);
 
-    // Função para lidar com a mudança da fonte selecionada
     const handleSourceChange = (event) => {
         setSelectedSource(event.target.value);
     };
 
+    if (loading){
+        return <Loading/>
+    }
+
+    if (error){
+        return <div>{error}</div>
+    }
+
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Resultados de pesquisa</h1>
-            {/* Selecionador de fonte para filtrar os resultados */}
             <div className='flex justify-center gap-4 mt-4'>
                 <label htmlFor="sourceSelect">Selecionar fonte:</label>
                 <select id="sourceSelect" value={selectedSource} onChange={handleSourceChange}>
@@ -86,15 +99,10 @@ const Search = ({ search }) => {
                     <option value="Especies">Especies</option>
                     <option value="Equipe">Equipe</option>
                     <option value="Atividade">Atividade</option>
-                    {/* Renderiza a opção de postagem apenas se mostrarAgenda for verdadeiro */}
-                    {mostrarAgenda && (
-                        <option value="Postagem">Postagem</option>
-                    )}
+                    {mostrarAgenda && <option value="Postagem">Postagem</option>}
                 </select>
             </div>
-            {/* Seção de resultados de pesquisa */}
             <div className='flex flex-col py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
-                {/* Renderiza os resultados das espécies se a fonte selecionada for 'Todos' ou 'Especies' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Especies') && speciesData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Especies</h2>
@@ -105,7 +113,6 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-                {/* Renderiza os resultados da equipe se a fonte selecionada for 'Todos' ou 'Equipe' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Equipe') && equipeData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Equipe</h2>
@@ -116,7 +123,6 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-                {/* Renderiza os resultados das atividades se a fonte selecionada for 'Todos' ou 'Atividade' */}
                 {(selectedSource === 'Todos' || selectedSource === 'Atividade') && atividadeData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Atividade</h2>
@@ -127,7 +133,6 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
-                {/* Renderiza os resultados das postagens se a fonte selecionada for 'Todos', 'Postagem' e mostrarAgenda for verdadeiro */}
                 {mostrarAgenda && (selectedSource === 'Todos' || selectedSource === 'Postagem') && postagemData.length > 0 && (
                     <div>
                         <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-2'>Postagem</h2>
@@ -138,9 +143,13 @@ const Search = ({ search }) => {
                         </div>
                     </div>
                 )}
+                {(selectedSource !== 'Todos' && selectedSource !== 'Especies' && selectedSource !== 'Equipe' && selectedSource !== 'Atividade' && (!mostrarAgenda || selectedSource !== 'Postagem')) && (
+                    <div>Nenhum resultado encontrado para a fonte selecionada.</div>
+                )}
             </div>
         </div>
-    )
+    );
 }
 
 export default Search;
+ 

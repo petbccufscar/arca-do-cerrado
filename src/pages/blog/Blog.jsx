@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Post from '../../components/blog/Post'
 import axios from 'axios';
 
+import Loading from '../../components/layout/loading';
+import Post from '../../components/blog/Post';
+
 const Blog = () => {
-
     const [postsData, setPostsData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
-    {/*Pega as postagens do banco*/}
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/Postagem`)
-            .then(response => {
-                setPostsData(response.data)
-            })
-            .catch(error => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/Postagem');
+                setPostsData(response.data.reverse());
+            } catch (error) {
                 console.error('Erro ao buscar dados das postagens:', error);
-            });
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
 
-    const navigate = useNavigate();
-    const goToSubscribe = () => navigate('/inscrever')
+    if (loading) {
+        return <Loading />;
+    }
+
+    const goToSubscribe = () => navigate('/inscrever');
 
     return (
         <div className='flex flex-col min-h-screen w-full items-center'>
@@ -31,16 +41,17 @@ const Blog = () => {
                 </section>
 
                 <section className='flex flex-col gap-8 mt-8'>
-                    {postsData
-                        .reverse()
-                        .map(post => (
+                    {postsData.length > 0 ? (
+                        postsData.map(post => (
                             <Post key={post.id} post={post} />
-                        ))}
+                        ))
+                    ) : (
+                        <p>Nenhuma postagem encontrada.</p>
+                    )}
                 </section>
             </section>
         </div>
+    );
+};
 
-    )
-}
-
-export default Blog
+export default Blog;

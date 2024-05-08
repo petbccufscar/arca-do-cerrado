@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Loading from '../../components/layout/loading';
+
 const Person = ({ personName, personImage, personId }) => {
     // Pega apenas o primeiro nome da pessoa 
     const firstName = personName.split(' ')[0];
@@ -20,17 +22,27 @@ const Person = ({ personName, personImage, personId }) => {
 
 const Team = () => {
     const [teamData, setTeamData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     // Pega os dados da quipe do banco 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/api/Equipe`)
-            .then(response => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/Equipe');
                 setTeamData(response.data);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Erro ao buscar dados da equipe:', error);
-            });
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
     }, []);
+
+    if (loading) {
+        return <Loading />;
+    }
 
     // Busca o coordenador
     const coordenador = teamData.find(person => person.cargo === 'Coordenador');

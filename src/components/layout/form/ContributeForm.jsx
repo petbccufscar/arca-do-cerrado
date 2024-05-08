@@ -1,55 +1,56 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Importa a função de envio de email e o componente de aviso de mensagem
-import sendEmail from '../../subscribe/email/EmailJS.jsx'
-import AvisoMensagem from '../../subscribe/email/folder/avisoMensagem.jsx'
+import sendEmail from '../../subscribe/email/EmailJS.jsx';
+import AvisoMensagem from '../../subscribe/email/folder/avisoMensagem.jsx';
 
 const ContributeForm = () => {
     const [email, setEmail] = useState('');
     const [assunto, setAssunto] = useState('');
     const [mensagem, setMensagem] = useState('');
     const [showPopup, setShowPopup] = useState(false);
+    const [erro, setErro] = useState(null);
 
-    // Função para atualizar o estado do email
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
 
-    // Função para atualizar o estado do assunto
     const handleAssuntoChange = (event) => {
         setAssunto(event.target.value);
     };
 
-    // Função para atualizar o estado da mensagem
     const handleMensagemChange = (event) => {
         setMensagem(event.target.value);
     };
 
-    // Função para lidar com o envio do formulário
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Envia o email
-        sendEmail({
-            to_email: 'joao.moraes@estudante.ufscar.br',
-            subject: assunto,
-            message: AvisoMensagem({email: email, mensagem: mensagem}),
-        }, 'template_eyao4vt');
-
-        // Salva a mensagem no backend
         try {
+            if (!email || !assunto || !mensagem) {
+                throw new Error('Por favor, preencha todos os campos.');
+            }
+
+            await sendEmail({
+                to_email: 'joao.moraes@estudante.ufscar.br',
+                subject: assunto,
+                message: AvisoMensagem({ email: email, mensagem: mensagem }),
+            }, 'template_eyao4vt');
+
             await axios.post('http://127.0.0.1:8000/api/Mensagem/', {
-                assunto: assunto, 
+                assunto: assunto,
                 email: email,
                 mensagem: mensagem
             });
-            setShowPopup(true); // Exibe o popup de confirmação após o envio bem-sucedido
+
+            setShowPopup(true);
             setEmail('');
             setAssunto('');
             setMensagem('');
+            setErro(null);
         } catch (error) {
-            console.error('Erro ao salvar a mensagem no backend:', error);
+            console.error('Erro ao enviar mensagem:', error);
+            setErro(error.message);
         }
     };
 
@@ -98,6 +99,7 @@ const ContributeForm = () => {
                             rows="6"
                             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
                             placeholder="Escreva sua mensagem..."
+                            required
                         />
                     </div>
                     <button
@@ -108,7 +110,6 @@ const ContributeForm = () => {
                     </button>
                 </form>
             </div>
-            {/* Popup de confirmação */}
             {showPopup && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
                     <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -121,6 +122,9 @@ const ContributeForm = () => {
                         </button>
                     </div>
                 </div>
+            )}
+            {erro && (
+                <div className="text-red-500 text-center mt-2">{erro}</div>
             )}
         </section>
     );

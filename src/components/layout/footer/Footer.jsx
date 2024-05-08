@@ -32,7 +32,7 @@ const Footer = () => {
                             <FaYoutube />
                         </a>
                     </div>
-                    <span className="block text-sm text-white sm:text-center">Criado por <a href="https://petbcc.ufscar.br" className="hover:underline">PET-BCC</a></span>
+                    <span className="block text-sm text-white sm:text-center">Criado por <a href="https://petbcc.ufscar.br" target="_blank" rel="noopener noreferrer" className="hover:underline">PET-BCC</a></span>
                 </div>
             </div>
         </footer>

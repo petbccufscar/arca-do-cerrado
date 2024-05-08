@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+import Loading from '../../../components/layout/loading';
+
 const Header = ({ imagem }) => {
     return (
         <header>
@@ -35,7 +37,7 @@ const Member = () => {
     }, [id]);
 
     if (isLoading) {
-        return <p>Loading...</p>;
+        return <Loading/>
     }
 
 

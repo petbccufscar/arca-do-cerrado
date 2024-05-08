@@ -1,13 +1,13 @@
 import React from 'react';
-import PageCard from '../../components/home/pageCard/PageCard';
+import PageCard from '../../components/home/PageCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { FaEarthAmericas, FaPagelines, FaNewspaper } from 'react-icons/fa6';
 import ContributeForm from '../../components/layout/form/ContributeForm';
-
 import ImagemVisita from '../../assets/home/visita.jpg';
+
 import Imagem1 from '../../assets/home/Foto1.jpg';
 import Imagem2 from '../../assets/home/Foto2.jpg';
 import Imagem3 from '../../assets/home/Foto3.jpg';
@@ -17,11 +17,7 @@ import Imagem6 from '../../assets/home/Foto6.jpg';
 import Imagem7 from '../../assets/home/Foto7.jpg';
 
 const Home = () => {
-    
-    {/*Imagens para o carrossel*/}
-    const fixedImages = [
-        Imagem1, Imagem2, Imagem3, Imagem4, Imagem5, Imagem6, Imagem7
-    ];
+    const fixedImages = [Imagem1, Imagem2, Imagem3, Imagem4, Imagem5, Imagem6, Imagem7];
 
     return (
         <div className='home'>
@@ -43,13 +39,11 @@ const Home = () => {
                 </Swiper>
             </header>
 
-            <main>
-                <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-                    <div className="space-y-12 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-                        <PageCard icon={<FaNewspaper />} name={"Blog"} desc={"Acompanhe as últimas noticias sobre o Cerrado através do nosso blog."} path={"/blog"} />
-                        <PageCard icon={<FaEarthAmericas />} name={"Mapa"} desc={"Visualize as espécies plantadas no cerrado de São Carlos através do mapa interativo."} path={"/mapa"} />
-                        <PageCard icon={<FaPagelines />} name={"Especies"} desc={"Visualize as informações das espécies do mapa interativo."} path={"/especies"} />
-                    </div>
+            <main className='py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6'>
+                <div className="space-y-12 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
+                    <PageCard icon={<FaNewspaper />} name={"Blog"} desc={"Acompanhe as últimas noticias sobre o Cerrado através do nosso blog."} path={"/blog"} />
+                    <PageCard icon={<FaEarthAmericas />} name={"Mapa"} desc={"Visualize as espécies plantadas no cerrado de São Carlos através do mapa interativo."} path={"/mapa"} />
+                    <PageCard icon={<FaPagelines />} name={"Espécies"} desc={"Visualize as informações das espécies do mapa interativo."} path={"/especies"} />
                 </div>
             </main>
 
@@ -62,7 +56,7 @@ const Home = () => {
                         entender a conviver melhor com a vegetação e os animais e que cada um de nós
                         pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
                     </p>
-                    <img src={ImagemVisita} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
+                    <img src={ImagemVisita} alt='Imagem Visita Crianças' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
                 </section>
             </article>
             <ContributeForm />

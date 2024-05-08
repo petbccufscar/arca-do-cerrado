@@ -4,7 +4,7 @@ import axios from 'axios';
 import { FaSeedling } from 'react-icons/fa6';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Loading from '../../../components/layout/loading/Loading';
+import Loading from '../../../components/layout/loading/';
 
 
 // Componente Header, responsável por renderizar o cabeçalho da espécie com um slider de imagens

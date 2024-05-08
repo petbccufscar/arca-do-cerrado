@@ -1,42 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Mapa from '../../components/map/index'
-
 import { useParams } from 'react-router-dom';
 
-import ImagemMapa from '../../assets/map/map.png'
+import Mapa from '../../components/map/index';
+import Loading from '../../components/layout/loading';
+import ImagemMapa from '../../assets/map/map.png';
 
 const Map = () => {
     const { id } = useParams();
     const [showMap, setShowMap] = useState(false);
     const [speciesName, setSpeciesName] = useState('');
+    const [speciesData, setSpeciesData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const toggleMap = () => {
         setShowMap(true);
-    }
-
-    const [speciesData, setSpeciesData] = useState([]);
+    };
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/Planta/')
-            .then(response => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/Planta/');
                 const speciesWithImage = response.data.map(species => ({
                     ...species,
                     imagens: species.imagens || '',
                 }));
                 setSpeciesData(speciesWithImage);
-                // Se houver um id na URL, encontre o nome da espécie correspondente
                 if (id) {
                     const selectedSpecies = speciesWithImage.find(species => species.id.toString() === id.toString());
                     if (selectedSpecies) {
                         setSpeciesName(selectedSpecies.apelido);
                     }
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching species data:', error);
-            });
-    }, []);
+                setError('Erro ao carregar os dados das espécies.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [id]);
+
+    if (loading) {
+        return <Loading />;
+    }
+
+    if (error) {
+        return <div>Erro: {error}</div>;
+    }
 
     return (
         <div>
@@ -75,4 +89,4 @@ const Map = () => {
     );
 };
 
-export default Map
+export default Map;

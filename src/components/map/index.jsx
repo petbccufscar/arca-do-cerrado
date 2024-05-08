@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import MapCard from './mapCard/MapCard';
+
+import MapCard from './MapCard';
+import ImagemMapa from '../../assets/map/mapa_mesclado.png';
 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -8,12 +10,9 @@ import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 import 'leaflet.markercluster';
 
-import ImagemMapa from '../../assets/map/mapa_mesclado.png';
-
 const Mapa = ({ species, filter }) => {
     const [map, setMap] = useState(null);
     const [cluster, setCluster] = useState(null);
-
 
     useEffect(() => {
         // Cria o mapa Leaflet com CRS.Simple quando o componente é montado

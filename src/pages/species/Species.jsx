@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import SpecieCard from '../../components/species/specieCard/SpecieCard';
+import SpecieCard from '../../components/species/SpecieCard';
+import Loading from '../../components/layout/loading';
 
 const Species = () => {
     const [speciesData, setSpeciesData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     {/*Pega as plantas do banco*/}
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/Planta/')
-            .then(response => {
+        // Função assíncrona para buscar os dados das espécies 
+        const fetchData = async () => {
+            try {
+                setIsLoading(true); 
+                const response = await axios.get(`http://127.0.0.1:8000/api/Planta/`); 
                 // Pega apenas a primeira imagem de cada planta
                 const speciesWithImage = response.data.map(species => ({
                     ...species,
@@ -20,11 +25,20 @@ const Species = () => {
                 const sortedSpeciesData = speciesWithImage.sort((a, b) => a.apelido.localeCompare(b.apelido));
 
                 setSpeciesData(sortedSpeciesData);
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error fetching species data:', error);
-            });
+            } finally {
+                setIsLoading(false); // Define isLoading como false após o carregamento ser concluído
+            }
+        };
+
+        fetchData(); // Chama a função fetchData ao montar o componente ou sempre que 'id' mudar
     }, []);
+
+    // Renderiza uma mensagem de carregamento enquanto isLoading é true
+    if (isLoading) {
+        return <Loading/>;
+    }
 
     return (
         <div className='flex flex-col min-h-screen w-full'>
