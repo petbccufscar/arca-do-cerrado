@@ -50,7 +50,9 @@ const Member = () => {
                     <div className='flex flex-col py-4 gap-2'>
                         <div dangerouslySetInnerHTML={{ __html: member.biografia }} />
                     </div>
-                    <a href={member.link} className='cursor-pointer text-primary-color hover:underline'>Entre em contato</a>
+                    {member.link && 
+                        <a href={member.link} className='cursor-pointer text-primary-color hover:underline'>Entre em contato</a>
+                    }
                 </section>
             </main>
         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import ContributeForm from '../../components/layout/form/ContributeForm'
 
 import Imagem1 from '../../assets/carousel/planta1.jpeg';
-import ImagemCriancas from '../../assets/about/Foto1.jpg';
+import ImagemPanoramica from '../../assets/contribute/panoramica.jpg';
 
 const Contribute = () => {
     return (
@@ -26,7 +26,7 @@ const Contribute = () => {
                     de preservação destas belas espécies tão belas e importantes para nossa biodiversidade do 
                     país. Confira abaixo a aba onde pode se cadastrar e ajudar-nos a continuar.
                     </p>
-                    <img src={ImagemCriancas} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
+                    <img src={ImagemPanoramica} alt='IMAGEM PANORÂMICA' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
                 </section>
                 <ContributeForm />
             </article>

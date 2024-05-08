@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -46,10 +46,10 @@ const About = () => {
                 <p key='2' className="text-center text-sm italic text-gray-500 mb-4">Crédito: Acervo Arca do Cerrado</p>,
                 "O Cerrado é um dos domínios naturais com maior biodiversidade do Brasil e do mundo, mas, infelizmente, tem sido negligenciado e está desprotegido. A partir deste espaço no câmpus, queremos trazer o Cerrado de volta para a vida das pessoas - já que ele fica em uma área onde o Cerrado é nativo. Tanto que ele brota em todos os cantos da universidade! A Arca do Cerrado abriga um espaço público e um convite para todos conhecermos, respeitarmos, admirarmos e preservarmos.",
                 "O espaço onde o projeto se desenvolve está em uma área urbanizada, na Área Norte, favorecendo a visitação e a contemplação de suas espécies. Há uma parte com plantas que dão frutos - todos comestíveis! - e uma parte com vegetação que tem lindas floradas! A ideia é que as pessoas percebam que as plantas do Cerrado também são ornamentais e poderiam enfeitar e enriquecer os jardins de suas casas, assim como outros espaços do câmpus. Além de sua beleza, por serem nativas, as espécies demandam menos cuidados, como regas e adubação.",
-                "Aqui, você vai encontrar um mapa interativo, em escala, que representa a localização de cada uma de nossas mudas. Para facilitar sua navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, você será direcionado para sua versão ampliada. Ali, se passar o mouse sobre um dos pontos, aparecerá uma pequena caixa com o nome da planta. Se clicar sobre um ponto, terá acesso a fotos e informações básicas da espécie. Essas informações estão disponíveis também na página espécies.",
-                "No blog, comentamos sobre espécies presentes no fragmento na Ufscar que ainda não conseguimos reproduzir ou cultivar, visitas que recebemos, novidades de germinação, plantio, florada, frutificação de nossas espécies  etc., além de informações e opiniões relativas aos temas do Cerrado, jardinagem naturalista, natureza  etc.",
-                "Costumamos visitar o local frequentemente para as atividades de manutenção e você pode saber a data do próximo encontro para nos acompanhar no nosso Instagram.",
-                "Se tiver dúvidas, sugestões ou quiser colaborar conosco, entre em contato."
+                <p> Aqui, você vai encontrar um <a className='text-blue-500' href='/mapa'> mapa interativo</a> em escala, que representa a localização de cada uma de nossas mudas. Para facilitar sua navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, você será direcionado para sua versão ampliada. Ali, se passar o mouse sobre um dos pontos, aparecerá uma pequena caixa com o nome da planta. Se clicar sobre um ponto, terá acesso a fotos e informações básicas da espécie. Essas informações estão disponíveis também na página <a className='text-blue-500' href='/especies'>espécies</a>. </p>,
+                <p> No <a className='text-blue-500' href='/blog'> blog </a>, comentamos sobre espécies presentes no fragmento na Ufscar que ainda não conseguimos reproduzir ou cultivar, visitas que recebemos, novidades de germinação, plantio, florada, frutificação de nossas espécies  etc., além de informações e opiniões relativas aos temas do Cerrado, jardinagem naturalista, natureza  etc.</p>,
+                <p> Costumamos visitar o local frequentemente para as atividades de manutenção e você pode saber a data do próximo encontro para nos acompanhar no nosso <a className='text-blue-500' href="https://www.instagram.com/aarcadocerrado/" target="_blank" rel="noopener noreferrer" > Instagram </a>.</p>,
+                <p> Se tiver dúvidas, sugestões ou quiser colaborar conosco, entre em <a className='text-blue-500' href='/facaparte'> contato </a>. </p>
             ]
         },
         {
@@ -89,7 +89,7 @@ const About = () => {
                 "Como não usamos elementos químicos para tratar as sementes nem outras técnicas artificiais de germinação e cultivo, e como não há muitos projetos que lidem com jardinagem envolvendo a vegetação de Cerrado na região, nosso conhecimento tem sido construído a partir da experiência prática.",
                 "São cerca de 100 mudas de 40 espécies, de plantas selecionadas por sua beleza paisagística ou pelo fato de produzirem frutos comestíveis. Por conta do espaço reduzido, somente espécies de porte arbustivo ou menores são escolhidas.",
                 "Muitos dos indivíduos vegetais presentes no espaço são desconhecidos da maioria das pessoas, atendendo um dos objetivos do projeto: atrair a atenção das pessoas seja pela beleza, seja pela curiosidade.",
-                "Na seção espécies  você pode conhecer algumas delas.",
+                <p> Na seção <a className='text-blue-500' href='/especies'> espécies </a>  você pode conhecer algumas delas. </p>,
                 "Para comportar o volume de trabalho e também para favorecer a manutenção, o espaço recebeu benfeitorias. A prefeitura do câmpus instalou torneiras, com material doado pela tradicional loja de materiais de São Carlos, Gualtieri. Também delimitamos o espaço com separadores, evitando o avanço da grama de áreas de jardins limítrofes.",
                 <img
                     key="Foto5"
@@ -116,7 +116,7 @@ const About = () => {
             content: ["Desde o início, realizamos visitas frequentes ao fragmento de Cerrado, aprendendo sobre a sazonalidade das espécies e sua interação com o habitat. Nessas visitas, capturamos a beleza da natureza em imagens fotográficas, gerando um banco de cerca de 5 mil fotos, que, embora de qualidade amadora, contêm um rico registro.",
                 "Realizamos a coleta de sementes, formação e plantio de mudas. Organizamos o processo de construção de sementeiras com a numeração dos tubetes e o registro das datas de coleta e plantio.",
                 "Visitamos a área para regar, capinar e realizar sua manutenção.",
-                "Em várias oportunidades, o trabalho associado à Atividade de Extensão A Arca do Cerrado tem sido divulgado para a comunidade externa e acadêmica, seja por meio de exibição de cartazes, seja por participação em palestras. Temos recebido visitas de pessoas interessadas nesse tipo de jardinagem, da comunidade acadêmica e externa: arquitetos, professores, alunos de graduação, alunos do ensino fundamental. Saiba mais no blog.",
+                <p> Em várias oportunidades, o trabalho associado à Atividade de Extensão A Arca do Cerrado tem sido divulgado para a comunidade externa e acadêmica, seja por meio de exibição de cartazes, seja por participação em palestras. Temos recebido visitas de pessoas interessadas nesse tipo de jardinagem, da comunidade acadêmica e externa: arquitetos, professores, alunos de graduação, alunos do ensino fundamental. Saiba mais no <a className='text-blue-500' href='/blog'> blog </a>.</p>,
                 <img
                     key="Foto6"
                     src={Imagem1}
@@ -133,10 +133,10 @@ const About = () => {
             content: ["Admitindo que a vida é dependente da Natureza e que o Cerrado faz parte dela, então o Cerrado herda sua importância. E, igualmente, se não é difícil associar a qualidade de vida à possibilidade de desfrutar de um ambiente integrado e sintonizado  à  Natureza, em que se possa estabelecer uma interação sinergética, então que seja assim com a presença humana no Cerrado.",
                 "E por conta desse desenlace um tanto quanto esperançoso, chegamos a uma convergência de ideias, ou seja, entre as muitas expectativas, entendemos que estão de uma forma ou outra associadas a fazer com que o Cerrado seja contemplado e valorizado como algo imprescindível. ",
                 "Assim, a Arca do Cerrado se empenha primeiramente em conquistar a atenção das pessoas de forma que aos poucos ajustem suas perspectivas e orientações, passando então a reconhecer a relevância do Cerrado, tornando-o assim merecedor de esforços para sua preservação e conservação.",
-                "Ao longo dos anos, a expectativa vem se concretizando, conforme as muitas realizações gratificantes realizadas e que você pode conhecer no blog.",
+                <p> Ao longo dos anos, a expectativa vem se concretizando, conforme as muitas realizações gratificantes realizadas e que você pode conhecer no <a className='text-blue-500' href='/blog'> blog </a>. </p>,
                 "Esperamos que o conhecimento que temos adquirido ao longo das atividades - coleta de sementes, preparação de sementes para germinação, produção de sementeiras, acompanhamento do crescimento entre outros aspectos - possam inspirar a criação de outros espaços dedicados ao cultivo e valorização do Cerrado na universidade e fora dela.",
                 "Ficaremos muito contentes se pudermos colaborar com projetos com esses objetivos. ",
-                "Se houver interesse em saber mais ou participar conosco, entre em contato [link para faça parte], se inscreva no blog para receber notícias e nos siga no Instagram.",
+                <p> Se houver interesse em saber mais ou participar conosco, entre em <a className='text-blue-500' href='/facaparte'> contato </a>, se inscreva no <a className='text-blue-500' href='/blog'> blog </a> para receber notícias e nos siga no <a className='text-blue-500' href="https://www.instagram.com/aarcadocerrado/" target="_blank" rel="noopener noreferrer" > Instagram </a>.</p>,
             ]
         },
         {
