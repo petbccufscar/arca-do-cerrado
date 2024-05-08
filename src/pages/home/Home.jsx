@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import { FaEarthAmericas, FaPagelines, FaNewspaper } from 'react-icons/fa6';
 import ContributeForm from '../../components/layout/form/ContributeForm';
 
-import ImagemCriancas from '../../assets/about/Foto1.jpg';
+import ImagemVisita from '../../assets/home/visita.jpg';
 import Imagem1 from '../../assets/home/Foto1.jpg';
 import Imagem2 from '../../assets/home/Foto2.jpg';
 import Imagem3 from '../../assets/home/Foto3.jpg';
@@ -62,7 +62,7 @@ const Home = () => {
                         entender a conviver melhor com a vegetação e os animais e que cada um de nós
                         pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
                     </p>
-                    <img src={ImagemCriancas} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
+                    <img src={ImagemVisita} alt='IMAGEM VISITA CRIANÇAS' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8"/>
                 </section>
             </article>
             <ContributeForm />

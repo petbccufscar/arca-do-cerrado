@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +11,75 @@
             background-color: #f4f4f4;
             padding: 20px;
         }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
-        h1 {
-            color: #333;
+
+        .caixa {
+            display: flex;
+            align-items: center;
+            background-color: #EAEFCC;
+            padding: 20px;
+            border-radius: 8px;
+            overflow: hidden;
         }
-        p {
-            color: #666;
+
+        .conteudo {
+            max-width: 200px;
+            max-height: 50px;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .space {
+            padding: 20px;
+        }
+
+        .imagem {
+            max-width: 40%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .logo{
+            margin-left: 80%;
+            max-height: 48px;
+        }
+
+        .esquerda {
+            text-align: right;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Nova Postagem</h1>
-        <p>Uma nova postagem foi criada no blog:</p>
-        <h2>{{ postagem.titulo }}</h2>
-        <p>Por favor, verifique o blog para mais detalhes.</p>
+        <h1>Novo post no blog!</h1>
+        <div class="caixa">
+            <img src="cid:{{ post_cid }}" alt="Imagem do post" class="imagem">
+            <div class="space">
+                <div class="logo_container">
+                    <img src="cid:{{ logo_cid }}" alt="Logo da Arca" class="logo">
+                </div>
+                <div>
+                    <h2>{{ postagem.titulo }}</h2>
+                    <p class="conteudo">{{ resumo|safe }}</p>
+                </div>
+            </div>
+        </div>
+        <h2 class="esquerda">Clique <a href="">aqui</a> para conferir</h2>
     </div>
 </body>
+
 </html>
