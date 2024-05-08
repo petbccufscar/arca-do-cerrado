@@ -5,7 +5,7 @@ import About from '../pages/about/About'
 import Blog from '../pages/blog/Blog'
 import Map from '../pages/map/Map'
 import Contribute from '../pages/contribute/Contribute'
-import Agenda from '../pages/agenda/Agenda'
+
 import Specie from '../pages/species/specie/Specie'
 import Species from '../pages/species/Species'
 import Team from '../pages/team/Team'
@@ -15,6 +15,7 @@ import Search from '../pages/search/Search'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import Page from '../pages/blog/blogPage/Page'
+import Schedule from '../pages/schedule/Schedule'
 
 export const AppRoutes = ({search}) => {
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
@@ -41,7 +42,7 @@ export const AppRoutes = ({search}) => {
             <Route path="/mapa/:id" element={<Map />}/>
             <Route path="/facaparte" element={<Contribute />}/>
             {mostrarAgenda && (
-                <Route path="/agenda" element={<Agenda />}/>
+                <Route path="/agenda" element={<Schedule />}/>
             )}
             <Route path="/especies" element={<Species />}/>
             <Route path="/especies/:id" element={<Specie />}/>

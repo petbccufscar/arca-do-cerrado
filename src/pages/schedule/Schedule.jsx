@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Agenda = () => {
+const Schedule = () => {
 	const [activities, setActivities] = useState([]);
 
 	{/*Pega as atividades do banco*/}
@@ -29,7 +29,7 @@ const Agenda = () => {
 	}
 
 	return (
-		<div className='agenda'>
+		<div className='schedule'>
 			<h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold w-full'>Agenda</h1>
 			<div className='mt-20 flex flex-col items-center justify-center'>
 				<h2 className='text-2xl font-semibold border-b-2 border-primary-color max-w-full px-2'>Próxima Atividade</h2>
@@ -57,4 +57,4 @@ const Agenda = () => {
 	);
 }
 
-export default Agenda;
+export default Schedule;
