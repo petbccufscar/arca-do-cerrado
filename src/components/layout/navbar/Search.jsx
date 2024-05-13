@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
-const Search = ({ search, setSearch, handleSearch }) => {
+const Search = ({ search, setSearch }) => {
+    const [searchOn, setSearchOn] = useState(false);
     const navigate = useNavigate();
 
     // Função para lidar com o envio do formulário de pesquisa
     const handleSubmit = (e) => {
-        handleSearch()
+        setSearchOn(!searchOn);
         if (search !== "")
             navigate('/search')
         e.preventDefault(); // Previne o comportamento padrão de envio do formulário
@@ -19,19 +20,26 @@ const Search = ({ search, setSearch, handleSearch }) => {
     };
 
     return (
-        <div className="search">
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={handleInputChange}
-                    placeholder="Digite..."
-                    className="px-2"
-                />
-                <button type='submit'>
-                    <FaMagnifyingGlass className='text-black' />
-                </button>
-            </form>
+        <div className=''>
+            {searchOn ? (
+                <form  onSubmit={handleSubmit} className='flex items-center'>
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={handleInputChange}
+                        placeholder="Digite..."
+                        className="m-0 p-0 rounded border border-zinc-300 ps-2 py-1 text-sm"
+                    />
+                    <button type='submit'>
+                        <FaMagnifyingGlass className='text-black' />
+                    </button>
+                </form>
+
+            ) : (
+                <div>
+                    <FaMagnifyingGlass onClick={() => setSearchOn(!searchOn)} />
+                </div>
+            )}
         </div>
     );
 };
