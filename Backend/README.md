@@ -172,7 +172,7 @@ Aqui estão os modelos de dados utilizados em nossa aplicação:
 
 ## Configurações do backend
 
-![Settings.py](/Backend/Arca/Arca/settings.py)
+[Settings.py](/Backend/Arca/Arca/settings.py)
 
 Este arquivo contém as configurações do Django para o projeto Arca. Aqui você pode definir variáveis de ambiente, ajustar as configurações do banco de dados, configurar a autenticação por e-mail, entre outras configurações importantes para o funcionamento do projeto.
 
@@ -222,7 +222,7 @@ O backend pode ser acessado pelo /admin, através do qual os administradores do 
 
 ## Requisitos 
 
-Os requisitos do backend estão listados no arquivo ![requirements.txt](/Backend/Arca/Arca/requirements.txt).
+Os requisitos do backend estão listados no arquivo [requirements.txt](/Backend/Arca/Arca/requirements.txt).
 
 Para atualizar este arquivo, pode ser usado o comando `pip freeze > requirements.txt` usando o pip.
 
