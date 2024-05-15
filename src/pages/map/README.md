@@ -23,3 +23,7 @@ Deste modo, informações de todas as espécies no BD são requisitadas através
 As informações das espécies são passadas para o componente `<Mapa/>` onde cada uma de suas instâncias são mapeadas na forma de pings que são agrupados como clusters de pings de acordo com sua proximidade no zoom sobre o mapa.
 
 Em `const popupContent = ReactDOMServer.renderToString(<MapCard specie={specie} />)`, presente na declaração da componente `<Mapa/>` em "components/map/index.jsx" as informações de cada espécie é estabelecida em seu card (aberto ao se clicar no ping referente à espécie).
+
+### Filtragem por ID da planta
+Acessando a url "/mapa/[id da planta]", realiza-se um processo de filtração no mapa interativo, visto em "components/map/index.tsx" no trecho de código `if(filter)`, mostrando assim no mapa, apenas os pings que representam a espécie definida por aquele ID. Tal função também pode ser acessada clicando no símbolo de ping presente no card da espécie na aba de espécies no site.
+
