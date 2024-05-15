@@ -18,30 +18,7 @@ O Arca do Cerrado é um site que visa alcançar o maior número de pessoas inter
 - **Blog:** Mantenha-se atualizado com as últimas notícias, informações sobre espécies e dados interessantes na seção de blog.
 
 ## Como Rodar
-
 Para iniciar o projeto, siga as instruções abaixo:
-
-### Backend
-
-1. Navegue até a pasta do projeto.
-   ```bash
-   cd path/to/Arca-do-Cerrado
-   ```
-2. Inicialize o servidor usando o seguinte comando:
-   ```bash
-   //windows
-   npm run backend
-   ```
-   ```bash
-   //linux
-   npm run start-server
-   ```
-
-Agora, o backend estará em execução e pronto para ser utilizado pelo frontend.
-
-### Frontend
-
-As instruções para inicializar o frontend podem variar dependendo do ambiente de desenvolvimento específico para projetos React. Geralmente, você pode usar os seguintes comandos:
 
 1. Navegue até a pasta do projeto.
    ```bash
@@ -51,9 +28,13 @@ As instruções para inicializar o frontend podem variar dependendo do ambiente 
    ```bash
    npm install
    ```
-3. Inicie o servidor de desenvolvimento.
+4. Inicie o servidor do banco de dados.
    ```bash
-   npm start
+   npm run backend
+   ```
+5. Inicie o servidor de desenvolvimento.
+   ```bash
+   npm run dev
    ```
 
 O frontend agora estará acessível em [http://localhost:5173](http://localhost:5173).
