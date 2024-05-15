@@ -1,4 +1,4 @@
-# Backend Pet-Mobile
+# Estrtutura do Projeto (Backend)
 
 ## Visão Geral
 
@@ -51,7 +51,6 @@ Todos os endpointos possuem os métodos HTTP GET, POST, PUT e DELETE.
   - 201 Created: Planta criada com sucesso
   - 404 Not Found: Planta não encontrada
   - 400 Bad Request: Solicitação inválida
-
 
 
 ## Modelos de Dados
@@ -172,57 +171,55 @@ Descrição: Representa uma imagem associada a uma planta.
 
 ## Configurações do backend
 
-![Settings.py](/Backend/Arca/Arca/settings.py)
+### [Settings.py](/Backend/Arca/Arca/settings.py)
 
 Este arquivo contém as configurações do Django para o projeto Arca. Aqui você pode definir variáveis de ambiente, ajustar as configurações do banco de dados, configurar a autenticação por e-mail, entre outras configurações importantes para o funcionamento do projeto.
 
-#### Variáveis de Ambiente  
+### Variáveis de Ambiente  
 As variáveis de ambiente são usadas para manter informações sensíveis fora do código-fonte. Isso inclui chaves secretas, configurações de e-mail, entre outros. No arquivo settings.py, algumas dessas variáveis são definidas diretamente.
 
-#### DEBUG
+### DEBUG
 O modo DEBUG controla se o Django está em modo de depuração ou não. Em ambientes de produção, este valor deve ser definido como False para garantir a segurança do sistema.
 
-#### ALLOWED_HOSTS
+### ALLOWED_HOSTS
 A lista de hosts permitidos que podem se comunicar com o servidor Django. Isso é importante para prevenir ataques de host spoofing.
 
-#### CORS_ALLOWED_ORIGINS
+### CORS_ALLOWED_ORIGINS
 Lista de origens permitidas para comunicação de recursos de origens cruzadas (CORS). Isso é útil para permitir que clientes web acessem recursos da API a partir de diferentes domínios.
 
-#### MEDIA_URL e MEDIA_ROOT
+### MEDIA_URL e MEDIA_ROOT
 As configurações MEDIA_URL e MEDIA_ROOT controlam o armazenamento e o acesso a arquivos de mídia, como imagens e vídeos enviados pelos usuários.
 
-#### EMAIL_BACKEND e configurações de e-mail
+### EMAIL_BACKEND e configurações de e-mail
 Estas configurações controlam o backend de e-mail usado pelo Django para enviar e-mails, juntamente com as configurações específicas do servidor de e-mail, como host, porta e credenciais.
 
-#### CKEditor e CKEditor Uploader
+### CKEditor e CKEditor Uploader
 Configurações relacionadas ao CKEditor, um editor de texto enriquecido usado para entrada de conteúdo. As configurações incluem a versão do CKEditor, o caminho de upload de arquivos e outras opções de configuração.
 
-#### INSTALLED_APPS
+### INSTALLED_APPS
 Lista de aplicativos instalados no projeto Django. Isso inclui os aplicativos padrão do Django, bem como aplicativos de terceiros adicionais.
 
-#### MIDDLEWARE
+### MIDDLEWARE
 Lista de middlewares usados para processar solicitações HTTP e respostas antes e depois que elas atingem as views. Isso inclui middlewares de segurança, middleware CORS e outros.
 
-#### DATABASES
+### DATABASES
 Configurações do banco de dados usado pelo Django. Neste caso, está configurado para usar SQLite3 como o banco de dados padrão.
 
-#### STATICFILES_DIRS e STATIC_URL
+### STATICFILES_DIRS e STATIC_URL
 Configurações relacionadas aos arquivos estáticos, como CSS, JavaScript e imagens. STATICFILES_DIRS define os diretórios onde os arquivos estáticos são armazenados, enquanto STATIC_URL define o URL base para acessar esses arquivos.
 
-#### LOGGING
+### LOGGING
 Configurações de logging para o projeto Django. Isso inclui o nível de log, o formato do log e o destino do log.
 
-#### JAZZMIN_SETTINGS
+### JAZZMIN_SETTINGS
 Configurações personalizadas para o painel de administração do Django. Essas configurações controlam a aparência e o comportamento do painel de administração.
 
-
 ## Admin
-
 O backend pode ser acessado pelo /admin, através do qual os administradores do site podem fazer login e fazer alterações no banco de dados. 
 
 ## Requisitos 
 
-Os requisitos do backend estão listados no arquivo ![requirements.txt](/Backend/Arca/Arca/requirements.txt).
+Os requisitos do backend estão listados no arquivo [requirements.txt](/Backend/Arca/Arca/requirements.txt).
 
 Para atualizar este arquivo, pode ser usado o comando `pip freeze > requirements.txt` usando o pip.
 
