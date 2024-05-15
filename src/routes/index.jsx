@@ -1,21 +1,20 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-
-import Home from '../pages/home/Home'
-import About from '../pages/about/About'
-import Blog from '../pages/blog/Blog'
-import Map from '../pages/map/Map'
-import Contribute from '../pages/contribute/Contribute'
-
-import Specie from '../pages/species/specie/Specie'
-import Species from '../pages/species/Species'
-import Team from '../pages/team/Team'
-import Subscribe from '../pages/subscribe/Subscribe'    
-import Member from '../pages/team/member/Member'
-import Search from '../pages/search/Search'
 import { useEffect, useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import axios from 'axios';
+
+import Home from '../pages/home'
+import About from '../pages/about'
+import Blog from '../pages/blog'
+import Map from '../pages/map'
+import Contribute from '../pages/contribute'
+import Specie from '../pages/species/specie'
+import Species from '../pages/species'
+import Team from '../pages/team'
+import Subscribe from '../pages/subscribe'    
+import Member from '../pages/team/member'
+import Search from '../pages/search'
 import Page from '../pages/blog/blogPage/Page'
-import Schedule from '../pages/schedule/Schedule'
+import Schedule from '../pages/schedule'
 
 export const AppRoutes = ({search}) => {
     const [mostrarAgenda, setMostrarAgenda] = useState(true);

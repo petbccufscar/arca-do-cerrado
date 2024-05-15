@@ -90,7 +90,7 @@ const Search = ({ search }) => {
     }
 
     return (
-        <div>
+        <div className='min-h-screen'>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Resultados de pesquisa</h1>
             <div className='flex justify-center gap-4 mt-4'>
                 <label htmlFor="sourceSelect">Selecionar fonte:</label>
