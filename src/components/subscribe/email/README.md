@@ -5,7 +5,7 @@ Neste arquivo ReadMe estaremos explicando como funciona o envio de *emails* dent
 
 ## [EmailJS](https://www.emailjs.com/)
 
- A biblioteca EmailJS foi utilizada para implementação do *Newsletter* da Arca do Cerrado, utilizando suas funções no arquivo EmailJS.jsx explicado abaixo
+A biblioteca EmailJS foi utilizada para implementação do *Newsletter* da Arca do Cerrado, utilizando suas funções no arquivo EmailJS.jsx explicado abaixo
  * `emailjs.send`
     * Utilizado para enviar o *email* em questão
 
