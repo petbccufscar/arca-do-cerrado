@@ -1,10 +1,24 @@
 # Arca do Cerrado - Especificações
-
 O Arca do Cerrado é um site que visa alcançar o maior número de pessoas interessadas na preservação e conhecimento da biodiversidade do Cerrado. Oferecemos um mapa interativo em escala que representa a localização de cada uma de nossas mudas. Para facilitar a navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, os usuários serão direcionados para a versão ampliada, onde ao passar o mouse sobre um ponto, será exibida uma pequena caixa com o nome da planta. Ao clicar sobre um ponto, terão acesso a fotos e informações básicas da espécie. Essas informações também estão disponíveis na seção “espécies” do blog.
+
+## Equipe 
+### Arca do Cerrado
+- Mauricio ()
+- Lara  ()
+
+### Desenvolvimento
+- Caio Cadini ()
+- Giullio Gerolamo ()
+- João Otávio Langer ()
+- Jorge Pires ()
+
+
+## Recursos
+
 
 ## Implementação
 Este projeto foi desenvolvido utilizando **ReactJS** para a construção da interface de usuário e [**Tailwind CSS**](https://tailwindcss.com) para a estilização. Para o banco
-de dados foi utilizado o [Django](https://www.djangoproject.com) em *Python*.
+de dados foi utilizado o [**Django**](https://www.djangoproject.com) em *Python*.
 
 ### Dependências
 
@@ -32,24 +46,27 @@ de dados foi utilizado o [Django](https://www.djangoproject.com) em *Python*.
   - Utilizado para criar carrosséis.
   
 ### Estrutura do Projeto
+#### Backend
 
-#### /assets
+
+#### Frontend
+##### /assets
 Contém todas as imagens utilizadas no projeto, incluindo aquelas exibidas nas páginas "Sobre", "Home", "Contribua", além das imagens do mapa e as logos.
 
-#### /components
+##### /components
 Contém os componentes gerais do projeto. Está dividido em subpastas:
 
 - **paginas**: Componentes específicos de cada página.
 - **layout**: Componentes gerais como `Footer`, `Form`, `Loading` e `Navbar`.
 
-#### /pages
+##### /pages
 Contém as páginas do projeto.
 
-#### /routes
+##### /routes
 Define as rotas do projeto.
 
-#### /styles
+##### /styles
 Define os estilos globais do projeto.
 
-#### /utils
+##### /utils
 Contém funções reutilizáveis no projeto.
