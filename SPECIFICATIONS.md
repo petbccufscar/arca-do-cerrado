@@ -3,14 +3,14 @@ O Arca do Cerrado é um site que visa alcançar o maior número de pessoas inter
 
 ## Equipe 
 ### Arca do Cerrado
-- Mauricio ()
-- Lara  ()
+- Mauricio
+- Lara
 
 ### Desenvolvimento
-- Caio Cadini ()
-- Giullio Gerolamo ()
-- João Otávio Langer ()
-- Jorge Pires ()
+- Caio Cadini
+- Giullio Gerolamo
+- João Otávio Langer
+- Jorge Pires
 
 
 ## Recursos
