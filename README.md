@@ -5,11 +5,11 @@
 [![npm](https://img.shields.io/badge/npm-CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
 <img src="https://raw.githubusercontent.com/petbccufscar/.github/main/profile/icon.png" align="right" />
 
-Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React e Tailwind CSS, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na Universidade Federal de São Carlos. O projeto consiste em um website responsivo com diversas funcionalidades e que conta com um mapa interativo do arca.
+Bem-vindo ao repositório do projeto Arca do Cerrado! Este projeto, desenvolvido em React e Tailwind CSS, tem como objetivo principal divulgar os resultados do trabalho realizado na Atividade de Extensão "A Arca do Cerrado" na *Universidade Federal de São Carlos*. O projeto consiste em um website responsivo com diversas funcionalidades e que conta com um mapa interativo do arca.
 
 ## Sobre o Projeto
 
-O Arca do Cerrado é um site que visa alcançar o maior número de pessoas interessadas na preservação e conhecimento da biodiversidade do Cerrado. Oferecemos um mapa interativo em escala que representa a localização de cada uma de nossas mudas. Para facilitar a navegação, apresentamos uma imagem ilustrativa do mapa local. Ao escolher um dos quadrantes, os usuários serão direcionados para a versão ampliada, onde ao passar o mouse sobre um ponto, será exibida uma pequena caixa com o nome da planta. Ao clicar sobre um ponto, terão acesso a fotos e informações básicas da espécie. Essas informações também estão disponíveis na seção “espécies” do blog.
+O Arca do Cerrado é um site que visa alcançar o maior número de pessoas interessadas na preservação e conhecimento da biodiversidade do Cerrado. Oferecemos um mapa interativo em escala que representa a localização de cada uma de nossas mudas. Para facilitar a navegação, apresentamos uma imagem ilustrativa do mapa local. Ao clicar, o mapa interativo é apresentado, possibilitando o usuário a navegar entre as especies. Ao clicar em um pin, é mostrado as informações indiviuais. Essas informações também estão disponíveis na seção “espécies” do blog.
 
 ## Recursos Principais
 
