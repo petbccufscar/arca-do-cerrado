@@ -15,6 +15,12 @@ O Arca do Cerrado é um site que visa alcançar o maior número de pessoas inter
 
 ## Recursos
 
+### Mapa Interativo
+Para implementação do mapa interativo personalizado foi utilizada a biblioteca [**react-leaflet**](https://react-leaflet.js.org/docs/start-introduction/) em combinação com a biblioteca axios para chamada da API do site com o objetivo de obter informações das plantas registradas no backend.
+
+
+### Envio de Email
+
 
 ## Implementação
 Este projeto foi desenvolvido utilizando **ReactJS** para a construção da interface de usuário e [**Tailwind CSS**](https://tailwindcss.com) para a estilização. Para o banco
