@@ -13,7 +13,7 @@ O Arca do Cerrado é um site que visa alcançar o maior número de pessoas inter
 
 ## Recursos Principais
 
-- **Mapa Interativo:** Explore a localização das mudas em um mapa interativo em escala.
+- **Mapa Interativo:** Explore a localização das mudas em um mapa interativo em escala. 
 - **Informações Detalhadas:** Obtenha informações detalhadas sobre cada espécie ao clicar nos pontos do mapa.
 - **Blog:** Mantenha-se atualizado com as últimas notícias, informações sobre espécies e dados interessantes na seção de blog.
 
@@ -39,9 +39,27 @@ Para iniciar o projeto, siga as instruções abaixo:
 
 O frontend agora estará acessível em [http://localhost:5173](http://localhost:5173).
 
+## Documentação 
 
-Agradecemos por apoiar a preservação do Cerrado e por fazer parte da comunidade Arca do Cerrado!
+### Especificações Totais
+Documentação gerais, contém todas as informações necessárias para entender o projeto.
+- Saiba mais em [`/SPECIFICATIONS.md`](/SPECIFICATIONS.md)
 
+### Estrutura do Projeto (Frontend)
+Documentação sobre a estrutura das pastas do frontend e as dependências utilizadas.
+- Saiba mais em [`/src/README.md`](/src/README.md)
+
+### Estrutura do Projeto (Backend)
+Documentação completa sobre o backend.
+- Saiba mais em [`/Backend/README.md`](/Backend/README.md)
+
+### Email
+Documentação completa sobre os envios de email.
+- Saiba mais em [`/src/components/subscribe/email/README.md`](/src/components/subscribe/email/README.md)
+
+### Mapa Interativo
+Documentação completa sobre o mapa interativo.
+- Saiba mais em [`/src/pages/map/README.md`](/src/pages/map/README.md)
 
 ## Contato
 
@@ -50,3 +68,5 @@ Se você tiver alguma dúvida, sugestão ou precisar de suporte, por favor, sint
 - **E-mail:** petbcc.ufscar@gmail.com
 
 Você também pode criar uma **Issue** no [GitHub](https://github.com/petbccufscar/arca-do-cerrado/issues) para relatar problemas, sugerir melhorias ou contribuir para o desenvolvimento do Arca do Cerrado. Estamos sempre abertos para receber feedback e colaboração. Obrigado!
+
+Agradecemos por apoiar a preservação do Cerrado e por fazer parte da comunidade Arca do Cerrado!
