@@ -73,21 +73,21 @@ Aqui estão os modelos de dados utilizados em nossa aplicação:
 - **Descrição**: Representa as coordenadas de uma planta no mapa.
 
 - **Campos**:
-  - planta: ForeignKey para Planta - A planta relacionada às coordenadas.
-  - posicao_x: FloatField - A posição X da planta.
-  - posicao_y: FloatField - A posição Y da planta.
+  - **planta**: ForeignKey para Planta - A planta relacionada às coordenadas.
+  - **posicao_x**: FloatField - A posição X da planta.
+  - **posicao_y**: FloatField - A posição Y da planta.
 
 
 ### ImagemPlanta
 
-Descrição: Representa uma imagem associada a uma planta.
+- **Descrição**: Representa uma imagem associada a uma planta.
 
 - **Campos**:
   
-  - planta: ForeignKey para Planta - A planta associada à imagem.
-  - imagem: ImageField - A imagem da planta.
-  - descricao: CharField - Uma descrição da imagem (opcional).
-  - tags: CharField - Tags relacionadas à imagem (opcional), as tags são usadas para inserção de características da imagem que podem ser usadas para a busca. 
+  - **planta**: ForeignKey para Planta - A planta associada à imagem.
+  - **imagem**: ImageField - A imagem da planta.
+  - **descricao**: CharField - Uma descrição da imagem (opcional).
+  - **tags**: CharField - Tags relacionadas à imagem (opcional), as tags são usadas para inserção de características da imagem que podem ser usadas para a busca. 
 
 ### Mensagem
 
