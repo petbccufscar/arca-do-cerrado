@@ -13,7 +13,6 @@ dist-ssr
 *.local
 
 # Ambiente virtual
-
 Backend/Arca/venv/
 
 # Editor directories and files
@@ -26,5 +25,8 @@ Backend/Arca/venv/
 *.njsproj
 *.sln
 *.sw?
+
+# Senhas
+.env
 
 Arca-do-Cerrado-backend/
