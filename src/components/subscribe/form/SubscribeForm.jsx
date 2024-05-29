@@ -21,19 +21,18 @@ const SubscribeForm = () => {
                 nome,
                 email,
             });
-
             if (response.status >= 200 && response.status < 300) {
                 sendEmail({
-                    to_email: 'joao.moraes@estudante.ufscar.br',
+                    to_email: import.meta.env.VITE_EMAIL_ARCA,
                     subject: 'Novo inscrito no blog!',
                     message: AvisoInscricao({ name: nome }),
-                }, 'template_eyao4vt');
+                });
 
                 sendEmail({
                     to_email: email,
                     subject: 'Obrigado por se inscrever',
                     message: ConfirmaInscricao({ name: nome }),
-                }, 'template_eyao4vt');
+                });
 
                 setSuccess('Obrigado por se inscrever!');
             } else {
@@ -102,7 +101,7 @@ const SubscribeForm = () => {
                     </button>
                     {success && <p className="text-green-600">{success}</p>}
                     {error && <p className="text-red-600">{error}</p>}
-                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="text-blue-500" onClick={handleCancelSubscription}>clique aqui</button>.</p>
+                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="p-0 text-gray-700 hover:text-blue-500" onClick={handleCancelSubscription}> clique aqui</button>.</p>
                 </form>
             </div>
         </section>

@@ -32,10 +32,10 @@ const ContributeForm = () => {
             }
 
             await sendEmail({
-                to_email: 'joao.moraes@estudante.ufscar.br',
+                to_email: process.env.EMAIL_ARCA,
                 subject: assunto,
                 message: AvisoMensagem({ email: email, mensagem: mensagem }),
-            }, 'template_eyao4vt');
+            }, process.env.EMAILJS_TEMPLATE);
 
             await axios.post('http://127.0.0.1:8000/api/Mensagem/', {
                 assunto: assunto,
