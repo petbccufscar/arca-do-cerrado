@@ -48,7 +48,7 @@ const Navbar = ({ search, setSearch }) => {
         {
             name: 'Sobre', path: '/sobre', icon: <FaQuestion />,
             drop: [
-                { name: "Apresentação do site", path: "/sobre/1" },
+                { name: "Apresentação do site", path: "/sobre/#1" },
                 { name: "Descrição da área", path: "/sobre/#2" },
                 { name: "Histórico", path: "/sobre/#3" },
                 { name: "Atividades", path: "/sobre/#4" },
@@ -66,22 +66,32 @@ const Navbar = ({ search, setSearch }) => {
 
     return (
         <div className='flex items-center justify-between p-2 px-3.5'>
-            <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
-                <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
-            </div>
             {isMobile ? (
                 <>
-                    <FaBars onClick={handleToggle} />
+                    {!isOpen &&
+                        <FaBars onClick={handleToggle} />
+                    }
                     {isOpen && (
-                        <Sidebar
-                            links={links.filter(link => link.name !== 'Agenda' || mostrarAgenda)}
-                            handleToggle={handleToggle}
-                            isOpen={isOpen}
-                        />
+                        <div>
+                            <Sidebar
+                                links={links.filter(link => link.name !== 'Agenda' || mostrarAgenda)}
+                                handleToggle={handleToggle}
+                                isOpen={isOpen}
+                            />
+                            <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
+                                <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                            </div>
+                        </div>
                     )}
+                    <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
+                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                    </div>
                 </>
             ) : (
                 <div className='flex gap-8 items-center z-40'>
+                    <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
+                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                    </div>
                     <div className='flex items-center gap-4'>
                         {links.map((link, index) => (
                             <div key={index}>
@@ -90,7 +100,7 @@ const Navbar = ({ search, setSearch }) => {
                                 ) : (
                                     <Link
                                         to={link.path}
-                                        className={`flex gap-1 items-center ${location.pathname === link.path ? 'border-b border-primary-color ' : 'hover:text-primary-color'}`}
+                                        className={`flex gap-1 items-center ${location.pathname.startsWith(link.path) ? 'border-b border-primary-color ' : 'hover:text-primary-color'}`}
                                     >
                                         {link.name}
                                     </Link>

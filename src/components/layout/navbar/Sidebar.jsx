@@ -33,9 +33,7 @@ const Sidebar = ({ links, handleToggle }) => {
     return (
         <div className="flex flex-col fixed top-0 left-0 bg-white justify-between h-full z-20 p-4" ref={sidebarRef}>
             <div className="flex flex-col gap-2">
-                <div className="flex items-center" onClick={redirectToHome}>
-                    <img src="../src/assets/logos/arcaText.png" alt="Logo Arca" className='h-12' />
-                </div>
+                <FaXmark onClick={handleToggle} />
 
                 {links.map(link => (
                     <div key={link.path}>
@@ -81,7 +79,6 @@ const Sidebar = ({ links, handleToggle }) => {
                     </div>
                 ))}
             </div>
-            <FaXmark onClick={handleToggle} />
         </div>
     );
 };
