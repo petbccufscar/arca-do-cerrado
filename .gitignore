@@ -28,5 +28,6 @@ Backend/Arca/venv/
 
 # Senhas
 .env
+Backend/Arca/.env
 
 Arca-do-Cerrado-backend/
