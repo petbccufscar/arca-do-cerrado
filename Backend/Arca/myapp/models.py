@@ -7,10 +7,9 @@ from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import logging
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.http import JsonResponse
-from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 import os
 from email.mime.image import MIMEImage
@@ -75,7 +74,6 @@ class Equipe(models.Model):
     
 class Atividade(models.Model):
     titulo = models.CharField(max_length=100)
-    imagem = models.ImageField(upload_to='imagens_atividade/')
     descricao = RichTextUploadingField()
     autores_equipe = models.ManyToManyField(Equipe, blank=True)
     data = models.DateField()
