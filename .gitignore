@@ -15,6 +15,14 @@ dist-ssr
 # Ambiente virtual
 Backend/Arca/venv/
 
+# Ignore Python cache files
+__pycache__/
+*/__pycache__/
+*.py[cod]
+
+# Ignore migrations
+migrations/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
