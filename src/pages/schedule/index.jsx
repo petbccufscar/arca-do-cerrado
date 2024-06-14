@@ -1,39 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import React from 'react';
 import Loading from '../../components/layout/loading';
+import useAtividade from '../../hooks/useAtividades';
 
 const Schedule = () => {
-    const [activities, setActivities] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { atividades, error, isLoading } = useAtividade();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Atividade/');
-                setActivities(response.data);
-            } catch (error) {
-                console.error('Error fetching upcoming activities:', error);
-                setError('Erro ao buscar atividades. Tente novamente mais tarde.');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    if (loading) {
+    if (isLoading) {
         return <Loading />;
     }
 
     if (error) {
-        return <div>{error}</div>;
+        return <div>{error.message}</div>;
     }
 
-    activities.sort((a, b) => new Date(a.data) - new Date(b.data));
-    const [firstActivity, ...remainingActivities] = activities;
+    // Ordenar as atividades por data
+    atividades.sort((a, b) => new Date(a.data) - new Date(b.data));
+
+    // Extrair a primeira atividade e as demais
+    const [firstActivity, ...remainingActivities] = atividades;
 
     function formatarData(data) {
         var partesData = data.split('-');
@@ -50,7 +34,7 @@ const Schedule = () => {
                 <h2 className='text-2xl font-semibold border-b-2 border-primary-color max-w-full px-2'>Próxima Atividade</h2>
 
                 {firstActivity && (
-                    <div className=' rounded-md bg-primary-color mt-8 mb-8 p-5 text-center' key={firstActivity.id}>
+                    <div className='rounded-md bg-primary-color mt-8 mb-8 p-5 text-center' key={firstActivity.id}>
                         <h3 className='text-xl text-white font-semibold'>{firstActivity.titulo}</h3>
                         <p className='text-white' dangerouslySetInnerHTML={{ __html: firstActivity.descricao.replace(/&nbsp;/g, ' ') }} />
                         <p className='text-white'>Data: {formatarData(firstActivity.data)}</p>

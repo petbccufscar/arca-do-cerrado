@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import useEquipe from '../../../hooks/useEquipe';
+import usePosts from '../../../hooks/usePosts';
 
 import { formatDate } from '../../../utils/FormatDateUtils';
 import Loading from '../../../components/layout/loading';
@@ -8,8 +9,9 @@ import LogoArca from '../../../assets/logos/arca.png';
 
 const Page = () => {
     const { id } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
+    const { posts, isLoading: postsLoading, error: postsError } = usePosts();
     const [post, setPost] = useState(null);
+    const { equipe, isLoading: equipeLoading, error: equipeError } = useEquipe();
     const [autor, setAutor] = useState({
         imagem: LogoArca,
         nome: 'Arca do Cerrado',
@@ -17,30 +19,35 @@ const Page = () => {
     });
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setIsLoading(true);
-                const response = await axios.get(`http://127.0.0.1:8000/api/Postagem/${id}`);
-                setPost(response.data);
-
-                const responseEquipe = await axios.get(`http://127.0.0.1:8000/api/Equipe/${response.data.autor_equipe}`);
-                setAutor(responseEquipe.data);
-            } catch (error) {
-                console.error('Error fetching post data:', error);
-                // Tratamento de erro aqui, por exemplo, definir um estado de erro
-            } finally {
-                setIsLoading(false);
+        if (posts && equipe) {
+            const postEncontrado = posts.find(post => post.id.toString() === id.toString());
+            if (postEncontrado) {
+                setPost(postEncontrado);
+                if (postEncontrado.autor_equipe){
+                    const autorEncontrado = equipe.find(autor => autor.id.toString() === postEncontrado.autor_equipe.toString());
+                    if (autorEncontrado) {
+                        setAutor(autorEncontrado);
+                    }
+                }
+            } else {
+                console.warn(`Post com id ${id} não encontrado.`);
             }
-        };
+        }
+    }, [posts, equipe, id]);
 
-        fetchData();
-    }, [id]);
-
-    if (isLoading) {
+    if (equipeLoading || postsLoading) {
         return <Loading />;
     }
 
-    const { titulo, data, imagem, conteudo, link } = post || {};
+    if (equipeError || postsError) {
+        return <div>Erro ao carregar os dados: {equipeError?.message || postsError?.message}</div>;
+    }
+
+    if (!post) {
+        return <div>Postagem não encontrada ou ainda carregando...</div>;
+    }
+
+    const { titulo, data, imagem, conteudo, link } = post;
 
     let perfilAutorLink = autor.id ? `/equipe/${autor.id}` : '/home';
 

@@ -1,67 +1,15 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
-import sendEmail from '../email/EmailJS.jsx';
-import AvisoInscricao from '../email/folder/avisoInscricao.jsx';
-import ConfirmaInscricao from '../email/folder/confirmaInscricao.jsx';
+import useInscritos from '../../../hooks/useInscritos';
 
 const SubscribeForm = () => {
     const [email, setEmail] = useState('');
     const [nome, setNome] = useState('');
-    const [submitting, setSubmitting] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState(null);
+
+    const { success, error, isLoading: submitting, createInscrito, deleteInscrito } = useInscritos();
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
-        setSubmitting(true);
-
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/Inscrito/', {
-                nome,
-                email,
-            });
-            if (response.status >= 200 && response.status < 300) {
-                sendEmail({
-                    to_email: import.meta.env.VITE_EMAIL_ARCA,
-                    subject: 'Novo inscrito no blog!',
-                    message: AvisoInscricao({ name: nome }),
-                });
-
-                sendEmail({
-                    to_email: email,
-                    subject: 'Obrigado por se inscrever',
-                    message: ConfirmaInscricao({ name: nome }),
-                });
-
-                setSuccess('Obrigado por se inscrever!');
-            } else {
-                throw new Error('Erro ao processar a inscrição. Por favor, tente novamente.');
-            }
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setSubmitting(false);
-        }
-    };
-
-    const handleCancelSubscription = async () => {
-        const email = window.prompt('Por favor, insira seu e-mail para cancelar a inscrição:');
-
-        try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/Inscrito?email=${email}`);
-
-            if (response.status === 200 && response.data.length > 0) {
-                const inscritoId = response.data[0].id;
-                await axios.delete(`http://127.0.0.1:8000/api/Inscrito/${inscritoId}`);
-                alert('Inscrição cancelada com sucesso!');
-            } else {
-                alert('Email não encontrado na lista de inscritos.');
-            }
-        } catch (error) {
-            console.error('Erro ao verificar a inscrição:', error);
-            alert('Ocorreu um erro ao verificar a inscrição. Por favor, tente novamente mais tarde.');
-        }
+        await createInscrito([nome, email]);
     };
 
     return (
@@ -101,7 +49,7 @@ const SubscribeForm = () => {
                     </button>
                     {success && <p className="text-green-600">{success}</p>}
                     {error && <p className="text-red-600">{error}</p>}
-                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="p-0 text-gray-700 hover:text-blue-500" onClick={handleCancelSubscription}> clique aqui</button>.</p>
+                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="p-0 text-gray-700 hover:text-blue-500" onClick={deleteInscrito}> clique aqui</button>.</p>
                 </form>
             </div>
         </section>

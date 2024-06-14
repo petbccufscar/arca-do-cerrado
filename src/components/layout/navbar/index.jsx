@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import useConfiguracao from '../../../hooks/useConfiguracao';
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown, FaUsers } from 'react-icons/fa6';
 
@@ -8,23 +9,18 @@ import Sidebar from './Sidebar';
 import MenuDropdown from './MenuDropdwon';
 
 const Navbar = ({ search, setSearch }) => {
+    const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const [isMobile, setIsMobile] = useState(false);
-    const [mostrarAgenda, setMostrarAgenda] = useState(false);
+    const [mostrarAgenda, setMostrarAgenda] = useState(true);
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8000/api/Configuracao/4');
-                setMostrarAgenda(response.data.mostrar_agenda);
-            } catch (error) {
-                console.error('Erro ao buscar configuração:', error);
-            }
-        };
-        fetchData();
-    }, []);
+        if (!configuracaoLoading && !configuracaoError && configuracao) {
+            setMostrarAgenda(configuracao.mostrar_agenda);
+        }
+    }, [configuracao, configuracaoLoading, configuracaoError]);
 
     useEffect(() => {
         const checkWindowSize = () => {

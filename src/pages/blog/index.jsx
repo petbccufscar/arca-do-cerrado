@@ -1,33 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import usePosts from '../../hooks/usePosts';
 
 import Loading from '../../components/layout/loading';
 import Post from '../../components/blog/Post';
 
 const Blog = () => {
-    const [postsData, setPostsData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const {posts, isLoading} = usePosts();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Postagem');
-                setPostsData(response.data.reverse());
-            } catch (error) {
-                console.error('Erro ao buscar dados das postagens:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-    if (loading) {
-        return <Loading />;
-    }
+    if(isLoading)
+        return <Loading/>;
 
     const goToSubscribe = () => navigate('/inscrever');
 
@@ -41,8 +24,8 @@ const Blog = () => {
                 </section>
 
                 <section className='flex flex-col gap-8 mt-8'>
-                    {postsData.length > 0 ? (
-                        postsData.map(post => (
+                    {posts.length > 0 ? (
+                        posts.map(post => (
                             <Post key={post.id} post={post} />
                         ))
                     ) : (

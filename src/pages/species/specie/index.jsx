@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import usePlantas from '../../../hooks/usePlantas';
 import { FaSeedling } from 'react-icons/fa6';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Loading from '../../../components/layout/loading/';
-
 
 // Componente Header, responsável por renderizar o cabeçalho da espécie com um slider de imagens
 const Header = ({ specie }) => {
@@ -32,46 +31,46 @@ const Header = ({ specie }) => {
 
 // Componente Specie, responsável por renderizar os detalhes de uma espécie
 const Specie = () => {
-    const { id } = useParams(); 
-    const [isLoading, setIsLoading] = useState(true); 
-    const [specie, setSpecie] = useState(null); 
+    const { id } = useParams();
+    const { plantas, isLoading: plantasLoading, error } = usePlantas();
+    const [planta, setPlanta] = useState(null);
 
     useEffect(() => {
-        // Função assíncrona para buscar os dados da espécie com base no 'id'
-        const fetchData = async () => {
-            try {
-                setIsLoading(true); 
-                const response = await axios.get(`http://127.0.0.1:8000/api/Planta/${id}`); 
-                setSpecie(response.data); 
-            } catch (error) {
-                console.error('Error fetching species data:', error); 
-            } finally {
-                setIsLoading(false); // Define isLoading como false após o carregamento ser concluído
+        if (plantas) {
+            const plantaEncontrada = plantas.find(planta => planta.id.toString() === id.toString());
+            if (plantaEncontrada) {
+                setPlanta(plantaEncontrada);
+            } else {
+                console.warn(`Planta com id ${id} não encontrada.`);
             }
-        };
+        }
+    }, [plantas, id]);
 
-        fetchData(); // Chama a função fetchData ao montar o componente ou sempre que 'id' mudar
-    }, [id]);
-
-    // Renderiza uma mensagem de carregamento enquanto isLoading é true
-    if (isLoading) {
-        return <Loading/>;
+    if (plantasLoading) {
+        return <Loading />;
     }
 
-    // Renderiza os detalhes da espécie após o carregamento
+    if (error) {
+        return <div>Erro ao carregar as plantas: {error.message}</div>;
+    }
+
+    if (!planta) {
+        return <div>Planta não encontrada ou ainda carregando...</div>;
+    }
+
     return (
         <div>
-            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>{specie.apelido}</h1>
+            <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>{planta.apelido}</h1>
             <main className='flex flex-col sm:flex-row py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
-                <Header specie={specie}/>
+                <Header specie={planta} />
                 <section>
-                    <h2 className='text-2xl font-semibold'>{specie.apelido}</h2>
-                    <p className='flex items-center gap-2 text-neutral-500'><FaSeedling/> {specie.nome_cientifico}</p>
+                    <h2 className='text-2xl font-semibold'>{planta.apelido}</h2>
+                    <p className='flex items-center gap-2 text-neutral-500'><FaSeedling /> {planta.nome_cientifico}</p>
                     <div className='flex flex-col py-4 gap-2 '>
                         <h3 className='text-xl'>Descrição</h3>
-                        <div dangerouslySetInnerHTML={{ __html: specie.texto }} />
+                        <div dangerouslySetInnerHTML={{ __html: planta.texto }} />
                     </div>
-                    <a href={`/mapa/${specie.id}`} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
+                    <a href={`/mapa/${planta.id}`} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
                 </section>
             </main>
         </div>

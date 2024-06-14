@@ -1,45 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import usePlantas from '../../hooks/usePlantas';
 
 import SpecieCard from '../../components/species/SpecieCard';
 import Loading from '../../components/layout/loading';
 
 const Species = () => {
+    const { plantas, isLoading: plantasLoading } = usePlantas();
     const [speciesData, setSpeciesData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    {/*Pega as plantas do banco*/}
+    
     useEffect(() => {
-        // Função assíncrona para buscar os dados das espécies 
-        const fetchData = async () => {
-            try {
-                setIsLoading(true); 
-                const response = await axios.get(`http://127.0.0.1:8000/api/Planta/`); 
-                // Pega apenas a primeira imagem de cada planta
-                const speciesWithImage = response.data.map(species => ({
-                    ...species,
-                    imagens: species.imagens || '',
-                }));
+        console.log('Useffect triggered');
+        if (plantas){
+            console.log(plantas);
+            const sortedSpeciesData = plantas.sort((a, b) => a.apelido.localeCompare(b.apelido));
+            setSpeciesData(sortedSpeciesData);
+        }
+    }, [plantas])
 
-                // Ordenar os dados pelo apelido antes de atualizar o estado
-                const sortedSpeciesData = speciesWithImage.sort((a, b) => a.apelido.localeCompare(b.apelido));
-
-                setSpeciesData(sortedSpeciesData);
-            } catch (error) {
-                console.error('Error fetching species data:', error);
-            } finally {
-                setIsLoading(false); // Define isLoading como false após o carregamento ser concluído
-            }
-        };
-
-        fetchData(); // Chama a função fetchData ao montar o componente ou sempre que 'id' mudar
-    }, []);
-
-    // Renderiza uma mensagem de carregamento enquanto isLoading é true
-    if (isLoading) {
+    if (plantasLoading){
         return <Loading/>;
     }
-
     return (
         <div className='flex flex-col min-h-screen w-full'>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold w-full'>Espécies</h1>

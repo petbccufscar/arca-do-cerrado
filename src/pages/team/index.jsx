@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
+import useEquipe from '../../hooks/useEquipe';
 import Loading from '../../components/layout/loading';
 
 const Person = ({ personName, personImage, personId }) => {
@@ -21,48 +20,37 @@ const Person = ({ personName, personImage, personId }) => {
 };
 
 const Team = () => {
-    const [teamData, setTeamData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { equipe, isLoading: equipeLoading } = useEquipe();
+    const [coordenador, setCoordenador] = useState(null);
+    const [membros, setMembros] = useState([]);
 
-    // Pega os dados da quipe do banco 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Equipe');
-                setTeamData(response.data);
-            } catch (error) {
-                console.error('Erro ao buscar dados da equipe:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+        if (equipe) {
+            // Busca o coordenador
+            setCoordenador(equipe.find(person => person.cargo === 'Coordenador'));
 
-        fetchData();
-    }, []);
+            // Retira o coordenador do resto dos membros
+            setMembros(equipe.filter(person => person.cargo !== 'Coordenador'));
+        }
+    }, [equipe]);
 
-    if (loading) {
+    if (equipeLoading) {
         return <Loading />;
     }
-
-    // Busca o coordenador
-    const coordenador = teamData.find(person => person.cargo === 'Coordenador');
-
-    // Retira o coordenador do resto dos membros
-    const equipe = teamData.filter(person => person.cargo !== 'Coordenador');
 
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-xl sm:text-3xl font-semibold'>Quem somos</h1>
-            <section className='py-8 px-6 mx-auto max-w-screen-xl lg:px-8  items-center'>
+            <section className='py-8 px-6 mx-auto max-w-screen-xl lg:px-8 items-center'>
                 <h2 className='text-2xl font-semibold mb-8 border-b-2 border-primary-color max-w-fit px-4 text-center mx-auto'>Coordenador</h2>
                 <div className='mx-auto mb-8 w-36 h-36'>
-                    {coordenador && <Person personId={coordenador.id} personName={coordenador.nome} personImage={coordenador.imagem} personRole={coordenador.cargo} />}
+                    {coordenador && <Person personId={coordenador.id} personName={coordenador.nome} personImage={coordenador.imagem} />}
                 </div>
-                <div className='mb-20'></div> 
+                <div className='mb-20'></div>
                 <h2 className='text-2xl font-semibold mb-8 border-b-2 border-primary-color max-w-fit px-4 text-center mx-auto'>Equipe</h2>
                 <div className='grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                    {equipe.map((person, index) => (
-                        <Person key={index} personId={person.id} personName={person.nome} personImage={person.imagem} />
+                    {membros.map((membro, index) => (
+                        <Person key={index} personId={membro.id} personName={membro.nome} personImage={membro.imagem} />
                     ))}
                 </div>
             </section>

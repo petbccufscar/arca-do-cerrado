@@ -1,0 +1,9 @@
+                const speciesWithImage = response.data.map(species => ({
+                    ...species,
+                    imagens: species.imagens || '',
+                }));
+
+                // Ordenar os dados pelo apelido antes de atualizar o estado
+                const sortedSpeciesData = speciesWithImage.sort((a, b) => a.apelido.localeCompare(b.apelido));
+
+                setSpeciesData(sortedSpeciesData);

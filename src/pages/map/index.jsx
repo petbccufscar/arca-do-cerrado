@@ -1,55 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 import Mapa from '../../components/map/index';
 import Loading from '../../components/layout/loading';
 import ImagemMapa from '../../assets/map/map.png';
 
+import usePlantas from '../../hooks/usePlantas';
+
 const Map = () => {
     const { id } = useParams();
     const [showMap, setShowMap] = useState(false);
     const [speciesName, setSpeciesName] = useState('');
-    const [speciesData, setSpeciesData] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { plantas: speciesData, error, isLoading } = usePlantas();
 
     const toggleMap = () => {
         setShowMap(true);
     };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/Planta/');
-                const speciesWithImage = response.data.map(species => ({
-                    ...species,
-                    imagens: species.imagens || '',
-                }));
-                setSpeciesData(speciesWithImage);
-                if (id) {
-                    const selectedSpecies = speciesWithImage.find(species => species.id.toString() === id.toString());
-                    if (selectedSpecies) {
-                        setSpeciesName(selectedSpecies.apelido);
-                    }
-                }
-            } catch (error) {
-                console.error('Error fetching species data:', error);
-                setError('Erro ao carregar os dados das espécies.');
-            } finally {
-                setLoading(false);
+        if (id && speciesData) {
+            const selectedSpecies = speciesData.find(species => species.id.toString() === id.toString());
+            if (selectedSpecies) {
+                setSpeciesName(selectedSpecies.apelido);
             }
-        };
+        }
+    }, [id, speciesData]);
 
-        fetchData();
-    }, [id]);
-
-    if (loading) {
+    if (isLoading) {
         return <Loading />;
     }
 
     if (error) {
-        return <div>Erro: {error}</div>;
+        return <div>Erro: {error.message}</div>;
     }
 
     return (

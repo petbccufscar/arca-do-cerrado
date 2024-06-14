@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import axios from 'axios';
+import useConfiguracao from '../hooks/useConfiguracao';
 
 import Home from '../pages/home'
 import About from '../pages/about'
@@ -17,18 +17,14 @@ import Page from '../pages/blog/blogPage/Page'
 import Schedule from '../pages/schedule'
 
 export const AppRoutes = ({search}) => {
+    const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
 
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/api/Configuracao/4')
-            .then((response) => {
-                setMostrarAgenda(response.data.mostrar_agenda);
-            })
-            .catch((error) => {
-                console.error('Erro ao buscar configuração:', error);
-            });
-    }, []);
+        if (!configuracaoLoading && !configuracaoError && configuracao) {
+            setMostrarAgenda(configuracao.mostrar_agenda);
+        }
+    }, [configuracao, configuracaoLoading, configuracaoError]);
 
     return (
         <Routes>
