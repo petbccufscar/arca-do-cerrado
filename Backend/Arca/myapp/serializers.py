@@ -22,7 +22,7 @@ class PlantaSerializers(serializers.ModelSerializer):
 class MensagemSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Mensagem
-        fields = '__all__'
+        fields = ['assunto', 'mensagem']
 
 class AtividadeSerializers(serializers.ModelSerializer):
     class Meta:
@@ -47,4 +47,4 @@ class ConfiguracaoSerializers(serializers.ModelSerializer):
 class InscritoSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Inscrito
-        fields = '__all__'
+        fields = ['nome', 'created_at']

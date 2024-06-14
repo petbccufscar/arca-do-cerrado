@@ -17,11 +17,14 @@ Backend/Arca/venv/
 
 # Ignore Python cache files
 __pycache__/
-*/__pycache__/
+Backend/Arca/Arca/__pycache__/
+Backend/Arca/myapp/__pycache__/
+
 *.py[cod]
 
 # Ignore migrations
 migrations/
+Backend/Arca/myapp/migrations/
 
 # Editor directories and files
 .vscode/*
