@@ -17,9 +17,6 @@ COPY . /app/
 # Coleta arquivos estáticos
 RUN python manage.py collectstatic --noinput
 
-# Comando para aplicar as migrações do banco de dados
-RUN python manage.py migrate
-
 # Expõe a porta 8000 para permitir o acesso ao servidor Django
 EXPOSE 8000
 
