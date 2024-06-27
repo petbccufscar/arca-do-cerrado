@@ -33,12 +33,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', '').split(',')
 
-CORS_ALLOWED_ORIGINS = [
-  "http://localhost:5174",
-  "http://localhost:3000",
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-]
+CORS_ALLOWED_ORIGINS = os.getenv('DJANGO_CORS_ALLOWED_ORIGINS', '').split(',')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
