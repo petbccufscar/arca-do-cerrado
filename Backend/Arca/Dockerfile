@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Copie o arquivo requirements.txt e instale as dependências
 COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copie o restante do código-fonte para o diretório de trabalho
 COPY . /app/
@@ -17,6 +17,8 @@ COPY . /app/
 # Coleta arquivos estáticos
 RUN python manage.py collectstatic --noinput
 
+# Comando para aplicar as migrações do banco de dados
+RUN python manage.py migrate
 
 # Expõe a porta 8000 para permitir o acesso ao servidor Django
 EXPOSE 8000
