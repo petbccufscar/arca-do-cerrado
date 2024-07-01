@@ -3,7 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import MapCard from './MapCard';
 import ImagemMapa from '../../assets/map/mapa_mesclado.png';
-import PinIcon from '../../assets/map/pin.png'
+import PinIcon from '../../assets/map/pin-icon.png'
 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
