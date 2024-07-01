@@ -88,7 +88,7 @@ const Navbar = ({ search, setSearch }) => {
                         <img src={logo} alt="Logo Arca" className='h-12' />
                     </div>
                     <div className='flex items-center gap-4 ml-auto'>
-                        {links.map((link, index) => (
+                        {links.filter(link => link.name !== 'Agenda' || mostrarAgenda).map((link, index) => (
                             <div key={index}>
                                 {link.drop ? (
                                     <MenuDropdown link={link} />
