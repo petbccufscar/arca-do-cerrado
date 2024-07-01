@@ -65,9 +65,7 @@ const Navbar = ({ search, setSearch }) => {
         <div className='flex items-center justify-between p-2 px-3.5'>
             {isMobile ? (
                 <>
-                    {!isOpen &&
-                        <FaBars onClick={handleToggle} />
-                    }
+                    {!isOpen && <FaBars onClick={handleToggle} />}
                     {isOpen && (
                         <div>
                             <Sidebar
@@ -81,15 +79,15 @@ const Navbar = ({ search, setSearch }) => {
                         </div>
                     )}
                     <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
-                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                        <img src={logo} alt="Logo Arca" className='h-12' />
                     </div>
                 </>
             ) : (
-                <div className='flex gap-8 items-center z-40'>
+                <div className='flex w-full gap-4 items-center z-40'>
                     <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
-                        <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                        <img src={logo} alt="Logo Arca" className='h-12' />
                     </div>
-                    <div className='flex items-center gap-4'>
+                    <div className='flex items-center gap-4 ml-auto'>
                         {links.map((link, index) => (
                             <div key={index}>
                                 {link.drop ? (
@@ -107,7 +105,6 @@ const Navbar = ({ search, setSearch }) => {
                     </div>
                     <Search search={search} setSearch={setSearch} />
                 </div>
-
             )}
         </div>
     );

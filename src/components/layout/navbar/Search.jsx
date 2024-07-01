@@ -6,23 +6,22 @@ const Search = ({ search, setSearch }) => {
     const [searchOn, setSearchOn] = useState(false);
     const navigate = useNavigate();
 
-    // Função para lidar com o envio do formulário de pesquisa
     const handleSubmit = (e) => {
-        setSearchOn(!searchOn);
-        if (search !== "")
-            navigate('/search')
-        e.preventDefault(); // Previne o comportamento padrão de envio do formulário
+        e.preventDefault();
+        if (search !== "") {
+            navigate('/search');
+        }
+        setSearchOn(false);
     };
 
-    // Função para lidar com a mudança no campo de entrada da pesquisa
     const handleInputChange = (e) => {
         setSearch(e.target.value);
     };
 
     return (
-        <div className=''>
+        <div className='flex items-center'>
             {searchOn ? (
-                <form  onSubmit={handleSubmit} className='flex items-center'>
+                <form onSubmit={handleSubmit} className='flex items-center gap-4'>
                     <input
                         type="text"
                         value={search}
@@ -30,15 +29,12 @@ const Search = ({ search, setSearch }) => {
                         placeholder="Digite..."
                         className="m-0 p-0 rounded border border-zinc-300 ps-2 py-1 text-sm"
                     />
-                    <button type='submit'>
+                    <button type='submit' className='p-0'>
                         <FaMagnifyingGlass className='text-black' />
                     </button>
                 </form>
-
             ) : (
-                <div>
-                    <FaMagnifyingGlass onClick={() => setSearchOn(!searchOn)} />
-                </div>
+                <FaMagnifyingGlass className='cursor-pointer' onClick={() => setSearchOn(!searchOn)} />
             )}
         </div>
     );
