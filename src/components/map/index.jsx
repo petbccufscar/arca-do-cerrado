@@ -3,6 +3,7 @@ import ReactDOMServer from 'react-dom/server';
 
 import MapCard from './MapCard';
 import ImagemMapa from '../../assets/map/mapa_mesclado.png';
+import PinIcon from '../../assets/map/pin.png'
 
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -75,6 +76,14 @@ const Mapa = ({ species, filter }) => {
                 return [(y*15.85) + 167, (x*15.85) + 148.5];
             }
 
+            // Cria um ícone personalizado
+            const customIcon = L.icon({
+                iconUrl: PinIcon,
+                iconSize: [25, 41], // Tamanho do ícone
+                iconAnchor: [12, 41], // Ponto do ícone que estará no marcador
+                popupAnchor: [0, -41], // Ponto do popup em relação ao ícone
+            });
+
             // Limpa o cluster de marcadores
             cluster.clearLayers();
 
@@ -84,7 +93,7 @@ const Mapa = ({ species, filter }) => {
 
 
                 specie.coordenadas.forEach(coordenada => {
-                    let marker = L.marker(adjustPosition(coordenada.posicao_x, coordenada.posicao_y)); // Cria um marcador
+                    let marker = L.marker(adjustPosition(coordenada.posicao_x, coordenada.posicao_y), { icon: customIcon });
                     marker.bindPopup(popupContent); // Define um popup para o marcador
                     cluster.addLayer(marker); // Adiciona o marcador ao cluster de marcadores
                 })
