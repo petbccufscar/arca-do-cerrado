@@ -7,6 +7,7 @@ import { FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, 
 import Search from './Search';
 import Sidebar from './Sidebar';
 import MenuDropdown from './MenuDropdwon';
+import logo from '../../../assets/logos/arca.png';
 
 const Navbar = ({ search, setSearch }) => {
     const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
@@ -75,7 +76,7 @@ const Navbar = ({ search, setSearch }) => {
                                 isOpen={isOpen}
                             />
                             <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
-                                <img src="../src/assets/logos/arca.png" alt="Logo Arca" className='h-12' />
+                                <img src={logo} alt="Logo Arca" className='h-12' />
                             </div>
                         </div>
                     )}

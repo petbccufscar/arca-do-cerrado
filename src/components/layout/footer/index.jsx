@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { FaInstagram, FaYoutube } from 'react-icons/fa6'
+import ufscarLogo from '../../../assets/logos/ufscar.png'
 
 const Footer = () => {
     return (
@@ -8,7 +9,7 @@ const Footer = () => {
             <div className="w-full max-w-screen-xl mx-auto p-8 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <a href="https://www.ufscar.br" target="_blank" rel="noopener noreferrer" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <img src="../src/assets/logos/ufscar.png" className="h-12" alt="UFSCar Logo" />
+                        <img src={ufscarLogo} className="h-12" alt="UFSCar Logo" />
                     </a>
                     <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0">
                         <li>
