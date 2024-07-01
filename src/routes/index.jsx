@@ -22,7 +22,6 @@ export const AppRoutes = ({search}) => {
 
     useEffect(() => {
         if (!configuracaoLoading && !configuracaoError && configuracao) {
-            console.log("Mostrar agenda:", configuracao);
             setMostrarAgenda(configuracao.mostrar_agenda);
         }
     }, [configuracao, configuracaoLoading, configuracaoError]);

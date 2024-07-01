@@ -10,7 +10,7 @@ import MenuDropdown from './MenuDropdwon';
 import logo from '../../../assets/logos/arca.png';
 
 const Navbar = ({ search, setSearch }) => {
-    const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
+    const { configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const [isMobile, setIsMobile] = useState(false);
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
     const [isOpen, setIsOpen] = useState(false);

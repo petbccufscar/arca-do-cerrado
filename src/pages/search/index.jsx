@@ -7,7 +7,7 @@ import usePosts from '../../hooks/usePosts';
 import useConfiguracao from '../../hooks/useConfiguracao';
 
 const Search = ({ search }) => {
-    const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
+    const { configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const { plantas: plantasData, error: plantasError, isLoading: plantasLoading } = usePlantas();
     const { equipe: equipeData, error: equipeError, isLoading: equipeLoading } = useEquipe();
     const { atividades: atividadeData, error: atividadeError, isLoading: atividadeLoading } = useAtividades();
