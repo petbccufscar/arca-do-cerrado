@@ -17,12 +17,12 @@ import Page from '../pages/blog/blogPage/Page'
 import Schedule from '../pages/schedule'
 
 export const AppRoutes = ({search}) => {
-    const { data: configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
+    const { configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
 
     useEffect(() => {
         if (!configuracaoLoading && !configuracaoError && configuracao) {
-            console.log("Mostrar agenda:", mostrar_agenda);
+            console.log("Mostrar agenda:", configuracao);
             setMostrarAgenda(configuracao.mostrar_agenda);
         }
     }, [configuracao, configuracaoLoading, configuracaoError]);
