@@ -9,7 +9,7 @@ const SubscribeForm = () => {
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
-        await createInscrito([nome, email]);
+        await createInscrito({'nome':nome, 'email':email});
     };
 
     return (

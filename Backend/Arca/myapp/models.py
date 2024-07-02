@@ -117,7 +117,7 @@ def valida_apenas_uma_configuracao(sender, instance, **kwargs):
     
 class Inscrito(models.Model):
     nome = models.CharField(max_length=200)
-    email = models.EmailField((""), max_length=254, unique=True, validators=[validate_email])
+    email = models.EmailField(max_length=254, unique=True, validators=[validate_email])
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
