@@ -1,5 +1,5 @@
 const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api';
-const token = import.meta.env.VITE_TOKEN;
+const token = a4526eab0ac787f771aefa350414b0c8c9f813d0;
 
 export const handleResponse = async (response, errorMessage) => {
     if (!response.ok) {
@@ -58,8 +58,17 @@ export const createEntity = async (entityType, newEntityData) => {
             },
             body: JSON.stringify(newEntityData),
         });
+
+        // Logando a resposta completa para debug
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+        const responseData = await response.json();
+        console.log('Response data:', responseData);
+
         return handleResponse(response, `Error creating ${entityType}`);
     } catch (error) {
+        // Logando o erro para debug
+        console.error('Request error:', error);
         handleRequestError(error);
     }
 };
