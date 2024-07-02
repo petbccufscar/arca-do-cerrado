@@ -54,7 +54,7 @@ export const createEntity = async (entityType, newEntityData) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`, // Adicionando o token de verificação ao header
+                'Authorization': `Token ${token}`, // Adicionando o token de verificação ao header
             },
             body: JSON.stringify(newEntityData),
         });

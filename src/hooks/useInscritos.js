@@ -5,12 +5,12 @@ import useEmail from './useEmail';
 
 const useInscrito = () => {
     const { sendAvisoInscricao, sendConfirmaInscricao } = useEmail();
-    const success = '';
+    var success = '';
     const { data: inscrito, error, isLoading, mutate } = useSWR('Inscrito', fetchEntity);
 
     const createInscrito = async (newInscritoData) => {
         try {
-            const result = await createEntity('Inscrito', newInscritoData);
+            const result = await createEntity('Inscrito/', newInscritoData);
             mutate(existingData => [...existingData, result], false); 
             sendAvisoInscricao(nome);
             sendConfirmaInscricao(email, nome);

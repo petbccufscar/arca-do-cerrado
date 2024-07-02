@@ -9,9 +9,7 @@ const Species = () => {
     const [speciesData, setSpeciesData] = useState([]);
     
     useEffect(() => {
-        console.log('Useffect triggered');
         if (plantas){
-            console.log(plantas);
             const sortedSpeciesData = plantas.sort((a, b) => a.apelido.localeCompare(b.apelido));
             setSpeciesData(sortedSpeciesData);
         }
