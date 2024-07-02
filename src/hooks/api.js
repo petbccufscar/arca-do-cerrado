@@ -1,5 +1,6 @@
 const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api';
 const token = process.env.TOKEN;
+console.log(token);
 
 export const handleResponse = async (response, errorMessage) => {
     if (!response.ok) {
