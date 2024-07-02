@@ -47,4 +47,4 @@ class ConfiguracaoSerializers(serializers.ModelSerializer):
 class InscritoSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Inscrito
-        fields = ['nome', 'created_at']
+        fields = '__all__'
