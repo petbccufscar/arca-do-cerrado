@@ -1,5 +1,5 @@
 const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api';
-const token = a4526eab0ac787f771aefa350414b0c8c9f813d0;
+const token = 'a4526eab0ac787f771aefa350414b0c8c9f813d0';
 
 export const handleResponse = async (response, errorMessage) => {
     if (!response.ok) {
