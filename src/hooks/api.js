@@ -1,5 +1,7 @@
 const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api';
 const token = process.env.VITE_TOKEN;
+const teste = import.meta.env.VITE_API_TOKEN;
+console.log(teste);
 console.log(token);
 
 export const handleResponse = async (response, errorMessage) => {
