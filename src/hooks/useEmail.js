@@ -43,7 +43,7 @@ const useEmail = () => {
         await sendEmail({
             to_email: import.meta.env.VITE_EMAIL_ARCA, 
             subject: subject,
-            message: AvisoMensagem(email, mensagem),
+            message: AvisoMensagem({email, mensagem}),
         });
         console.log(email);
         console.log(subject);
