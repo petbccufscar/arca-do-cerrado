@@ -4,29 +4,21 @@ import AvisoInscricao from '../components/subscribe/email/folder/avisoInscricao.
 import ConfirmaInscricao from '../components/subscribe/email/folder/confirmaInscricao.jsx';
 import AvisoMensagem from '../components/subscribe/email/folder/avisoMensagem.jsx';
 
+{/*Função para envio de emails com EmailJS*/ }
+const sendEmail = (templateParams) => {
+    emailjs.send(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE, templateParams, import.meta.env.VITE_EMAILJS_USER_ID)
+        .then((response) => {
+            console.log('E-mail enviado com sucesso!', response.status, response.text);
+        })
+        .catch((error) => {
+            console.error('Erro ao enviar e-mail:', error);
+        });
+};
+
 const useEmail = () => {
 
-    {/*Função para envio de emails com EmailJS*/ }
-    const sendEmail = (templateParams) => {
-        emailjs.send(import.meta.env.VITE_EMAILJS_SERVICE_ID, import.meta.env.VITE_EMAILJS_TEMPLATE, templateParams, import.meta.env.VITE_EMAILJS_USER_ID)
-            .then((response) => {
-                console.log('E-mail enviado com sucesso!', response.status, response.text);
-            })
-            .catch((error) => {
-                console.error('Erro ao enviar e-mail:', error);
-            });
-    };
-
-    const sendInscricaoEmail = ({ toEmail, subject, message }) => {
-        sendEmail({
-            to_email: toEmail,
-            subject: subject,
-            message: message,
-        });
-    };
-
     const sendAvisoInscricao = (nome) => {
-        sendInscricaoEmail({
+        sendEmail({
             toEmail: import.meta.env.VITE_EMAIL_ARCA,
             subject: 'Novo inscrito no blog!',
             message: AvisoInscricao({ name: nome }),
@@ -34,22 +26,22 @@ const useEmail = () => {
     };
 
     const sendConfirmaInscricao = (email, nome) => {
-        sendInscricaoEmail({
+        sendEmail({
             toEmail: email,
             subject: 'Obrigado por se inscrever',
             message: ConfirmaInscricao({ name: nome }),
         });
     };
 
-    const sendMensagem = (subject, mensagem) => {
-        sendInscricaoEmail({
+    const sendMensagem = (email, subject, mensagem) => {
+        sendEmail({
             toEmail: import.meta.env.VITE_EMAIL_ARCA,
             subject: subject,
-            message: AvisoMensagem({ email: email, mensagem: mensagem }),
+            message: AvisoMensagem( email, mensagem ),
         });
     };
 
-    return { sendEmail, sendMensagem, sendAvisoInscricao, sendConfirmaInscricao };
+    return { sendMensagem, sendAvisoInscricao, sendConfirmaInscricao };
 };
 
 export default useEmail;
