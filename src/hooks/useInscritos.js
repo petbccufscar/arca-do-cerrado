@@ -12,8 +12,8 @@ const useInscrito = () => {
         try {
             const result = await createEntity('Inscrito/', newInscritoData);
             mutate(existingData => [...existingData, result], false); 
-            sendAvisoInscricao(nome);
-            sendConfirmaInscricao(email, nome);
+            await sendAvisoInscricao(nome);
+            await sendConfirmaInscricao(email, nome);
             success = 'Obrigado por se inscrever!';
         } catch (error) {
             console.error(error);
