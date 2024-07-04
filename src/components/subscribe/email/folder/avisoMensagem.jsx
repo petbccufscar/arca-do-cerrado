@@ -1,4 +1,4 @@
-const EmailTemplate = ({ email, mensagem }) => {
+const AvisoMensagem = ({ email, mensagem }) => {
   console.log(email);
   console.log(mensagem);
     return `
@@ -47,4 +47,4 @@ const EmailTemplate = ({ email, mensagem }) => {
     `;
 };
 
-export default EmailTemplate;
+export default AvisoMensagem;
