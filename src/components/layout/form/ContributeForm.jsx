@@ -30,7 +30,7 @@ const ContributeForm = () => {
                 throw new Error('Por favor, preencha todos os campos.');
             }
 
-            sendMensagem(email, assunto, mensagem);
+            await sendMensagem(email, assunto, mensagem);
 
             setShowPopup(true);
             setEmail('');
