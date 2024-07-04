@@ -2,7 +2,6 @@ import useSWR from 'swr';
 import { fetchEntity, editEntity, deleteEntity, createEntity, getUserByEmail } from './api';
 import useEmail from './useEmail';
 
-
 const useInscrito = () => {
     const { sendAvisoInscricao, sendConfirmaInscricao } = useEmail();
     var success = '';
@@ -10,6 +9,7 @@ const useInscrito = () => {
 
     const createInscrito = async (newInscritoData) => {
         try {
+            const { nome, email } = newInscritoData; // Extrai nome e email de newInscritoData
             const result = await createEntity('Inscrito/', newInscritoData);
             mutate(existingData => [...existingData, result], false); 
             await sendAvisoInscricao(nome);
