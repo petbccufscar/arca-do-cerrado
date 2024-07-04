@@ -44,6 +44,8 @@ const useEmail = () => {
             message: AvisoMensagem(email, mensagem),
         });
         console.log(email);
+        console.log(subject);
+        console.log(message);
     };
 
     return { sendMensagem, sendAvisoInscricao, sendConfirmaInscricao };
