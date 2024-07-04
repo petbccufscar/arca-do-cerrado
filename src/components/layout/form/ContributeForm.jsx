@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import useEmail from '../../../hooks/useEmail.js';
-import AvisoMensagem from '../../subscribe/email/folder/avisoMensagem.jsx';
 
 const ContributeForm = () => {
     const [email, setEmail] = useState('');
@@ -35,12 +34,6 @@ const ContributeForm = () => {
             await AvisoMensagem({
                 subject: assunto,
                 mensagem: mensagem,
-            });
-
-            await axios.post('http://127.0.0.1:8000/api/Mensagem/', {
-                assunto: assunto,
-                email: email,
-                mensagem: mensagem
             });
 
             setShowPopup(true);
