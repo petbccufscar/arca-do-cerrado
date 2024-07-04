@@ -1,4 +1,6 @@
 const EmailTemplate = ({ email, mensagem }) => {
+  console.log(email);
+  console.log(mensagem);
     return `
       <html>
         <head>
