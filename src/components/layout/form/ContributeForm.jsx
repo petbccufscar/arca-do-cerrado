@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import sendEmail from '../../subscribe/email/EmailJS.jsx';
+import useEmail from '../../../hooks/useEmail.js';
 import AvisoMensagem from '../../subscribe/email/folder/avisoMensagem.jsx';
 
 const ContributeForm = () => {
@@ -10,6 +10,7 @@ const ContributeForm = () => {
     const [mensagem, setMensagem] = useState('');
     const [showPopup, setShowPopup] = useState(false);
     const [erro, setErro] = useState(null);
+    const { AvisoMensagem } = useEmail();
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -31,11 +32,10 @@ const ContributeForm = () => {
                 throw new Error('Por favor, preencha todos os campos.');
             }
 
-            await sendEmail({
-                to_email: process.env.EMAIL_ARCA,
+            await AvisoMensagem({
                 subject: assunto,
-                message: AvisoMensagem({ email: email, mensagem: mensagem }),
-            }, process.env.EMAILJS_TEMPLATE);
+                mensagem: mensagem,
+            });
 
             await axios.post('http://127.0.0.1:8000/api/Mensagem/', {
                 assunto: assunto,
