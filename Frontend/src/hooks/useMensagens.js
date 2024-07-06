@@ -1,13 +1,17 @@
 import useSWR from 'swr';
-import { fetchEntity, editEntity, deleteEntity } from './api';
+import { createEntity, fetchEntity, editEntity, deleteEntity } from './api';
+import useEmail from './useEmail';
 
 const useMensagens = () => {
+    const { sendMensagem } = useEmail();
     const { data: mensagens, error, isLoading, mutate } = useSWR('Mensagem', fetchEntity);
 
     const createMensagem = async (newMensagemData) => {
         try {
-            const result = await createEntity('Mensagem', newMensagemData);
+            const { email, assunto, mensagem } = newMensagemData;
+            const result = await createEntity('Mensagem/', newMensagemData);
             mutate(existingData => [...existingData, result], false); 
+            await sendMensagem(email, assunto, mensagem);
         } catch (error) {
             console.error(error);
         }

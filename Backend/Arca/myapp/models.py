@@ -55,12 +55,13 @@ class Mensagem(models.Model):
     email = models.EmailField()
     assunto = models.CharField(max_length=100)
     mensagem = models.TextField()
+    data_criacao = models.DateTimeField(auto_now_add=True)
 
     class Meta: 
         verbose_name_plural='Mensagens'
 
     def __str__(self):
-        return self.email
+        return f'Email: {self.email}'
     
 class Equipe(models.Model):
     nome = models.CharField(max_length=200)

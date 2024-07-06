@@ -22,7 +22,7 @@ class PlantaSerializers(serializers.ModelSerializer):
 class MensagemSerializers(serializers.ModelSerializer):
     class Meta:
         model = models.Mensagem
-        fields = ['assunto', 'mensagem']
+        fields = '__all__'
 
 class AtividadeSerializers(serializers.ModelSerializer):
     class Meta:
