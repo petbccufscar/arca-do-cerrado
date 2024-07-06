@@ -15,6 +15,9 @@ dist-ssr
 # Ambiente virtual
 Backend/Arca/venv/
 
+# Staticfiles
+Backend/Arca/staticfiles/
+
 # Ignore Python cache files
 __pycache__/
 Backend/Arca/Arca/__pycache__/
@@ -38,7 +41,7 @@ Backend/Arca/myapp/migrations/
 *.sw?
 
 # Senhas
-.env
+Frontend/.env
 Backend/Arca/.env
 
 Arca-do-Cerrado-backend/

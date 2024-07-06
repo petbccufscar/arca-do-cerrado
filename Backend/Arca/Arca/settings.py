@@ -67,11 +67,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'ckeditor',
     'ckeditor_uploader',
+    'import_export',
+    
     "myapp",
 ]
 
