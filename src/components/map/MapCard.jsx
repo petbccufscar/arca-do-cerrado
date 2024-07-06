@@ -13,7 +13,7 @@ const MapCard = ({ specie }) => {
                     <h5 className="mb-1 text-lg font-bold tracking-tight text-gray-900">{specie.apelido}</h5>
                     <h6 className='flex items-center text-neutral-400 text-sm mb-1 gap-2'><FaSeedling />{specie.nome_cientifico}</h6>
                 </a>
-                <div className='flex justify-end'>
+                <div className='flex mt-2'>
                     <a href={`/especies/${specie.id}`} className="text-sm inline-flex items-center px-3 py-1 font-medium text-center text-white bg-primary-color rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 gap-2">
                         Saiba mais <FaArrowRight />
                     </a>

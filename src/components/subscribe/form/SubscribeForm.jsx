@@ -8,9 +8,9 @@ const SubscribeForm = () => {
     const { success, error, isLoading: submitting, createInscrito, deleteInscrito } = useInscritos();
 
     // Função handleSubscribe corrigida para chamar createInscrito corretamente
-    const handleSubscribe = async (e, nome, email, createInscrito) => {
+    const handleSubscribe = async (e) => {
         e.preventDefault();
-        await createInscrito({ nome: nome, email: email });
+        await createInscrito({ nome, email });
     };
 
     return (

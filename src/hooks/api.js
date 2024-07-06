@@ -1,11 +1,19 @@
-const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api';
+const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api'; // URL para deploy
+// const API_BASE_URL = 'http://127.0.0.1:8000/api'; // URL para manutenção 
 const token = import.meta.env.VITE_API_TOKEN;
 
 export const handleResponse = async (response, errorMessage) => {
-    if (!response.ok) {
-        throw new Error(errorMessage);
+    try {
+        const text = await response.text();  // Pega o corpo da resposta como texto
+        const data = text ? JSON.parse(text) : {};  // Tenta fazer parse do texto se não estiver vazio
+        if (!response.ok) {
+            throw new Error(errorMessage || 'Algo deu errado.');
+        }
+        return data;
+    } catch (error) {
+        console.error('Erro ao parsear JSON:', error);
+        throw new Error('Erro ao parsear resposta JSON');
     }
-    return response.json();
 };
 
 export const handleRequestError = (error) => {
@@ -41,6 +49,9 @@ export const deleteEntity = async (entityType, entityId) => {
     try {
         const response = await fetch(`${API_BASE_URL}/${entityType}/${entityId}`, {
             method: 'DELETE',
+            headers: {
+                'Authorization': `Token ${token}`, // Adicionando o token de verificação ao header
+            },
         });
         return handleResponse(response, `Error deleting ${entityType}`);
     } catch (error) {
@@ -63,13 +74,4 @@ export const createEntity = async (entityType, newEntityData) => {
     } catch (error) {
         handleRequestError(error);
     }
-};
-
-export const getUserByEmail = async (email) => {
-    const response = await axios.get(`${API_BASE_URL}/Inscrito?email=${email}`, {
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    return response.data;
 };

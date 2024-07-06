@@ -7,7 +7,6 @@ import AvisoMensagem from '../components/subscribe/email/folder/avisoMensagem.js
 // Função assíncrona para envio de emails com EmailJS
 const sendEmail = async (templateParams) => {
     try {
-        console.log(templateParams);
         const response = await emailjs.send(
             import.meta.env.VITE_EMAILJS_SERVICE_ID,
             import.meta.env.VITE_EMAILJS_TEMPLATE_ID, 
