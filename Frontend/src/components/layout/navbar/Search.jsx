@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 
-const Search = ({ search, setSearch }) => {
+const Search = () => {
     const [searchOn, setSearchOn] = useState(false);
     const navigate = useNavigate();
+    const [search, setSearch] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (search !== "") {
-            navigate('/search');
+            navigate(`/search?query=${encodeURIComponent(search)}`);
         }
         setSearchOn(false);
     };
@@ -21,7 +22,7 @@ const Search = ({ search, setSearch }) => {
     return (
         <div className='flex items-center'>
             {searchOn ? (
-                <form onSubmit={handleSubmit} className='flex items-center gap-4'>
+                <form onSubmit={handleSubmit} className='flex items-center gap-4 max-w-4/5'>
                     <input
                         type="text"
                         value={search}
@@ -29,7 +30,7 @@ const Search = ({ search, setSearch }) => {
                         placeholder="Digite..."
                         className="m-0 p-0 rounded border border-zinc-300 ps-2 py-1 text-sm"
                     />
-                    <button type='submit' className='p-0'>
+                    <button type='submit' className='p-0 bg-transparent'>
                         <FaMagnifyingGlass className='text-black' />
                     </button>
                 </form>

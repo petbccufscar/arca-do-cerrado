@@ -41,12 +41,12 @@ const Map = () => {
                 <section>
                     <h2 className='text-2xl font-semibold mb-4 border-b-2 border-primary-color max-w-fit pr-4'>Sobre o Mapa Interativo</h2>
                     <div className='flex flex-col gap-5 mb-8'>
-                        <p className='text-center'>Esta é uma representação gráfica do nosso jardim.
-                            Para conhecer mais de perto as espécies que temos, passe o mouse sobre o mapa.
-                            Os pins indicam os pontos onde há espécies plantadas.
-                            Clicando no pin, você pode saber o nome ou apelido da espécie e, caso queira
-                            saber mais sobre ela no nosso jardim - imagens e curiosidades - , clique no pop-up
-                            para ir até a página das Espécies.
+                        <p className='text-center text-justify'>Esta é uma representação gráfica do nosso jardim. 
+                            Para conhecer mais de perto as espécies que temos, clique sobre o mapa e, depois, passe o mouse sobre o mapa. 
+                            Os pins indicam os pontos onde há espécies plantadas. 
+                            Clicando no pin, você pode saber o nome ou apelido da espécie e, caso queira saber mais 
+                            sobre ela no nosso jardim - imagens e curiosidades - , clique no pop-up para ir até a página das Espécies.
+
                         </p>
                         {id && speciesName && (
                             <p className='text-center'>

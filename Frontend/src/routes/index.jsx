@@ -44,7 +44,8 @@ export const AppRoutes = ({search}) => {
             <Route path="/equipe" element={<Team />}/>
             <Route path="/equipe/:id" element={<Member />}/>
             <Route path = "/inscrever" element = {<Subscribe/>}/>
-            <Route path = "/search" element={<Search search={search} />}/>
+            {/* <Route path = "/search" element={<Search search={search} />}/> */}
+            <Route path = "/search" element={<Search />}/>
             <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
     )

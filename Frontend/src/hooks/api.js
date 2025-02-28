@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://arca-do-cerrado.onrender.com/api'; // URL para deploy
+const API_BASE_URL = 'http://localhost/api'; // URL para deploy
 // const API_BASE_URL = 'http://127.0.0.1:8000/api'; // URL para manutenção 
 const token = import.meta.env.VITE_API_TOKEN;
 

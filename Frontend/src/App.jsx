@@ -14,12 +14,11 @@ import Footer from "./components/layout/footer"
 register()
 
 function App() {
-    const [search, setSearch] = useState("")
     return (
         <>
             <Router>
-                <Navbar search={search} setSearch={setSearch}/>
-                <AppRoutes search={search}/>
+                <Navbar/>
+                <AppRoutes/>
                 <Footer/>
             </Router>
         </>

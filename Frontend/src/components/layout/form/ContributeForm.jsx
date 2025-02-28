@@ -47,12 +47,8 @@ const ContributeForm = () => {
         <section>
             <div className="px-4 mx-auto max-w-screen-lg">
                 <h2 className="tracking-tight text-center text-4xl mb-4 text-neutral-700">Faça Parte</h2>
-                <p className="mb-8 lg:mb-16 text-center text-gray-500">
-                    Este projeto é para você! Independente de conhecimento ou experiência,
-                    o que vale é a motivação! Se você imagina que um mundo mais cheio de vida
-                    para todos depende da melhoria das nossas relações com o entorno natural,
-                    que as cidades precisam aprender a conviver melhor com a vegetação e os animais
-                    e que cada um de nós pode fazer nossa parte, será bem-vindo/a a trabalhar conosco!
+                <p className="mb-8 lg:mb-16 text-center text-gray-500 text-justify">
+                    Se você gosta de admirar ou trabalhar diretamente com a Natureza, este projeto é para você! Independente de  já ter alguma experiência com formação de mudas, o que vale é a motivação! Se você imagina que um mundo mais cheio de vida para todos depende da melhoria das nossas relações com o entorno natural, que as cidades precisam aprender a conviver melhor com a vegetação e os animais e que cada um de nós pode fazer sua parte, será bem-vindo/a a trabalhar conosco!
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-8">
                     <div>

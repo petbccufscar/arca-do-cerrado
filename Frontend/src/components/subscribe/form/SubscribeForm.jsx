@@ -50,7 +50,7 @@ const SubscribeForm = () => {
                     </button>
                     {success && <p className="text-green-600">{success}</p>}
                     {error && <p className="text-red-600">{error}</p>}
-                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="p-0 text-gray-700 hover:text-blue-500" onClick={deleteInscrito}> clique aqui</button>.</p>
+                    <p className="text-sm text-gray-700 mt-2">Caso queira cancelar sua inscrição, <button type="button" className="p-0 text-gray-700 bg-transparent hover:text-blue-500" onClick={deleteInscrito}> clique aqui</button>.</p>
                 </form>
             </div>
         </section>

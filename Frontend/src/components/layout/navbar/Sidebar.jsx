@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaCaretDown, FaXmark } from 'react-icons/fa6';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import Search from './Search';
 
-const Sidebar = ({ links, handleToggle }) => {
+const Sidebar = ({ links, handleToggle, search, setSearch }) => {
     const sidebarRef = useRef(null);
     const [openDropdowns, setOpenDropdowns] = useState({});
     const location = useLocation();
-    const navigate = useNavigate();
-    const redirectToHome = () => navigate('/home');
 
     const handleIsOpen = (linkPath) => {
         setOpenDropdowns((prevOpenDropdowns) => ({
@@ -33,8 +32,7 @@ const Sidebar = ({ links, handleToggle }) => {
     return (
         <div className="flex flex-col fixed top-0 left-0 bg-white justify-between h-full z-20 p-4" ref={sidebarRef}>
             <div className="flex flex-col gap-2">
-                <FaXmark onClick={handleToggle} />
-
+                <FaXmark onClick={handleToggle} className='mt-2 mb-4' />
                 {links.map(link => (
                     <div key={link.path}>
                         <div className='flex items-center gap-1'>
@@ -63,7 +61,7 @@ const Sidebar = ({ links, handleToggle }) => {
                             )}
                         </div>
                         {openDropdowns[link.path] && link.drop && (
-                            <div className="flex flex-col list-none gap-1">
+                            <div className="flex flex-col list-none gap-1 ml-6 mb-2">
                                 {link.drop.map(drop => (
                                     <Link
                                         to={drop.path}
@@ -78,6 +76,7 @@ const Sidebar = ({ links, handleToggle }) => {
                         )}
                     </div>
                 ))}
+                <Search search={search} setSearch={setSearch} />
             </div>
         </div>
     );

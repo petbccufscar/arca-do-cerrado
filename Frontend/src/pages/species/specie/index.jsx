@@ -61,8 +61,11 @@ const Specie = () => {
     return (
         <div>
             <h1 className='bg-primary-color p-4 text-white text-center text-3xl font-semibold'>{planta.apelido}</h1>
-            <main className='flex flex-col sm:flex-row py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-8'>
-                <Header specie={planta} />
+            <main className='flex flex-col sm:flex-row py-8 px-6 mx-auto max-w-screen-xl lg:px-8 gap-12'>
+                <div className='flex flex-col gap-4'>
+                    <a href={`/mapa/${planta.id}`} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
+                    <Header specie={planta} />
+                </div>
                 <section>
                     <h2 className='text-2xl font-semibold'>{planta.apelido}</h2>
                     <p className='flex items-center gap-2 text-neutral-500'><FaSeedling /> {planta.nome_cientifico}</p>
@@ -70,7 +73,6 @@ const Specie = () => {
                         <h3 className='text-xl'>Descrição</h3>
                         <div dangerouslySetInnerHTML={{ __html: planta.texto }} />
                     </div>
-                    <a href={`/mapa/${planta.id}`} className='cursor-pointer text-primary-color hover:underline'>Visualizar no mapa interativo</a>
                 </section>
             </main>
         </div>

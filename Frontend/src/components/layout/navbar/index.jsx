@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import useConfiguracao from '../../../hooks/useConfiguracao';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaBars, FaQuestion, FaHouse, FaMapLocationDot, FaBloggerB, FaSeedling, FaCalendarDays, FaHandshakeSimple, FaCaretDown, FaUsers } from 'react-icons/fa6';
+import { FaBars, FaQuestion, FaHouse, FaEarthAmericas, FaNewspaper, FaPagelines, FaCalendarDays, FaMessage, FaUsers } from 'react-icons/fa6';
 
 import Search from './Search';
 import Sidebar from './Sidebar';
 import MenuDropdown from './MenuDropdwon';
 import logo from '../../../assets/logos/arca.png';
 
-const Navbar = ({ search, setSearch }) => {
+const Navbar = () => {
     const { configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const [isMobile, setIsMobile] = useState(false);
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
@@ -53,11 +53,11 @@ const Navbar = ({ search, setSearch }) => {
                 { name: "Participantes", path: "/sobre/#6" }
             ]
         },
-        { name: 'Mapa', path: '/mapa', icon: <FaMapLocationDot /> },
-        { name: 'Blog', path: '/blog', icon: <FaBloggerB /> },
-        { name: 'Espécies', path: '/especies', icon: <FaSeedling /> },
+        { name: 'Mapa', path: '/mapa', icon: <FaEarthAmericas /> },
+        { name: 'Blog', path: '/blog', icon: <FaNewspaper /> },
+        { name: 'Espécies', path: '/especies', icon: <FaPagelines /> },
         { name: 'Agenda', path: '/agenda', icon: <FaCalendarDays /> },
-        { name: 'Faça parte', path: '/facaparte', icon: <FaHandshakeSimple /> },
+        { name: 'Faça parte', path: '/facaparte', icon: <FaMessage /> },
         { name: 'Quem somos', path: '/equipe', icon: <FaUsers /> }
     ];
 
@@ -71,7 +71,6 @@ const Navbar = ({ search, setSearch }) => {
                             <Sidebar
                                 links={links.filter(link => link.name !== 'Agenda' || mostrarAgenda)}
                                 handleToggle={handleToggle}
-                                isOpen={isOpen}
                             />
                             <div className='flex items-center cursor-pointer' onClick={redirectToHome}>
                                 <img src={logo} alt="Logo Arca" className='h-12' />
@@ -103,7 +102,7 @@ const Navbar = ({ search, setSearch }) => {
                             </div>
                         ))}
                     </div>
-                    <Search search={search} setSearch={setSearch} />
+                    <Search />
                 </div>
             )}
         </div>

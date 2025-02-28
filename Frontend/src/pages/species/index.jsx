@@ -27,7 +27,7 @@ const Species = () => {
                     <ul>
                         {speciesData.map((specie, index) => (
                             <li key={index}>
-                                <a to={`/especies/${specie.id}`} className='cursor-pointer hover:underline'>
+                                <a href={`/especies/${specie.id}`} className='cursor-pointer hover:underline'>
                                     {specie.apelido}
                                 </a>
                             </li>

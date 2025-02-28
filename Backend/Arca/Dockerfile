@@ -1,24 +1,26 @@
-# Use a imagem base Python oficial do Docker
-FROM python:3.10
+# Use uma imagem base leve do Python
+FROM python:3.10-slim
 
-# Defina a variável de ambiente PYTHONUNBUFFERED para garantir que os logs sejam exibidos em tempo real
-ENV PYTHONUNBUFFERED 1
+# Define o diretório de trabalho no container
+WORKDIR /django-app
 
-# Crie e defina o diretório de trabalho dentro do contêiner
-WORKDIR /app
+ENV PYTHONUNBUFFERED=1
 
-# Copie o arquivo requirements.txt e instale as dependências
-COPY requirements.txt /app/
-RUN pip install -r requirements.txt
+# Copia o arquivo de dependências
+COPY requirements.txt requirements.txt
 
-# Copie o restante do código-fonte para o diretório de trabalho
-COPY . /app/
+# Instala as dependências no container
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Coleta arquivos estáticos
+# Copia o conteúdo do backend para o container
+COPY . .
+
+# Coleta arquivos estáticos apenas em produção
+ARG ENVIRONMENT
 RUN python manage.py collectstatic --noinput
 
-# Expõe a porta 8000 para permitir o acesso ao servidor Django
+# Exponha a porta 8000
 EXPOSE 8000
 
-# Comando padrão para iniciar o servidor Django
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Comando para iniciar o servidor
+CMD gunicorn Arca.wsgi:application --bind 0.0.0.0:8000

@@ -1,3 +1,16 @@
-*/venv
+# Ignorar venv
+venv/
+
+# Ignorar Dockerfile, se necessário
 Dockerfile
-docker-compose.yml
+.dockerignore
+
+# Ignorar arquivos temporários e do sistema
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignorar arquivos estáticos que serão servidos pelo Nginx
+media/
+static/  

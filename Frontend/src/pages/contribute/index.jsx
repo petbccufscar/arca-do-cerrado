@@ -22,7 +22,7 @@ const Contribute = () => {
             <article className='flex flex-col px-4 mx-auto max-w-screen-xl lg:px-6'>
                 <section className='flex flex-col justify-center text-center items-center py-8 lg:py-16 px-4 mx-auto max-w-screen-lg'>
                     <h2 className='text-4xl mb-4 text-neutral-700'>Sua vez de participar!</h2>
-                    <p className='text-center text-neutral-500'>
+                    <p className='text-center text-neutral-500 text-justify'>
                         Agora é sua vez de participar. Depois de entender tudo sobre este projeto incrível do
                         professor Maurício, contamos com a sua ajuda para que o mesmo consiga continuar sua missão
                         de preservação destas belas espécies tão importantes para nossa biodiversidade.

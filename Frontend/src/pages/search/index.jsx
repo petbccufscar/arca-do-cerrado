@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Loading from '../../components/layout/loading';
 import usePlantas from '../../hooks/usePlantas';
 import useEquipe from '../../hooks/useEquipe';
@@ -6,19 +7,17 @@ import useAtividades from '../../hooks/useAtividades';
 import usePosts from '../../hooks/usePosts';
 import useConfiguracao from '../../hooks/useConfiguracao';
 
-const Search = ({ search }) => {
+const Search = () => {
     const { configuracao, error: configuracaoError, isLoading: configuracaoLoading } = useConfiguracao();
     const { plantas: plantasData, error: plantasError, isLoading: plantasLoading } = usePlantas();
     const { equipe: equipeData, error: equipeError, isLoading: equipeLoading } = useEquipe();
     const { atividades: atividadeData, error: atividadeError, isLoading: atividadeLoading } = useAtividades();
     const { posts: postagemData, error: postagemError, isLoading: postagemLoading } = usePosts();
 
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('query') || '';
     const [selectedSource, setSelectedSource] = useState('Todos');
     const [mostrarAgenda, setMostrarAgenda] = useState(true);
-    const [filteredPlantas, setFilteredPlantas] = useState([]);
-    const [filteredEquipe, setFilteredEquipe] = useState([]);
-    const [filteredAtividades, setFilteredAtividades] = useState([]);
-    const [filteredPostagens, setFilteredPostagens] = useState([]);
 
     useEffect(() => {
         if (!configuracaoLoading && !configuracaoError && configuracao) {
@@ -65,7 +64,7 @@ const Search = ({ search }) => {
 
     let filteredData;
     switch (selectedSource) {
-        case 'Especies':
+        case 'Espécies':
             filteredData = plantasData.filter(filterSpecies);
             break;
         case 'Equipe':
@@ -79,14 +78,10 @@ const Search = ({ search }) => {
             break;
         default:
             filteredData = [
-                "Especies",
-                ...plantasData.filter(filterSpecies),
-                "Equipe",
-                ...equipeData.filter(filterEquipe),
-                "Atividades",
-                ...atividadeData.filter(filterAtividade),
-                "Postagens",
-                ...postagemData.filter(filterPostagem),
+                { source: 'Espécies', datas: plantasData.filter(filterSpecies) },
+                { source: 'Equipe', datas: equipeData.filter(filterEquipe) },
+                { source: 'Atividade', datas: atividadeData.filter(filterAtividade) },
+                { source: 'Postagem', datas: postagemData.filter(filterPostagem) },
             ];
     }
 
@@ -97,7 +92,7 @@ const Search = ({ search }) => {
                 <label htmlFor="sourceSelect">Selecionar fonte:</label>
                 <select id="sourceSelect" value={selectedSource} onChange={handleSourceChange}>
                     <option value="Todos">Todos</option>
-                    <option value="Especies">Especies</option>
+                    <option value="Espécies">Espécies</option>
                     <option value="Equipe">Equipe</option>
                     <option value="Atividade">Atividade</option>
                     {mostrarAgenda && <option value="Postagem">Postagem</option>}
@@ -107,20 +102,47 @@ const Search = ({ search }) => {
                 {filteredData.length > 0 ? (
                     <div>
                         {selectedSource !== 'Todos' && <h2 className='text-2xl font-semibold mb-2 border-b-2 border-primary-color max-w-fit pr-2'>{selectedSource}</h2>}
-                        
+
                         <div className='flex flex-col'>
-                            {filteredData.map((item, index) => (
-                                <div className='flex flex-col'>
-                                    {typeof item === 'string' && (
-                                        <h2 className='text-2xl font-semibold mt-4 mb-2 border-b-2 border-primary-color max-w-fit pr-2'>{item}</h2>
-                                    )}
-                                    <a key={index} className='hover:underline' href={`/${selectedSource.toLowerCase()}/${item.id}`}>{item.nome || item.apelido || item.titulo}</a>
-                                </div>
-                            ))}
+                            {selectedSource === 'Todos' ? (
+                                filteredData.map((group) => (
+                                    <div key={group.source} className='flex flex-col mb-4'>
+                                        {/* Nome da Fonte */}
+                                        <h2 className='text-2xl font-semibold mt-4 mb-2 border-b-2 border-primary-color max-w-fit pr-2'>
+                                            {group.source}
+                                        </h2>
+
+                                        {/* Dados Filtrados da Fonte */}
+                                        {group.datas.length > 0 ? (
+                                            group.datas.map((item) => (
+                                                <a
+                                                    key={item.id}
+                                                    className='hover:underline'
+                                                    href={`/${removeAccents(group.source.toLowerCase())}/${item.id}`}
+                                                >
+                                                    {item.nome || item.apelido || item.titulo}
+                                                </a>
+                                            ))
+                                        ) : (
+                                            <span className='text-gray-600'>Nenhum resultado encontrado nessa categoria.</span>
+                                        )}
+                                    </div>
+                                ))
+                            ) : (
+                                filteredData.map((item) => (
+                                    <a
+                                        key={item.id}
+                                        className='hover:underline'
+                                        href={`/${removeAccents(selectedSource.toLowerCase())}/${item.id}`}
+                                    >
+                                        {item.nome || item.apelido || item.titulo}
+                                    </a>
+                                ))
+                            )}
                         </div>
                     </div>
                 ) : (
-                    <div>Nenhum resultado encontrado para a fonte selecionada.</div>
+                    <div className='text-gray-600' >Nenhum resultado encontrado para a fonte selecionada.</div>
                 )}
             </div>
         </div>

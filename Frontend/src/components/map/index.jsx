@@ -23,8 +23,8 @@ const Mapa = ({ species, filter }) => {
             maxZoom: 3,
             zoomSnap: 0.5,
             maxBounds: [
-                [-1000, -1000], // Canto sudoeste dos limites máximos
-                [2000, 2000]    // Canto nordeste dos limites máximos
+                [0, 0], // Canto sudoeste dos limites máximos
+                [904, 1280]    // Canto nordeste dos limites máximos
             ],
         });
 
