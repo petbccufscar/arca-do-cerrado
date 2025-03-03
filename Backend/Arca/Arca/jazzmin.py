@@ -21,7 +21,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": "../static/logo/favicon.png",
+    "site_icon": "../staticfiles/logo/favicon.png",
 
     # Welcome text on the login screen
     "welcome_sign": "Bem vindo ao admin da Arca",

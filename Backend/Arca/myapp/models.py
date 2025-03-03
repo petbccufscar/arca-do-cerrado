@@ -2,22 +2,14 @@ from django.db import models
 from django.core.validators import validate_email
 from ckeditor_uploader.fields import RichTextUploadingField 
 
-from django.template.loader import render_to_string
 from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import logging
-from django.core.mail import EmailMultiAlternatives
-from django.utils.html import strip_tags
-from django.http import JsonResponse
-from django.core.files.storage import default_storage
-import os
-from email.mime.image import MIMEImage
-from django.conf import settings
+
+from myapp.tasks import enviar_email_postagem
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
-from django.db import models
 
 class Planta(models.Model):
     apelido = models.CharField(max_length=100)
@@ -96,6 +88,11 @@ class Postagem(models.Model):
     def __str__(self):
         return self.titulo
 
+@receiver(post_save, sender=Postagem)
+def enviar_email_nova_postagem(sender, instance, created, **kwargs):
+    if created:  # Só enviar e-mails para postagens novas
+        enviar_email_postagem.delay(instance.id)  # Chama a task de forma assíncrona
+
 class Configuracao(models.Model):
     mostrar_agenda = models.BooleanField(default=True)
 
@@ -123,59 +120,3 @@ class Inscrito(models.Model):
 
     def __str__(self):
         return self.nome
-    
-
-def adicionar_postagem(request, postagem):
-    # Recuperar todos os inscritos no blog
-    inscritos = Inscrito.objects.all()
-    
-    # Obter a imagem que você deseja anexar
-    imagem = postagem.imagem 
-    
-    # Caminho da imagem
-    post_path = default_storage.path(imagem.name)
-    
-    # Nome da imagem
-    imagem_name = imagem.name.split('/')[-1]
-    
-    # Gerar um CID para a imagem
-    post_cid = os.path.basename(post_path)
-    
-    # Caminho da logo
-    logo_path = os.path.join(settings.STATICFILES_DIRS[0], 'logo/logo.png')  
-    
-    # Gerar um CID para a logo
-    logo_cid = os.path.basename(logo_path)
-
-    # Renderizar o conteúdo HTML do e-mail com o contexto atualizado
-    resumo=postagem.conteudo[0:150] + '...'
-    html_content = render_to_string('emails/mensagemBlog.html', {'postagem': postagem, 'resumo': resumo,'post_cid': post_cid, 'logo_cid': logo_cid})
-    
-    # Enviar e-mail para cada inscrito
-    for inscrito in inscritos:
-        subject = 'Nova Postagem no Blog'
-        
-        # Criar o e-mail com uma versão HTML e uma versão de texto simples
-        msg = EmailMultiAlternatives(subject, strip_tags(html_content), 'testearca092@gmail.com', [inscrito.email])
-        
-        # Anexar a imagem ao e-mail
-        with open(post_path, 'rb') as f:
-            msg_image = MIMEImage(f.read())
-            msg_image.add_header('Content-ID', f'<{post_cid}>')
-            msg.attach(msg_image)
-        
-        # Anexar a logo ao e-mail
-        with open(logo_path, 'rb') as f:
-            msg_image = MIMEImage(f.read())
-            msg_image.add_header('Content-ID', f'<{logo_cid}>')
-            msg.attach(msg_image)
-        
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-    
-    return JsonResponse({'status': 'success'})
-
-@receiver(post_save, sender=Postagem)
-def enviar_email_nova_postagem(sender, instance, created, **kwargs):
-    if created:  # Verifique se a postagem foi recém-criada
-        adicionar_postagem(None, instance)

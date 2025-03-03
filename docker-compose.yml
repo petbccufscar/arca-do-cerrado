@@ -1,5 +1,24 @@
 version: '3.8'
 services:
+  redis:
+    image: "redis:alpine"
+    restart: always
+    ports:
+      - "6379:6379"
+
+  celery_worker:
+    build:
+      context: ./Backend/Arca/
+      dockerfile: ./celery_worker/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - backend_media:/django-app/media
+      - backend_staticfiles:/django-app/staticfiles
+    depends_on:
+      - redis
+      - backend
+
   backend:
     build:
       context: ./Backend/Arca/
