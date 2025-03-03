@@ -43,5 +43,6 @@ Backend/Arca/myapp/migrations/
 # Senhas
 Frontend/.env
 Backend/Arca/.env
+.env
 
 Arca-do-Cerrado-backend/

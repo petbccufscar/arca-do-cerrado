@@ -4,11 +4,10 @@ services:
     build:
       context: ./Backend/Arca/
     ports:
-      - "8000:8000"
+      - "8000"
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/arca_db
       - DJANGO_SETTINGS_MODULE=Arca.settings
     volumes:
       - backend_staticfiles:/django-app/staticfiles
@@ -17,10 +16,8 @@ services:
 
   db:
     image: postgres:15
-    environment:
-      POSTGRES_USER: arca_user
-      POSTGRES_PASSWORD: arca_senha
-      POSTGRES_DB: arca_db
+    env_file:
+      - ./.env
     volumes:
       - db_data:/var/lib/postgresql/data
     restart: always
@@ -36,7 +33,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     ports:
-      - "80:80"  
+      - "80:80"
     volumes:
       - ./Nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - backend_staticfiles:/django-app/staticfiles:ro
