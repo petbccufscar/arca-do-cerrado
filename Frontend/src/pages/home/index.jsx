@@ -59,7 +59,6 @@ const Home = () => {
                     <img src={ImagemVisita} alt='Imagem Visita Crianças' className="max-h-[350px] w-full object-cover rounded-lg shadow-md mt-8" />
                 </section>
             </article>
-            <ContributeForm />
         </div>
     );
 };

@@ -4,26 +4,52 @@ import usePlantas from '../../../hooks/usePlantas';
 import { FaSeedling } from 'react-icons/fa6';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import Loading from '../../../components/layout/loading/';
 
 // Componente Header, responsável por renderizar o cabeçalho da espécie com um slider de imagens
 const Header = ({ specie }) => {
     return (
         <header>
-            <div className='h-[300px] w-[300px]'>
-                {/* Componente Swiper para renderizar o slider de imagens */}
+            <div className='relative h-[300px] w-[300px]'>
                 <Swiper
                     slidesPerView={1}
                     pagination={{ clickable: true }}
                     navigation
                 >
-                    {/* Mapeia as imagens da espécie e renderiza cada imagem como um slide */}
                     {specie.imagens.map((imagem, index) => (
                         <SwiperSlide key={index}>
-                            <img src={imagem.imagem} alt="slide-item" className='h-[300px] w-[300px] object-cover' />
+                            <img 
+                                src={imagem.imagem} 
+                                alt="slide-item" 
+                                className='h-[300px] w-[300px] object-cover' 
+                            />
                         </SwiperSlide>
                     ))}
                 </Swiper>
+
+                {/* Estilização customizada para as setas */}
+                <style jsx>{`
+                    .swiper-button-next, .swiper-button-prev {
+                        color: white; /* Cor das setas */
+                        background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+                        padding: 20px;
+                        border-radius: 50%;
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    .swiper-button-next:hover, .swiper-button-prev:hover {
+                        background: rgba(0, 0, 0, 0.8);
+                    }
+
+                    .swiper-button-next::after, .swiper-button-prev::after {
+                        font-size: 20px; /* Aumenta o tamanho do ícone */
+                    }
+                `}</style>
             </div>
         </header>
     )
@@ -68,7 +94,7 @@ const Specie = () => {
                 </div>
                 <section>
                     <h2 className='text-2xl font-semibold'>{planta.apelido}</h2>
-                    <p className='flex items-center gap-2 text-neutral-500'><FaSeedling /> {planta.nome_cientifico}</p>
+                    <p className='flex items-center gap-2 text-neutral-500 italic'><FaSeedling /> {planta.nome_cientifico}</p>
                     <div className='flex flex-col py-4 gap-2 '>
                         <h3 className='text-xl'>Descrição</h3>
                         <div dangerouslySetInnerHTML={{ __html: planta.texto }} />

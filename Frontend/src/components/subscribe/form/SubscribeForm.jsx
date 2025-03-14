@@ -46,7 +46,7 @@ const SubscribeForm = () => {
                         className={`py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit bg-primary-color focus:ring-4 focus:outline-none focus:ring-primary-300 ${submitting && 'opacity-50 cursor-not-allowed'}`}
                         disabled={submitting}
                     >
-                        {submitting ? 'Enviando...' : 'Se inscrever'}
+                        {submitting ? 'Enviando...' : 'Assinar'}
                     </button>
                     {success && <p className="text-green-600">{success}</p>}
                     {error && <p className="text-red-600">{error}</p>}

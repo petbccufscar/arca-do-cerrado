@@ -12,7 +12,7 @@ const SpecieCard = ({ specie }) => {
                 <div>
                     <a href={`/especies/${specie.id}`}>
                         <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900">{specie.apelido}</h5>
-                        <h6 className='flex items-center text-neutral-400 text-sm mb-2 gap-2'><FaSeedling />{specie.nome_cientifico}</h6>
+                        <h6 className='flex items-center text-neutral-400 text-sm mb-2 gap-2 italic'><FaSeedling />{specie.nome_cientifico}</h6>
                     </a>
                     <div className="mb-3 text-sm text-neutral-700 clamp-text line-clamp-4" dangerouslySetInnerHTML={{ __html: specie.resumo }} />
                 </div>

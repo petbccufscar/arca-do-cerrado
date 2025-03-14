@@ -29,7 +29,7 @@ const Blog = () => {
                 </section>
                 <section className='flex flex-col justify-center items-center mt-10 mb-10'>
                     <h2>Inscreva-se para receber notificações.</h2>
-                    <button className='mt-4 text-sm' onClick={goToSubscribe}>Inscrever-se</button>
+                    <button className='mt-4 text-sm' onClick={goToSubscribe}>Assinar</button>
                 </section>
             </section>
         </div>

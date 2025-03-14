@@ -46,6 +46,7 @@ const Map = () => {
                             Os pins indicam os pontos onde há espécies plantadas. 
                             Clicando no pin, você pode saber o nome ou apelido da espécie e, caso queira saber mais 
                             sobre ela no nosso jardim - imagens e curiosidades - , clique no pop-up para ir até a página das Espécies.
+                            Caso o pop-up fique cortado basta aplicar zoom no mapa. 
 
                         </p>
                         {id && speciesName && (
