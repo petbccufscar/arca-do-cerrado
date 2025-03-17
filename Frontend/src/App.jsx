@@ -8,6 +8,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 
+import FaviconUpdater from "./utils/FaviconUpdater";
 import Navbar from "./components/layout/navbar"
 import Footer from "./components/layout/footer"
 
@@ -17,6 +18,7 @@ function App() {
     return (
         <>
             <Router>
+                <FaviconUpdater />
                 <Navbar/>
                 <AppRoutes/>
                 <Footer/>
