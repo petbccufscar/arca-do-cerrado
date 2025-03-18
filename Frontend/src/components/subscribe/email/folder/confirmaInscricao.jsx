@@ -1,6 +1,6 @@
 const ConfirmaInscricao = ({ name }) => {
     // URL para a página de cancelamento de inscrição do seu site
-    const unsubscribeUrl = 'https://seusite.com/cancelar-inscricao';
+    const unsubscribeUrl = 'https://arcadocerrado.ufscar.br/inscrever';
 
     return `
         <html>
@@ -29,7 +29,7 @@ const ConfirmaInscricao = ({ name }) => {
             </head>
             <body>
                 <div class="container">
-                    <img src='cid:arca.png' alt='logo'/>
+                    <img src="https://arcadocerrado.ufscar.br/static/logo/logo.png" alt='logo'/>
                     <h1>Olá ${name},</h1>
                     <p>Obrigado por se inscrever em nosso blog!</p>
                     <p>Se você deseja cancelar sua inscrição, clique <a href="${unsubscribeUrl}" class="unsubscribe-link">aqui</a>.</p>
